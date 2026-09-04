@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modul 3: Dasar & Interaktivitas JavaScript</title>
+  
+  <style>
+    /* 1. Variabel CSS & Root Design System */
+    :root {
+      --primary: #059669;        /* Emerald Green untuk Modul 3 */
+      --primary-hover: #047857;
+      --primary-light: #ecfdf5;
+      --secondary: #0284c7;
+      --accent: #f59e0b;         /* Amber Accent */
+      --bg-body: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-color: #e2e8f0;
+      --code-bg: #0f172a;
+      --code-text: #f8fafc;
+      --preview-bg: #ffffff;
+      --preview-border: #cbd5e1;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      --radius: 12px;
+    }
+
+    /* 2. Reset Standard */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding-bottom: 4rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 3. Header Navigasi Sticky */
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-link {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+
+    /* 4. Layout Utama */
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .module-header {
+      background: linear-gradient(135deg, #10b981, #0284c7);
+      color: #ffffff;
+      padding: 2.5rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .module-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .module-header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* 5. Card Materi */
+    .topic-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .topic-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .topic-card h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .topic-card h3 {
+      font-size: 1.15rem;
+      margin: 1.5rem 0 0.5rem 0;
+      color: var(--text-main);
+    }
+
+    .topic-card p {
+      margin-bottom: 1rem;
+      color: #334155;
+    }
+
+    /* 6. Callout Box (Analogi & Catatan) */
+    .analogy {
+      background-color: #fef3c7;
+      border-left: 4px solid var(--accent);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-bottom: 2rem;
+      color: #92400e;
+    }
+
+    .note {
+      background-color: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+    
+    .note-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    /* 7. Blok Kode & Live Preview */
+    .code-block {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .code-block pre {
+      margin: 0;
+      white-space: pre;
+    }
+
+    .preview-box {
+      background-color: var(--preview-bg);
+      border: 2px dashed var(--preview-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    .preview-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* 8. Badge & Elemen UI Tambahan */
+    code.tag {
+      background-color: #f1f5f9;
+      color: #0284c7;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'Consolas', monospace;
+      font-size: 0.88em;
+      border: 1px solid #e2e8f0;
+      font-weight: 600;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* 9. Interactive Elements */
+    .btn-action {
+      background-color: var(--primary);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-action:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background-color: #e2e8f0;
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background-color: #cbd5e1;
+    }
+
+    .input-field {
+      padding: 0.6rem 0.9rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      outline: none;
+      width: 100%;
+      max-width: 320px;
+      transition: border-color 0.2s ease;
+    }
+
+    .input-field:focus {
+      border-color: var(--primary);
+    }
+
+    .counter-badge {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 640px) {
+      .module-header {
+        padding: 1.75rem 1.25rem;
+      }
+
+      .module-header h1 {
+        font-size: 1.6rem;
+      }
+
+      .topic-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigasi Atas -->
+  <header>
+    <div class="nav-container">
+      <a href="materi.html" class="back-link">&larr; Kembali ke Daftar Modul</a>
+      <span style="font-weight: 500; font-size: 0.9rem; color: var(--text-muted);">Modul 3 dari 3</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- Header Modul -->
+    <section class="module-header">
+      <h1>⚡ Modul 3: Dasar & Interaktivitas JavaScript</h1>
+      <p>Memberikan logika, merespons tindakan pengguna, serta memanipulasi elemen halaman web secara real-time menggunakan JavaScript Vanilla.</p>
+    </section>
+
+    <!-- KONSEP DASAR / ANALOGI -->
+    <div class="analogy">
+      <strong style="display: block; margin-bottom: 0.25rem;">💡 Konsep Dasar: Apa peran JavaScript?</strong>
+      Jika <strong>HTML</strong> adalah struktur rumah dan <strong>CSS</strong> adalah dekorasinya, maka **JavaScript** adalah **sistem kelistrikan dan otomatisasinya**: tombol lampu yang menyala saat ditekan, pintu otomatis yang terbuka saat didekati, hingga bel pintu yang berbunyi.
+    </div>
+
+    <!-- MATERI 3.1 -->
+    <article class="topic-card" id="materi-3-1">
+      <h2>3.1 Menghubungkan JavaScript ke HTML</h2>
+      <p>Sama seperti CSS, kode JavaScript dapat diletakkan di dalam file HTML atau dipisahkan ke dalam file eksternal berekstensi <code>.js</code>.</p>
+
+      <h3>1. External JavaScript (Sangat Direkomendasikan)</h3>
+      <p>Menuliskan kode pada file terpisah bernama <code>script.js</code>, lalu memanggilnya sebelum tag penutup <code class="tag">&lt;/body&gt;</code>.</p>
+
+      <div class="code-block">
+<pre>&lt;!-- Di bagian bawah file index.html --&gt;
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</pre>
+      </div>
+
+      <div class="note">
+        <span class="note-title">Mengapa di Bawah?</span>
+        Meletakkan tag <code class="tag">&lt;script&gt;</code> di akhir elemen <code class="tag">&lt;body&gt;</code> memastikan seluruh elemen HTML telah selesai di-load oleh browser sebelum JavaScript mencoba memanipulasinya.
+      </div>
+    </article>
+
+    <!-- MATERI 3.2 -->
+    <article class="topic-card" id="materi-3-2">
+      <h2>3.2 Variabel & Tipe Data Dasar</h2>
+      <p>Variabel digunakan untuk menyimpan data dalam memori program. Di JavaScript modern (ES6+), kita menggunakan <code>let</code> dan <code>const</code>.</p>
+
+      <ul>
+        <li><code>const</code>: Digunakan untuk nilai tetap yang <strong>tidak akan diubah</strong> nilainya.</li>
+        <li><code>let</code>: Digunakan untuk variabel yang nilainya <strong>dapat berubah</strong>.</li>
+      </ul>
+
+      <div class="code-block">
+<pre>// Contoh Variabel dan Tipe Data
+const namaWebsite = "Portfolio Saya"; // String
+let jumlahPengunjung = 150;           // Number
+let isOnline = true;                  // Boolean
+
+// Mengubah nilai variabel let
+jumlahPengunjung = jumlahPengunjung + 1;</pre>
+      </div>
+    </article>
+
+    <!-- MATERI 3.3 -->
+    <article class="topic-card" id="materi-3-3">
+      <h2>3.3 Manipulasi DOM (Document Object Model)</h2>
+      <p>DOM memungkinkan JavaScript membaca dan mengubah struktur, teks, maupun gaya CSS dari halaman HTML secara langsung saat program berjalan.</p>
+
+      <div class="code-block">
+<pre>// 1. Mengambil elemen berdasarkan ID
+const teksTarget = document.getElementById("teks-demo");
+
+// 2. Mengubah isi teks
+teksTarget.textContent = "Halo! Teks ini diubah oleh JavaScript!";
+
+// 3. Mengubah gaya CSS
+teksTarget.style.color = "#059669";</pre>
+      </div>
+
+      <!-- LIVE PREVIEW DEMO 1 -->
+      <div class="preview-box">
+        <div class="preview-title">👁️ Live Demo: Manipulasi Teks DOM</div>
+        <p id="teks-demo" style="font-weight: 600; font-size: 1.1rem; color: var(--text-main); margin-bottom: 1rem;">
+          Teks awal sebelum diubah...
+        </p>
+        <button type="button" class="btn-action" id="btn-ubah-teks">✨ Ubah Teks & Warna</button>
+        <button type="button" class="btn-action btn-secondary" id="btn-reset-teks">🔄 Reset</button>
+      </div>
+    </article>
+
+    <!-- MATERI 3.4 -->
+    <article class="topic-card" id="materi-3-4">
+      <h2>3.4 Event Handling (Merespons Interaksi)</h2>
+      <p>Event adalah peristiwa yang terjadi di browser, seperti klik mouse, pengetikan keyboard, atau saat form dikirim (*submit*). Kita menggunakan <code>addEventListener()</code> untuk meresponsnya.</p>
+
+      <div class="code-block">
+<pre>const tombol = document.querySelector("#tombol-klik");
+
+// Mendengarkan kejadian 'click'
+tombol.addEventListener("click", function() {
+  alert("Tombol berhasil diklik!");
+});</pre>
+      </div>
+
+      <!-- LIVE PREVIEW DEMO 2 -->
+      <div class="preview-box">
+        <div class="preview-title">👁️ Live Demo: Counter Hitungan Interaktif</div>
+        <p>Klik tombol di bawah untuk menambah atau mengurangi nilai counter secara live:</p>
+        <span class="counter-badge" id="counter-val">0</span>
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="button" class="btn-action" id="btn-tambah">➕ Tambah</button>
+          <button type="button" class="btn-action btn-secondary" id="btn-kurang">➖ Kurang</button>
+          <button type="button" class="btn-action btn-secondary" id="btn-reset-counter">🔄 Reset</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- MATERI 3.5 -->
+    <article class="topic-card" id="materi-3-5">
+      <h2>3.5 Studi Kasus: Live Input Greeting</h2>
+      <p>Menghubungkan input teks dari pengguna dengan tampilan langsung di layar (*Real-time Preview*).</p>
+
+      <!-- LIVE PREVIEW DEMO 3 -->
+      <div class="preview-box">
+        <div class="preview-title">👁️ Live Demo: Salam Diri Interaktif</div>
+        <div style="margin-bottom: 1rem;">
+          <label for="input-nama" style="display: block; font-weight: 600; margin-bottom: 0.4rem;">Ketik Nama Kamu:</label>
+          <input type="text" id="input-nama" class="input-field" placeholder="Contoh: Raihan">
+        </div>
+        <div style="background-color: var(--primary-light); padding: 1rem; border-radius: 6px; border: 1px solid #a7f3d0;">
+          <p style="margin: 0; font-weight: 600; color: var(--primary-hover);" id="output-salam">
+            Halo! Selamat datang di Modul 3 👋
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- LATIHAN MANDIRI -->
+    <article class="topic-card" style="border: 2px solid var(--primary); background-color: var(--primary-light);">
+      <h2 style="color: var(--primary); border-bottom: none; margin-bottom: 0.5rem;">🎯 Latihan Mandiri Modul 3</h2>
+      <p style="color: #065f46;">Saatnya memberikan interaktivitas pada file <code>biodata.html</code> milikmu!</p>
+      
+      <ol style="color: #0f172a; margin-bottom: 0;">
+        <li>Buat file baru bernama <code>script.js</code> di folder proyekmu.</li>
+        <li>Hubungkan file JS tersebut ke <code>biodata.html</code> sebelum tag penutup <code class="tag">&lt;/body&gt;</code>.</li>
+        <li>Buatlah **Tombol Like / Apresiasi** pada halaman biodatamu yang akan bertambah hitungannya setiap kali diklik.</li>
+        <li><em>(Tantangan Bonus)</em>: Buatlah tombol **Dark Mode Toggle** sederhana yang dapat mengubah warna background halaman dari terang ke gelap saat diklik!</li>
+      </ol>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Belajar Web Development - Modul 3 JavaScript Dasar</p>
+  </footer>
+
+  <!-- SCRIPT LOGIKA JAVASCRIPT UNTUK DEMO LIVE -->
+  <script>
+    // --- DEMO 1: Manipulasi DOM ---
+    const teksTarget = document.getElementById("teks-demo");
+    const btnUbahTeks = document.getElementById("btn-ubah-teks");
+    const btnResetTeks = document.getElementById("btn-reset-teks");
+
+    btnUbahTeks.addEventListener("click", function() {
+      teksTarget.textContent = "🎉 Berhasil! Teks dan warna diubah secara fleksibel oleh JavaScript!";
+      teksTarget.style.color = "#059669";
+    });
+
+    btnResetTeks.addEventListener("click", function() {
+      teksTarget.textContent = "Teks awal sebelum diubah...";
+      teksTarget.style.color = "var(--text-main)";
+    });
+
+    // --- DEMO 2: Counter Interaktif ---
+    let count = 0;
+    const counterVal = document.getElementById("counter-val");
+    const btnTambah = document.getElementById("btn-tambah");
+    const btnKurang = document.getElementById("btn-kurang");
+    const btnResetCounter = document.getElementById("btn-reset-counter");
+
+    btnTambah.addEventListener("click", function() {
+      count++;
+      counterVal.textContent = count;
+    });
+
+    btnKurang.addEventListener("click", function() {
+      if (count > 0) {
+        count--;
+        counterVal.textContent = count;
+      }
+    });
+
+    btnResetCounter.addEventListener("click", function() {
+      count = 0;
+      counterVal.textContent = count;
+    });
+
+    // --- DEMO 3: Live Input Greeting ---
+    const inputNama = document.getElementById("input-nama");
+    const outputSalam = document.getElementById("output-salam");
+
+    inputNama.addEventListener("input", function(e) {
+      const nama = e.target.value.trim();
+      if (nama !== "") {
+        outputSalam.textContent = `Halo ${nama}! Selamat datang di Modul 3 👋`;
+      } else {
+        outputSalam.textContent = "Halo! Selamat datang di Modul 3 👋";
+      }
+    });
+  </script>
+</body>
+</html>

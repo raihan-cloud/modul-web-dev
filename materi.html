@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modul Belajar Web Development dari Nol</title>
+  
+  <!-- CSS Internal untuk Desain Modern & Clean -->
+  <style>
+    /* 1. Variabel Warna & Reset Dasar */
+    :root {
+      --primary: #2563eb;        /* Warna Biru Utama */
+      --primary-hover: #1d4ed8;
+      --bg-body: #f8fafc;        /* Background Halaman */
+      --card-bg: #ffffff;        /* Background Kartu */
+      --text-main: #0f172a;      /* Warna Teks Utama */
+      --text-muted: #64748b;     /* Warna Teks Sekunder */
+      --border-color: #e2e8f0;
+      --code-bg: #f1f5f9;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      --radius: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth; /* Pergerakan scroll halus saat navigasi diklik */
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 80px; /* Space agar tidak tertutup Navbar Fixed */
+    }
+
+    /* 2. Sticky Navbar Modern */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+    }
+
+    .navbar {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 1.2rem;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-menu a:hover {
+      background-color: var(--code-bg);
+      color: var(--primary);
+    }
+
+    /* 3. Layout Utama & Hero Section */
+    main {
+      display: block;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      color: var(--text-main);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* 4. Section Modul & Card Layout */
+    .module-section {
+      margin-bottom: 3.5rem;
+    }
+
+    .module-title {
+      font-size: 1.6rem;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .module-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-num {
+      display: inline-block;
+      background-color: var(--code-bg);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.8rem;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    code {
+      background-color: var(--code-bg);
+      color: #d97706;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      font-size: 0.88rem;
+    }
+
+    .btn-link {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .btn-link:hover {
+      text-decoration: underline;
+    }
+
+    /* 5. Footer Modern */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    /* Responsif untuk Layar HP */
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .nav-menu {
+        gap: 0.5rem;
+      }
+      body {
+        padding-top: 110px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigasi Utama -->
+  <header>
+    <nav class="navbar">
+      <a href="#" class="brand">🎓 KelasWeb</a>
+      <ul class="nav-menu">
+        <li><a href="#html">Modul 1: HTML</a></li>
+        <li><a href="#css">Modul 2: CSS</a></li>
+        <li><a href="#javascript">Modul 3: JS</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Header / Hero Section -->
+    <section class="hero">
+      <h1>Panduan Belajar Web Development</h1>
+      <p>Modul pembelajaran terstruktur dari nol untuk menguasai HTML5, CSS3, dan JavaScript murni tanpa bantuan framework.</p>
+    </section>
+
+    <!-- MODUL 1: HTML5 -->
+    <section id="html" class="module-section">
+      <h2 class="module-title">🧱 Modul 1: Dasar & Struktur HTML5</h2>
+      <p class="module-subtitle">Memahami cara membangun pondasi kerangka web yang terstruktur dan bermakna.</p>
+      
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-num">Materi 1.1</span>
+          <h3>Struktur Boilerplate HTML5</h3>
+          <p>Mengenal fungsi tag wajib seperti <code>&lt;!DOCTYPE html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;meta&gt;</code>, dan <code>&lt;body&gt;</code>.</p>
+          <a href="modul1-html.html#materi-1-1" class="btn-link">Pelajari Materi &rarr;</a>
+        </article>
+
+        <article class="card">
+          <span class="card-num">Materi 1.2</span>
+          <h3>Elemen Teks & Format</h3>
+          <p>Membuat struktur judul <code>&lt;h1-h6&gt;</code>, paragraf <code>&lt;p&gt;</code>, serta penekanan teks <code>&lt;strong&gt;</code> dan <code>&lt;em&gt;</code>.</p>
+          <a href="modul1-html.html#materi-1-2" class="btn-link">Pelajari Materi &rarr;</a>
+        </article>
+
+        <article class="card">
+          <span class="card-num">Materi 1.3</span>
+          <h3>Navigasi Link & Gambar</h3>
+          <p>Menghubungkan halaman menggunakan tag <code>&lt;a&gt;</code> dan menampilkan media gambar dengan tag <code>&lt;img&gt;</code>.</p>
+          <a href="modul1-html.html#materi-1-3" class="btn-link">Pelajari Materi &rarr;</a>
+        </article>
+
+        <article class="card">
+          <span class="card-num">Materi 1.4</span>
+          <h3>List & Form Interaktif</h3>
+          <p>Mengelompokkan data dengan <code>&lt;ul&gt;</code>/<code>&lt;ol&gt;</code> serta membuat form input dengan <code>&lt;form&gt;</code> dan <code>&lt;input&gt;</code>.</p>
+          <a href="modul1-html.html#materi-1-4" class="btn-link">Pelajari Materi &rarr;</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- MODUL 2: CSS3 -->
+    <section id="css" class="module-section">
+      <h2 class="module-title">🎨 Modul 2: Tampilan & Layout CSS3</h2>
+      <p class="module-subtitle">Mengubah kerangka polos menjadi antarmuka visual yang menarik dan responsif.</p>
+      
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-num">Materi 2.1</span>
+          <h3>Menyambungkan CSS</h3>
+          <p>Memahami 3 cara penerapan CSS: Inline, Internal dalam <code>&lt;style&gt;</code>, dan External file <code>.css</code>.</p>
+          <a href="modul2-css.html#materi-2-1" class="btn-link">Pelajari Materi &rarr;</a>
+        </article>
+
+        <article class="card">
+          <span class="card-num">Materi 2.2</span>
+          <h3>Selectors, Color & Typography</h3>
+          <p>Menyeleksi elemen via Tag, Class (<code>.</code>), ID (<code>#</code>), serta mengatur warna (HEX, RGB) dan font.</p>
+          <a href="modul2-css.html#materi-2-2" class="btn-link">Pelajari Materi &rarr;</a>
+        </article>
+
+        <article class="card">
+          <span class="card-num">Materi 2.3</span>
+          <h3>Konsep CSS Box Model</h3>
+          <p>Memahami bagaimana <code>content</code>, <code>padding</code>, <code>border</code>, dan <code>margin</code> membentuk tata letak elemen.</p>
+          <a href="modul2-css.html#materi-2-3" class="btn-link">Pelajari Materi &rarr;</a>
+        </article>
+
+        <article class="card">
+          <span class="card-num">Materi 2.4</span>
+          <h3>Flexbox & Layout Modern</h3>
+          <p>Membangun tata letak responsif dua dimensi dengan mudah menggunakan sistem CSS Flexbox.</p>
+          <a href="modul2-css.html#materi-2-4" class="btn-link">Pelajari Materi &rarr;</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- MODUL 3: JAVASCRIPT -->
+    <section id="javascript" class="module-section">
+      <h2 class="module-title">⚡ Modul 3: Logika & Interaktivitas JS</h2>
+      <p class="module-subtitle">Memberikan daya interaktif dan logika pada halaman web menggunakan Vanilla JavaScript.</p>
+      
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-num">Materi 3.1</span>
+          <h3>Variabel & Tipe Data</h3>
+          <p>Menyimpan data dengan <code>let</code> & <code>const</code>, serta mengenali tipe data String, Number, dan Boolean.</p>
+          <a href="modul3-js.html#materi-3-1" class="btn-link">Pelajari Materi &rarr;</a>
+        </article>
+
+        <article class="card">
+          <span class="card-num">Materi 3.2</span>
+          <h3>Manipulasi DOM Dasar</h3>
+          <p>Mengambil elemen HTML dengan <code>document.querySelector()</code> dan mengubah teks/gaya secara langsung.</p>
+          <a href="modul3-js.html#materi-3-2" class="btn-link">Pelajari Materi &rarr;</a>
+        </article>
+
+        <article class="card">
+          <span class="card-num">Materi 3.3</span>
+          <h3>Event Handling</h3>
+          <p>Merespons tindakan pengguna seperti klik tombol atau pengisian form menggunakan <code>addEventListener()</code>.</p>
+          <a href="modul3-js.html#materi-3-3" class="btn-link">Pelajari Materi &rarr;</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Modul Belajar Web Development Dasar. Dibuat untuk panduan mengajar.</p>
+  </footer>
+
+</body>
+</html>

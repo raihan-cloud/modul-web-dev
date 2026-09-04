@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modul 2: Dasar & Stiling CSS3</title>
+  
+  <style>
+    /* 1. Variabel CSS & Root Design System */
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --secondary: #0284c7;
+      --accent: #8b5cf6;
+      --bg-body: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-color: #e2e8f0;
+      --code-bg: #0f172a;
+      --code-text: #f8fafc;
+      --preview-bg: #ffffff;
+      --preview-border: #cbd5e1;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      --radius: 12px;
+    }
+
+    /* 2. Reset Standard */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding-bottom: 4rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 3. Header Navigasi Sticky */
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-link {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+
+    /* 4. Layout Utama */
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .module-header {
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      color: #ffffff;
+      padding: 2.5rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .module-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .module-header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* 5. Card Materi */
+    .topic-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .topic-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .topic-card h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .topic-card h3 {
+      font-size: 1.15rem;
+      margin: 1.5rem 0 0.5rem 0;
+      color: var(--text-main);
+    }
+
+    .topic-card p {
+      margin-bottom: 1rem;
+      color: #334155;
+    }
+
+    /* 6. Callout Box (Analogi & Catatan) */
+    .analogy {
+      background-color: #f3e8ff;
+      border-left: 4px solid var(--accent);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-bottom: 2rem;
+      color: #581c87;
+    }
+
+    .note {
+      background-color: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+    
+    .note-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    /* 7. Blok Kode & Live Preview */
+    .code-block {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .code-block pre {
+      margin: 0;
+      white-space: pre;
+    }
+
+    .preview-box {
+      background-color: var(--preview-bg);
+      border: 2px dashed var(--preview-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    .preview-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* 8. Badge & Elemen Tambahan */
+    code.tag {
+      background-color: #f1f5f9;
+      color: #0284c7;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'Consolas', monospace;
+      font-size: 0.88em;
+      border: 1px solid #e2e8f0;
+      font-weight: 600;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* 9. Visual Box Model Demonstration */
+    .box-model-demo {
+      background: #fef08a;
+      padding: 20px;
+      border: 2px dashed #ca8a04;
+      text-align: center;
+      font-weight: bold;
+      color: #854d0e;
+      border-radius: 8px;
+    }
+
+    .box-model-border {
+      background: #fed7aa;
+      padding: 15px;
+      border: 3px solid #ea580c;
+      color: #9a3412;
+    }
+
+    .box-model-padding {
+      background: #bbf7d0;
+      padding: 15px;
+      border: 2px dashed #16a34a;
+      color: #166534;
+    }
+
+    .box-model-content {
+      background: #bfdbfe;
+      padding: 10px;
+      border: 2px solid #2563eb;
+      color: #1e40af;
+    }
+
+    /* 10. Flexbox Demo Styles */
+    .flex-demo-container {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      background: #f1f5f9;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .flex-demo-item {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      border-radius: 6px;
+      text-align: center;
+      flex: 1;
+      font-weight: 600;
+    }
+
+    /* 11. Interactive Button Demo */
+    .btn-interactive {
+      background-color: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .btn-interactive:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* 12. Responsive Breakpoint */
+    @media (max-width: 640px) {
+      .module-header {
+        padding: 1.75rem 1.25rem;
+      }
+
+      .module-header h1 {
+        font-size: 1.6rem;
+      }
+
+      .topic-card {
+        padding: 1.5rem;
+      }
+
+      .flex-demo-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigasi Atas -->
+  <header>
+    <div class="nav-container">
+      <a href="materi.html" class="back-link">&larr; Kembali ke Daftar Modul</a>
+      <span style="font-weight: 500; font-size: 0.9rem; color: var(--text-muted);">Modul 2 dari 3</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- Header Modul -->
+    <section class="module-header">
+      <h1>🎨 Modul 2: Dasar & Stiling CSS3</h1>
+      <p>Mengubah tampilan halaman HTML polos menjadi menarik, rapi, dan profesional menggunakan CSS3 (Cascading Style Sheets).</p>
+    </section>
+
+    <!-- KONSEP DASAR / ANALOGI -->
+    <div class="analogy">
+      <strong style="display: block; margin-bottom: 0.25rem;">💡 Konsep Dasar: Apa itu CSS?</strong>
+      Jika HTML adalah <strong>kerangka bangunan</strong>, maka **CSS (Cascading Style Sheets)** adalah **desain interiornya**: cat dinding, warna perabotan, jenis font, hingga tata letak ruangan. Tanpa CSS, web kamu hanya akan berisi teks polos dan gambar tanpa dekorasi.
+    </div>
+
+    <!-- MATERI 2.1 -->
+    <article class="topic-card" id="materi-2-1">
+      <h2>2.1 Cara Menghubungkan CSS ke HTML</h2>
+      <p>Ada tiga cara utama untuk menerapkan style CSS ke dalam file HTML:</p>
+
+      <h3>1. External CSS (Paling Direkomendasikan)</h3>
+      <p>Memisahkan kode CSS di file terpisah bernama <code>style.css</code>, lalu dihubungkan melalui tag <code class="tag">&lt;link&gt;</code> di dalam bagian <code class="tag">&lt;head&gt;</code>.</p>
+      
+      <div class="code-block">
+<pre>&lt;!-- Di dalam file index.html --&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</pre>
+      </div>
+
+      <h3>2. Internal CSS</h3>
+      <p>Menuliskan kode CSS di dalam file HTML yang sama dengan membungkusnya menggunakan tag <code class="tag">&lt;style&gt;</code> di bagian <code class="tag">&lt;head&gt;</code>.</p>
+
+      <h3>3. Inline CSS</h3>
+      <p>Menuliskan atribut <code>style=""</code> langsung di dalam tag HTML. <em>(Kurang disarankan untuk proyek skala besar)</em>.</p>
+
+      <div class="note">
+        <span class="note-title">Best Practice:</span>
+        Selalu gunakan metode **External CSS** agar kode HTML tetap bersih, mudah dibaca, serta file CSS tersebut dapat digunakan ulang (*reusable*) di halaman web lainnya.
+      </div>
+    </article>
+
+    <!-- MATERI 2.2 -->
+    <article class="topic-card" id="materi-2-2">
+      <h2>2.2 Selectors & Properti Dasar</h2>
+      <p>CSS bekerja dengan pola **Selector** (elemen mana yang ingin diubah) dan **Declaration** (sifat apa yang ingin diatur).</p>
+
+      <h3>A. Jenis Selector Utama</h3>
+      <ul>
+        <li><strong>Tag Selector:</strong> Memilih semua tag tertentu (misal: <code>p { color: blue; }</code>).</li>
+        <li><strong>Class Selector (<code>.</code>):</strong> Memilih elemen dengan nama kelas spesifik (misal: <code>.kartu { background: white; }</code>).</li>
+        <li><strong>ID Selector (<code>#</code>):</strong> Memilih satu elemen unik (misal: <code>#header-utama { font-size: 24px; }</code>).</li>
+      </ul>
+
+      <div class="code-block">
+<pre>/* Contoh penulisan CSS dasar */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.judul-utama {
+  color: #2563eb;
+  font-size: 1.8rem;
+  text-align: center;
+}</pre>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-title">👁️ Hasil Tampilan Browser:</div>
+        <div style="font-family: 'Segoe UI', sans-serif; background-color: #f8fafc; padding: 1rem; border-radius: 6px;">
+          <h2 style="color: #2563eb; font-size: 1.5rem; text-align: center; margin-bottom: 0.5rem; border-bottom: none;">
+            Contoh Judul Utama
+          </h2>
+          <p style="text-align: center; color: #475569; margin-bottom: 0;">Teks ini menggunakan font Segoe UI dan warna terstruktur.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- MATERI 2.3 -->
+    <article class="topic-card" id="materi-2-3">
+      <h2>2.3 CSS Box Model</h2>
+      <p>Setiap elemen di HTML dianggap sebagai sebuah "kotak" (*box*). Konsep ini menentukan bagaimana ukuran dan ruang antar elemen dihitung.</p>
+
+      <div class="preview-box" style="margin-bottom: 1.5rem;">
+        <div class="preview-title">📦 Struktur Anatomi Box Model:</div>
+        <div class="box-model-demo">
+          MARGIN (Ruang Luar)
+          <div class="box-model-border">
+            BORDER (Garis Tepi)
+            <div class="box-model-padding">
+              PADDING (Ruang Dalam)
+              <div class="box-model-content">
+                CONTENT (Teks / Gambar)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block">
+<pre>/* Mengatur Box Model elemen kartu */
+.card {
+  width: 300px;
+  padding: 20px;       /* Ruang antara konten & border */
+  border: 2px solid #cbd5e1; /* Garis pembatas */
+  margin: 15px;        /* Jarak dengan elemen di luarnya */
+  box-sizing: border-box; /* Memastikan ukuran tetap konsisten */
+}</pre>
+      </div>
+
+      <div class="note">
+        <strong>Tips Penting (<code>box-sizing: border-box</code>):</strong> Secara default, menambahkan padding dan border akan menambah total lebar elemen. Menggunakan <code>box-sizing: border-box</code> membuat total lebar elemen tetap sesuai nilai <code>width</code> yang ditentukan.
+      </div>
+    </article>
+
+    <!-- MATERI 2.4 -->
+    <article class="topic-card" id="materi-2-4">
+      <h2>2.4 Layout Modern dengan Flexbox</h2>
+      <p>Flexbox adalah teknik CSS modern untuk menyusun tata letak elemen secara sejajar (horisontal atau vertikal) dengan mudah dan responsif.</p>
+
+      <div class="code-block">
+<pre>/* Mengaktifkan Flexbox pada kontainer */
+.flex-container {
+  display: flex;
+  justify-content: space-between; /* Meratakan jarak antar kolom */
+  align-items: center;            /* Meratakan vertikal di tengah */
+  gap: 1rem;                      /* Jarak antar item */
+}</pre>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-title">👁️ Hasil Tampilan Browser (Flexbox Container):</div>
+        <div class="flex-demo-container">
+          <div class="flex-demo-item">Kolom 1</div>
+          <div class="flex-demo-item">Kolom 2</div>
+          <div class="flex-demo-item">Kolom 3</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- MATERI 2.5 -->
+    <article class="topic-card" id="materi-2-5">
+      <h2>2.5 Interaktivitas & State Pseudo-Classes</h2>
+      <p>CSS memungkinkan kita memberikan respons visual saat pengguna berinteraksi dengan elemen, seperti mengarahkan kursor (*hover*) atau mengeklik tombol.</p>
+
+      <div class="code-block">
+<pre>/* Style tombol dasar */
+.tombol {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: all 0.3s ease; /* Transisi animasi halus */
+}
+
+/* Efek saat kursor berada di atas tombol */
+.tombol:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px); /* Mengangkat tombol sedikit */
+}</pre>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-title">👁️ Hasil Tampilan (Arahkan kursor ke tombol):</div>
+        <div style="text-align: center; padding: 1rem;">
+          <button type="button" class="btn-interactive">Hover Saya!</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- LATIHAN MANDIRI -->
+    <article class="topic-card" style="border: 2px solid var(--accent); background-color: #f3e8ff;">
+      <h2 style="color: var(--accent); border-bottom: none; margin-bottom: 0.5rem;">🎯 Latihan Mandiri Modul 2</h2>
+      <p style="color: #581c87;">Saatnya menghias file <code>biodata.html</code> yang telah kamu buat di Modul 1!</p>
+      
+      <ol style="color: #0f172a; margin-bottom: 0;">
+        <li>Buat file CSS baru bernama <code>style.css</code> di folder yang sama dengan <code>biodata.html</code>.</li>
+        <li>Hubungkan file CSS tersebut menggunakan tag <code class="tag">&lt;link rel="stylesheet" href="style.css"&gt;</code> pada bagian <code class="tag">&lt;head&gt;</code>.</li>
+        <li>Atur warna latar belakang halaman (<code>body</code>) dengan warna lembut (misal: <code>#f8fafc</code>).</li>
+        <li>Bungkus konten biodatamu dalam sebuah kartu (<code>&lt;div class="card"&gt;</code>), lalu beri gaya: <code>background-color: white</code>, <code>padding</code>, <code>border-radius</code>, dan <code>box-shadow</code>.</li>
+        <li>Ubah gaya tombol atau link sosial mediamu agar memiliki efek saat di-hover.</li>
+      </ol>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Belajar Web Development - Modul 2 CSS3</p>
+  </footer>
+
+</body>
+</html>

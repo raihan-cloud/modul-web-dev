@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modul 1: Dasar & Struktur HTML5</title>
+  
+  <style>
+    /* 1. Variabel CSS & Root */
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --secondary: #0284c7;
+      --bg-body: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-color: #e2e8f0;
+      --code-bg: #0f172a;
+      --code-text: #f8fafc;
+      --preview-bg: #ffffff;
+      --preview-border: #cbd5e1;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      --radius: 12px;
+    }
+
+    /* 2. Reset Standard */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding-bottom: 4rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 3. Header & Navigasi Sticky */
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-link {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+
+    /* 4. Layout Utama */
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .module-header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #ffffff;
+      padding: 2.5rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .module-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .module-header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* 5. Card Materi */
+    .topic-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .topic-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .topic-card h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .topic-card h3 {
+      font-size: 1.15rem;
+      margin: 1.5rem 0 0.5rem 0;
+      color: var(--text-main);
+    }
+
+    .topic-card p {
+      margin-bottom: 1rem;
+      color: #334155;
+    }
+
+    /* 6. Callout Box (Analogi & Catatan) */
+    .analogy {
+      background-color: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-bottom: 2rem;
+      color: #92400e;
+    }
+
+    .note {
+      background-color: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+    
+    .note-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    /* 7. Blok Kode & Live Preview */
+    .code-block {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .code-block pre {
+      margin: 0;
+      white-space: pre;
+    }
+
+    .preview-box {
+      background-color: var(--preview-bg);
+      border: 2px dashed var(--preview-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    .preview-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* 8. Badge & Elemen Tambahan */
+    code.tag {
+      background-color: #f1f5f9;
+      color: #0284c7;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'Consolas', monospace;
+      font-size: 0.88em;
+      border: 1px solid #e2e8f0;
+      font-weight: 600;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* 9. Form Preview Styling */
+    .demo-form label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #334155;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .demo-form input {
+      width: 100%;
+      max-width: 360px;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .demo-form input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .demo-btn {
+      padding: 0.6rem 1.2rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .demo-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* 10. Responsive Breakpoint */
+    @media (max-width: 640px) {
+      .module-header {
+        padding: 1.75rem 1.25rem;
+      }
+
+      .module-header h1 {
+        font-size: 1.6rem;
+      }
+
+      .topic-card {
+        padding: 1.5rem;
+      }
+
+      .demo-form input {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigasi Atas -->
+  <header>
+    <div class="nav-container">
+      <a href="materi.html" class="back-link">&larr; Kembali ke Daftar Modul</a>
+      <span style="font-weight: 500; font-size: 0.9rem; color: var(--text-muted);">Modul 1 dari 3</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- Header Modul -->
+    <section class="module-header">
+      <h1>🧱 Modul 1: Dasar & Struktur HTML5</h1>
+      <p>Selamat datang di dunia Web Development! Di modul ini, kita akan mempelajari cara menyusun fondasi sebuah halaman web menggunakan elemen-elemen standar HTML5.</p>
+    </section>
+
+    <!-- KONSEP DASAR / ANALOGI -->
+    <div class="analogy">
+      <strong style="display: block; margin-bottom: 0.25rem;">💡 Konsep Dasar: Apa itu HTML?</strong>
+      Bayangkan kamu sedang membangun sebuah rumah. <strong>HTML (HyperText Markup Language)</strong> adalah batu bata, tiang, dan kerangkanya. HTML bertugas menentukan struktur website: mana yang menjadi judul, paragraf, gambar, maupun tombol.
+    </div>
+
+    <!-- MATERI 1.1 -->
+    <article class="topic-card" id="materi-1-1">
+      <h2>1.1 Struktur Wajib HTML (Boilerplate)</h2>
+      <p>Setiap dokumen HTML <strong>wajib</strong> memiliki struktur dasar yang disebut <em>boilerplate</em>. Tanpa struktur ini, browser tidak dapat menampilkan halaman dengan benar.</p>
+      
+      <div class="code-block">
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Halaman Pertama Saya&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Halo Dunia!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+      </div>
+
+      <div class="note">
+        <span class="note-title">Bedah Kode (Baris per Baris):</span>
+        <ul>
+          <li><code class="tag">&lt;!DOCTYPE html&gt;</code>: Memberitahu browser bahwa ini dokumen HTML5.</li>
+          <li><code class="tag">&lt;html lang="id"&gt;</code>: Pembungkus utama dokumen berpemasok bahasa Indonesia.</li>
+          <li><code class="tag">&lt;head&gt;</code>: Tempat pengaturan web (meta tag, judul tab, CSS) yang tidak muncul di area baca.</li>
+          <li><code class="tag">&lt;meta charset="UTF-8"&gt;</code>: Memastikan dukungan standar karakter dan emoji.</li>
+          <li><code class="tag">&lt;meta name="viewport"...&gt;</code>: Mengatur responsivitas halaman di layar mobile.</li>
+          <li><code class="tag">&lt;body&gt;</code>: Tempat seluruh konten visual (teks, gambar, link) diletakkan.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- MATERI 1.2 -->
+    <article class="topic-card" id="materi-1-2">
+      <h2>1.2 Teks & Format (Heading & Paragraf)</h2>
+      <p>Untuk menulis teks, gunakan tag yang sesuai agar browser memahami hierarki informasi pada halaman web Anda.</p>
+
+      <h3>A. Heading (Judul)</h3>
+      <p>Tersedia 6 tingkatan judul, mulai dari <code class="tag">&lt;h1&gt;</code> (terbesar/terpenting) hingga <code class="tag">&lt;h6&gt;</code> (terkecil).</p>
+
+      <h3>B. Paragraf & Format Teks</h3>
+      <p>Gunakan <code class="tag">&lt;p&gt;</code> untuk paragraf, <code class="tag">&lt;strong&gt;</code> untuk penekanan tebal, dan <code class="tag">&lt;em&gt;</code> untuk cetak miring.</p>
+
+      <div class="code-block">
+<pre>&lt;h1&gt;Belajar HTML itu Menyenangkan&lt;/h1&gt;
+&lt;h2&gt;Bab 1: Pengenalan&lt;/h2&gt;
+
+&lt;p&gt;Ini adalah paragraf. Kamu bisa menggunakan kata &lt;strong&gt;tebal&lt;/strong&gt; 
+atau kata &lt;em&gt;miring&lt;/em&gt; di dalamnya.&lt;/p&gt;
+
+&lt;p&gt;Jika ingin pindah baris tanpa membuat paragraf baru,&lt;br&gt; 
+gunakan tag br (line break).&lt;/p&gt;</pre>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-title">👁️ Hasil Tampilan Browser:</div>
+        <h1 style="font-size: 1.8rem; margin-bottom: 0.5rem; line-height: 1.2;">Belajar HTML itu Menyenangkan</h1>
+        <h2 style="font-size: 1.25rem; margin-bottom: 0.8rem; color: #475569;">Bab 1: Pengenalan</h2>
+        <p style="margin-bottom: 0.8rem;">Ini adalah paragraf. Kamu bisa menggunakan kata <strong>tebal</strong> atau kata <em>miring</em> di dalamnya.</p>
+        <p>Jika ingin pindah baris tanpa membuat paragraf baru,<br>gunakan tag br (line break).</p>
+      </div>
+    </article>
+
+    <!-- MATERI 1.3 -->
+    <article class="topic-card" id="materi-1-3">
+      <h2>1.3 Menambahkan Link & Gambar</h2>
+      <p>Membuat elemen interaktif dengan tautan dan media visual:</p>
+
+      <h3>A. Tautan / Link (<code class="tag">&lt;a&gt;</code>)</h3>
+      <p>Tag Anchor membutuhkan atribut <code>href</code> yang berisi URL tujuan.</p>
+
+      <h3>B. Gambar (<code class="tag">&lt;img&gt;</code>)</h3>
+      <p>Tag ini tidak memerlukan tag penutup. Membutuhkan atribut <code>src</code> (path/URL gambar) dan <code>alt</code> (deskripsi gambar).</p>
+
+      <div class="code-block">
+<pre>&lt;!-- Link yang akan terbuka di tab baru --&gt;
+&lt;a href="https://google.com" target="_blank"&gt;Buka Google&lt;/a&gt;
+
+&lt;!-- Menampilkan Gambar --&gt;
+&lt;img src="https://via.placeholder.com/150" alt="Foto Profil Saya"&gt;</pre>
+      </div>
+
+      <div class="note">
+        <strong>Tips Penting:</strong> Gunakan atribut <code>target="_blank"</code> pada tautan eksternal agar pengguna tidak meninggalkan halaman web utama Anda saat menguklik tautan tersebut.
+      </div>
+    </article>
+
+    <!-- MATERI 1.4 -->
+    <article class="topic-card" id="materi-1-4">
+      <h2>1.4 Membuat Daftar (List)</h2>
+      <p>Daftar dapat disusun secara berurutan (*Ordered List*) atau tidak berurutan (*Unordered List*).</p>
+
+      <div class="code-block">
+<pre>&lt;h3&gt;Daftar Belanja (Unordered List):&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Beras&lt;/li&gt;
+  &lt;li&gt;Telur&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Cara Memasak Telur (Ordered List):&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;Nyalakan kompor&lt;/li&gt;
+  &lt;li&gt;Pecahkan telur ke wajan&lt;/li&gt;
+&lt;/ol&gt;</pre>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-title">👁️ Hasil Tampilan Browser:</div>
+        <h3 style="font-size: 1rem; margin-bottom: 0.4rem;">Daftar Belanja (Unordered List):</h3>
+        <ul style="margin-bottom: 1rem;">
+          <li>Beras</li>
+          <li>Telur</li>
+        </ul>
+        <h3 style="font-size: 1rem; margin-bottom: 0.4rem;">Cara Memasak Telur (Ordered List):</h3>
+        <ol style="margin-bottom: 0;">
+          <li>Nyalakan kompor</li>
+          <li>Pecahkan telur ke wajan</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- MATERI 1.5 -->
+    <article class="topic-card" id="materi-1-5">
+      <h2>1.5 Formulir (Form Input)</h2>
+      <p>Formulir digunakan untuk menangkap masukan (*input*) dari pengguna.</p>
+
+      <div class="code-block">
+<pre>&lt;form&gt;
+  &lt;label for="nama"&gt;Nama Lengkap:&lt;/label&gt;
+  &lt;input type="text" id="nama" placeholder="Tulis nama kamu..."&gt;
+
+  &lt;label for="email"&gt;Alamat Email:&lt;/label&gt;
+  &lt;input type="email" id="email" placeholder="contoh@mail.com"&gt;
+
+  &lt;button type="submit"&gt;Daftar Sekarang&lt;/button&gt;
+&lt;/form&gt;</pre>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-title">👁️ Hasil Tampilan Browser:</div>
+        <form class="demo-form" onSubmit="return false;">
+          <label for="preview-nama">Nama Lengkap:</label>
+          <input type="text" id="preview-nama" placeholder="Tulis nama kamu...">
+
+          <label for="preview-email">Alamat Email:</label>
+          <input type="email" id="preview-email" placeholder="contoh@mail.com">
+
+          <div>
+            <button type="button" class="demo-btn">Daftar Sekarang</button>
+          </div>
+        </form>
+      </div>
+    </article>
+
+    <!-- MATERI 1.6 -->
+    <article class="topic-card" id="materi-1-6">
+      <h2>1.6 Elemen Semantik HTML5</h2>
+      <p>Penggunaan elemen semantik memberikan konteks bermakna pada struktur web:</p>
+      
+      <ul>
+        <li><code class="tag">&lt;header&gt;</code> : Menampung logo, tajuk, atau menu navigasi atas.</li>
+        <li><code class="tag">&lt;nav&gt;</code> : Menampung daftar tautan navigasi utama.</li>
+        <li><code class="tag">&lt;main&gt;</code> : Menampung konten utama halaman web.</li>
+        <li><code class="tag">&lt;footer&gt;</code> : Bagian catatan kaki, hak cipta, atau tautan tambahan.</li>
+      </ul>
+    </article>
+
+    <!-- LATIHAN MANDIRI -->
+    <article class="topic-card" style="border: 2px solid var(--primary); background-color: var(--primary-light);">
+      <h2 style="color: var(--primary); border-bottom: none; margin-bottom: 0.5rem;">🎯 Latihan Mandiri</h2>
+      <p>Praktikkan materi yang telah dipelajari dengan membuat file baru bernama <code>biodata.html</code>:</p>
+      
+      <ol style="color: var(--text-main); margin-bottom: 0;">
+        <li>Buat struktur dasar HTML5 (boilerplate).</li>
+        <li>Gunakan <code class="tag">&lt;h1&gt;</code> untuk judul nama lengkap Anda.</li>
+        <li>Tampilkan foto profil menggunakan tag <code class="tag">&lt;img&gt;</code>.</li>
+        <li>Tulis paragraf <code class="tag">&lt;p&gt;</code> singkat tentang hobi Anda (sertakan format <code class="tag">&lt;strong&gt;</code>).</li>
+        <li>Buat daftar <code class="tag">&lt;ul&gt;</code> berisi 3 keahlian atau makanan favorit.</li>
+        <li>Tambahkan tautan <code class="tag">&lt;a&gt;</code> ke akun media sosial atau portofolio Anda.</li>
+      </ol>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Belajar Web Development - Modul 1 HTML5</p>
+  </footer>
+
+</body>
+</html>
