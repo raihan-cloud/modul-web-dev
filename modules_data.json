@@ -1,0 +1,72 @@
+[
+  {
+    "id": "html5",
+    "number": "01",
+    "title": "HTML5 Fundamentals",
+    "url": "modules/html5.html",
+    "badgeColor": "success"
+  },
+  {
+    "id": "css3",
+    "number": "02",
+    "title": "CSS3 Fundamentals & Architecture",
+    "url": "modules/css3.html",
+    "badgeColor": "accent"
+  },
+  {
+    "id": "javascript",
+    "number": "03",
+    "title": "JavaScript Fundamentals & DOM",
+    "url": "modules/javascript.html",
+    "badgeColor": "default"
+  },
+  {
+    "id": "accessibility",
+    "number": "04",
+    "title": "Web Accessibility (a11y)",
+    "url": "modules/accessibility.html",
+    "badgeColor": "accent"
+  },
+  {
+    "id": "performance",
+    "number": "05",
+    "title": "Web Performance & Core Web Vitals",
+    "url": "modules/performance.html",
+    "badgeColor": "warning"
+  },
+  {
+    "id": "seo",
+    "number": "06",
+    "title": "SEO & Web Standards",
+    "url": "modules/seo.html",
+    "badgeColor": "success"
+  },
+  {
+    "id": "web-apis",
+    "number": "07",
+    "title": "Web APIs & Browser Capabilities",
+    "url": "modules/web-apis.html",
+    "badgeColor": "accent"
+  },
+  {
+    "id": "modern-frontend",
+    "number": "08",
+    "title": "Modern Frontend Practices & UI Architecture",
+    "url": "modules/modern-frontend.html",
+    "badgeColor": "default"
+  },
+  {
+    "id": "git-workflow",
+    "number": "09",
+    "title": "Git & Professional Workflow",
+    "url": "modules/git-workflow.html",
+    "badgeColor": "warning"
+  },
+  {
+    "id": "final-project",
+    "number": "10",
+    "title": "DEVPATH Final Capstone Project",
+    "url": "modules/final-project.html",
+    "badgeColor": "success"
+  }
+]
