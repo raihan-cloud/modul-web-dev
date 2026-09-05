@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modul 1: Dasar & Struktur HTML5</title>
+  <title>Modul 1: Semantik & Aksesibilitas HTML5</title>
   
   <style>
     /* 1. Variabel CSS & Root */
@@ -243,7 +243,7 @@
 
     .demo-form input {
       width: 100%;
-      max-width: 360px;
+      max-width: 400px;
       padding: 0.6rem 0.8rem;
       margin-bottom: 1rem;
       border: 1px solid #cbd5e1;
@@ -259,6 +259,10 @@
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
 
+    .demo-form input:invalid:not(:placeholder-shown) {
+      border-color: #ef4444;
+    }
+
     .demo-btn {
       padding: 0.6rem 1.2rem;
       background: var(--primary);
@@ -272,6 +276,50 @@
 
     .demo-btn:hover {
       background: var(--primary-hover);
+    }
+
+    /* Preview Card Social Share */
+    .og-preview-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 400px;
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .og-preview-img {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #2563eb, #0284c7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .og-preview-body {
+      padding: 1rem;
+    }
+
+    .og-preview-domain {
+      font-size: 0.75rem;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .og-preview-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+      color: #0f172a;
+    }
+
+    .og-preview-desc {
+      font-size: 0.85rem;
+      color: #475569;
     }
 
     footer {
@@ -316,201 +364,227 @@
   <main>
     <!-- Header Modul -->
     <section class="module-header">
-      <h1>🧱 Modul 1: Dasar & Struktur HTML5</h1>
-      <p>Selamat datang di dunia Web Development! Di modul ini, kita akan mempelajari cara menyusun fondasi sebuah halaman web menggunakan elemen-elemen standar HTML5.</p>
+      <h1>🧱 Modul 1: Semantik & Aksesibilitas HTML5</h1>
+      <p>Penguasaan Standar HTML5 Industry-Ready: Struktur SEO, Aksesibilitas Web (a11y), Validasi Form Tanpa JS, dan Optimasi Media.</p>
     </section>
 
     <!-- KONSEP DASAR / ANALOGI -->
     <div class="analogy">
-      <strong style="display: block; margin-bottom: 0.25rem;">💡 Konsep Dasar: Apa itu HTML?</strong>
-      Bayangkan kamu sedang membangun sebuah rumah. <strong>HTML (HyperText Markup Language)</strong> adalah batu bata, tiang, dan kerangkanya. HTML bertugas menentukan struktur website: mana yang menjadi judul, paragraf, gambar, maupun tombol.
+      <strong style="display: block; margin-bottom: 0.25rem;">💡 Filosofi HTML Modern: Lebih Dari Sekadar Tampilan</strong>
+      Di industri web profesional, HTML dibaca oleh tiga entitas: <strong>Pengguna</strong> (visual), <strong>Mesin Pencari / Google</strong> (SEO), dan <strong>Screen Reader</strong> (Aksesibilitas penyandang disabilitas). Penggunaan tag pembungkus biasa seperti <code>&lt;div&gt;</code> untuk segalanya (*Div Soup*) adalah praktik buruk yang harus dihindari.
     </div>
 
     <!-- MATERI 1.1 -->
     <article class="topic-card" id="materi-1-1">
-      <h2>1.1 Struktur Wajib HTML (Boilerplate)</h2>
-      <p>Setiap dokumen HTML <strong>wajib</strong> memiliki struktur dasar yang disebut <em>boilerplate</em>. Tanpa struktur ini, browser tidak dapat menampilkan halaman dengan benar.</p>
+      <h2>1.1 Struktur Semantik & SEO Optimization</h2>
+      <p>Elemen semantik memberikan arti jelas pada struktur web sehingga mesin pencari seperti Google dapat dengan mudah memahami tata letak dan hierarki konten utama Anda.</p>
       
       <div class="code-block">
-<pre>&lt;!DOCTYPE html&gt;
-&lt;html lang="id"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-  &lt;title&gt;Halaman Pertama Saya&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h1&gt;Halo Dunia!&lt;/h1&gt;
-&lt;/body&gt;
-&lt;/html&gt;</pre>
+<pre>&lt;header&gt;
+  &lt;nav&gt;
+    &lt;a href="/"&gt;Beranda&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h1&gt;Panduan HTML5 Modern&lt;/h1&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Sub-materi 1&lt;/h2&gt;
+      &lt;p&gt;Konten artikel...&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/article&gt;
+
+  &lt;aside&gt;
+    &lt;p&gt;Widget/Rekomendasi Berita&lt;/p&gt;
+  &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2026 Hak Cipta Dilindungi.&lt;/p&gt;
+&lt;/footer&gt;</pre>
       </div>
 
       <div class="note">
-        <span class="note-title">Bedah Kode (Baris per Baris):</span>
+        <span class="note-title">Fungsi Tag Semantik Utama:</span>
         <ul>
-          <li><code class="tag">&lt;!DOCTYPE html&gt;</code>: Memberitahu browser bahwa ini dokumen HTML5.</li>
-          <li><code class="tag">&lt;html lang="id"&gt;</code>: Pembungkus utama dokumen berpemasok bahasa Indonesia.</li>
-          <li><code class="tag">&lt;head&gt;</code>: Tempat pengaturan web (meta tag, judul tab, CSS) yang tidak muncul di area baca.</li>
-          <li><code class="tag">&lt;meta charset="UTF-8"&gt;</code>: Memastikan dukungan standar karakter dan emoji.</li>
-          <li><code class="tag">&lt;meta name="viewport"...&gt;</code>: Mengatur responsivitas halaman di layar mobile.</li>
-          <li><code class="tag">&lt;body&gt;</code>: Tempat seluruh konten visual (teks, gambar, link) diletakkan.</li>
+          <li><code class="tag">&lt;header&gt;</code>: Mewakili area navigasi, logo, atau tajuk teratas.</li>
+          <li><code class="tag">&lt;main&gt;</code>: Tempat konten unik utama. <strong>Wajib hanya ada 1 per halaman</strong>.</li>
+          <li><code class="tag">&lt;article&gt;</code>: Konten mandiri yang bisa berdiri sendiri (misal: postingan blog, produk).</li>
+          <li><code class="tag">&lt;section&gt;</code>: Kelompok konten yang memiliki topik/heading khusus dalam artikel.</li>
+          <li><code class="tag">&lt;aside&gt;</code>: Konten pendamping seperti sidebar, iklan, atau rekomendasi.</li>
         </ul>
       </div>
     </article>
 
     <!-- MATERI 1.2 -->
     <article class="topic-card" id="materi-1-2">
-      <h2>1.2 Teks & Format (Heading & Paragraf)</h2>
-      <p>Untuk menulis teks, gunakan tag yang sesuai agar browser memahami hierarki informasi pada halaman web Anda.</p>
-
-      <h3>A. Heading (Judul)</h3>
-      <p>Tersedia 6 tingkatan judul, mulai dari <code class="tag">&lt;h1&gt;</code> (terbesar/terpenting) hingga <code class="tag">&lt;h6&gt;</code> (terkecil).</p>
-
-      <h3>B. Paragraf & Format Teks</h3>
-      <p>Gunakan <code class="tag">&lt;p&gt;</code> untuk paragraf, <code class="tag">&lt;strong&gt;</code> untuk penekanan tebal, dan <code class="tag">&lt;em&gt;</code> untuk cetak miring.</p>
+      <h2>1.2 Aksesibilitas (a11y) & ARIA Attributes</h2>
+      <p>Aksesibilitas memastikan website dapat digunakan oleh penyandang tunanetra atau pengguna yang bernavigasi tanpa mouse (menggunakan Keyboard Tab).</p>
 
       <div class="code-block">
-<pre>&lt;h1&gt;Belajar HTML itu Menyenangkan&lt;/h1&gt;
-&lt;h2&gt;Bab 1: Pengenalan&lt;/h2&gt;
+<pre>&lt;!-- Tombol dengan ikon tanpa teks wajib menggunakan aria-label --&gt;
+&lt;button aria-label="Tutup Mode Gelap" class="btn-icon"&gt;
+  &lt;span&gt;&amp;times;&lt;/span&gt;
+&lt;/button&gt;
 
-&lt;p&gt;Ini adalah paragraf. Kamu bisa menggunakan kata &lt;strong&gt;tebal&lt;/strong&gt; 
-atau kata &lt;em&gt;miring&lt;/em&gt; di dalamnya.&lt;/p&gt;
+&lt;!-- Memberikan penjelasan state pada menu dropdown/akordeon --&gt;
+&lt;button aria-expanded="false" aria-controls="menu-list"&gt;
+  Buka Menu
+&lt;/button&gt;
 
-&lt;p&gt;Jika ingin pindah baris tanpa membuat paragraf baru,&lt;br&gt; 
-gunakan tag br (line break).&lt;/p&gt;</pre>
+&lt;!-- Gambar deklaratif wajib alt, gambar dekoratif diberi alt kosong --&gt;
+&lt;img src="user.jpg" alt="Foto profil Raihan Muzaffar"&gt;
+&lt;img src="divider.png" alt="" aria-hidden="true"&gt;</pre>
       </div>
 
       <div class="preview-box">
-        <div class="preview-title">👁️ Hasil Tampilan Browser:</div>
-        <h1 style="font-size: 1.8rem; margin-bottom: 0.5rem; line-height: 1.2;">Belajar HTML itu Menyenangkan</h1>
-        <h2 style="font-size: 1.25rem; margin-bottom: 0.8rem; color: #475569;">Bab 1: Pengenalan</h2>
-        <p style="margin-bottom: 0.8rem;">Ini adalah paragraf. Kamu bisa menggunakan kata <strong>tebal</strong> atau kata <em>miring</em> di dalamnya.</p>
-        <p>Jika ingin pindah baris tanpa membuat paragraf baru,<br>gunakan tag br (line break).</p>
+        <div class="preview-title">👁️ Contoh Implementasi Aksesibilitas:</div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <button class="demo-btn" aria-label="Simpan Dokumen Ke Cloud">💾 Simpan (Hover/Focus Me)</button>
+          <span style="font-size: 0.88rem; color: #64748b;">Gunakan tombol <strong>Tab</strong> pada keyboard untuk menguji aksesibilitas navigasi.</span>
+        </div>
       </div>
     </article>
 
     <!-- MATERI 1.3 -->
     <article class="topic-card" id="materi-1-3">
-      <h2>1.3 Menambahkan Link & Gambar</h2>
-      <p>Membuat elemen interaktif dengan tautan dan media visual:</p>
-
-      <h3>A. Tautan / Link (<code class="tag">&lt;a&gt;</code>)</h3>
-      <p>Tag Anchor membutuhkan atribut <code>href</code> yang berisi URL tujuan.</p>
-
-      <h3>B. Gambar (<code class="tag">&lt;img&gt;</code>)</h3>
-      <p>Tag ini tidak memerlukan tag penutup. Membutuhkan atribut <code>src</code> (path/URL gambar) dan <code>alt</code> (deskripsi gambar).</p>
-
-      <div class="code-block">
-<pre>&lt;!-- Link yang akan terbuka di tab baru --&gt;
-&lt;a href="https://google.com" target="_blank"&gt;Buka Google&lt;/a&gt;
-
-&lt;!-- Menampilkan Gambar --&gt;
-&lt;img src="https://via.placeholder.com/150" alt="Foto Profil Saya"&gt;</pre>
-      </div>
-
-      <div class="note">
-        <strong>Tips Penting:</strong> Gunakan atribut <code>target="_blank"</code> pada tautan eksternal agar pengguna tidak meninggalkan halaman web utama Anda saat menguklik tautan tersebut.
-      </div>
-    </article>
-
-    <!-- MATERI 1.4 -->
-    <article class="topic-card" id="materi-1-4">
-      <h2>1.4 Membuat Daftar (List)</h2>
-      <p>Daftar dapat disusun secara berurutan (*Ordered List*) atau tidak berurutan (*Unordered List*).</p>
-
-      <div class="code-block">
-<pre>&lt;h3&gt;Daftar Belanja (Unordered List):&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Beras&lt;/li&gt;
-  &lt;li&gt;Telur&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Cara Memasak Telur (Ordered List):&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;Nyalakan kompor&lt;/li&gt;
-  &lt;li&gt;Pecahkan telur ke wajan&lt;/li&gt;
-&lt;/ol&gt;</pre>
-      </div>
-
-      <div class="preview-box">
-        <div class="preview-title">👁️ Hasil Tampilan Browser:</div>
-        <h3 style="font-size: 1rem; margin-bottom: 0.4rem;">Daftar Belanja (Unordered List):</h3>
-        <ul style="margin-bottom: 1rem;">
-          <li>Beras</li>
-          <li>Telur</li>
-        </ul>
-        <h3 style="font-size: 1rem; margin-bottom: 0.4rem;">Cara Memasak Telur (Ordered List):</h3>
-        <ol style="margin-bottom: 0;">
-          <li>Nyalakan kompor</li>
-          <li>Pecahkan telur ke wajan</li>
-        </ol>
-      </div>
-    </article>
-
-    <!-- MATERI 1.5 -->
-    <article class="topic-card" id="materi-1-5">
-      <h2>1.5 Formulir (Form Input)</h2>
-      <p>Formulir digunakan untuk menangkap masukan (*input*) dari pengguna.</p>
+      <h2>1.3 Form & Validasi Bawaan (Tanpa JavaScript)</h2>
+      <p>HTML5 menyediakan sistem validasi input canggih menggunakan atribut seperti <code>required</code>, <code>pattern</code> (Regex), dan penentuan tipe spesifik.</p>
 
       <div class="code-block">
 <pre>&lt;form&gt;
-  &lt;label for="nama"&gt;Nama Lengkap:&lt;/label&gt;
-  &lt;input type="text" id="nama" placeholder="Tulis nama kamu..."&gt;
+  &lt;!-- Validasi Format Email Asli --&gt;
+  &lt;label for="email"&gt;Email Kantor:&lt;/label&gt;
+  &lt;input type="email" id="email" required placeholder="nama@perusahaan.com"&gt;
 
-  &lt;label for="email"&gt;Alamat Email:&lt;/label&gt;
-  &lt;input type="email" id="email" placeholder="contoh@mail.com"&gt;
+  &lt;!-- Validasi Regex: Minimal 8 Karakter (Ada Angka & Huruf Besar) --&gt;
+  &lt;label for="pass"&gt;Password:&lt;/label&gt;
+  &lt;input type="password" id="pass" required 
+         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+         title="Minimal 8 karakter, wajib memuat angka, huruf besar & kecil"&gt;
 
-  &lt;button type="submit"&gt;Daftar Sekarang&lt;/button&gt;
+  &lt;button type="submit"&gt;Daftar Akun&lt;/button&gt;
 &lt;/form&gt;</pre>
       </div>
 
       <div class="preview-box">
-        <div class="preview-title">👁️ Hasil Tampilan Browser:</div>
-        <form class="demo-form" onSubmit="return false;">
-          <label for="preview-nama">Nama Lengkap:</label>
-          <input type="text" id="preview-nama" placeholder="Tulis nama kamu...">
+        <div class="preview-title">👁️ Uji Coba Live Form Validation:</div>
+        <form class="demo-form" onSubmit="alert('Form Valid! Siap dikirim.'); return false;">
+          <label for="preview-email">Email Kantor (Wajib Format Email):</label>
+          <input type="email" id="preview-email" required placeholder="nama@perusahaan.com">
 
-          <label for="preview-email">Alamat Email:</label>
-          <input type="email" id="preview-email" placeholder="contoh@mail.com">
+          <label for="preview-pass">Password (Coba ketik 1 huruf dan klik submit):</label>
+          <input type="password" id="preview-pass" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Minimal 8 karakter (Angka & Huruf Besar)" title="Minimal 8 karakter, wajib memuat angka, huruf besar & kecil">
 
           <div>
-            <button type="button" class="demo-btn">Daftar Sekarang</button>
+            <button type="submit" class="demo-btn">Submit & Uji Validasi</button>
           </div>
         </form>
       </div>
     </article>
 
+    <!-- MATERI 1.4 -->
+    <article class="topic-card" id="materi-1-4">
+      <h2>1.4 Optimasi Media & Lazy Loading</h2>
+      <p>Mempercepat performa loading website (Core Web Vitals) dengan penyajian gambar responsif via elemen <code>&lt;picture&gt;</code> dan atribut <code>loading="lazy"</code>.</p>
+
+      <div class="code-block">
+<pre>&lt;!-- 1. Lazy loading otomatis menunda download gambar sebelum di-scroll --&gt;
+&lt;img src="banner.webp" alt="Banner Modul" loading="lazy" width="800" height="400"&gt;
+
+&lt;!-- 2. Elemen Picture untuk menyajikan format ringan WebP/AVIF sesuai browser --&gt;
+&lt;picture&gt;
+  &lt;source srcset="hero.avif" type="image/avif"&gt;
+  &lt;source srcset="hero.webp" type="image/webp"&gt;
+  &lt;img src="hero.jpg" alt="Hero Banner" loading="eager"&gt;
+&lt;/picture&gt;</pre>
+      </div>
+
+      <div class="note">
+        <strong>Mengapa atribut width & height penting?</strong> Menentukan atribut `width` dan `height` pada tag gambar akan mencegah terjadinya loncatan tata letak (*Cumulative Layout Shift / CLS*) saat halaman sedang dimuat.
+      </div>
+    </article>
+
+    <!-- MATERI 1.5 -->
+    <article class="topic-card" id="materi-1-5">
+      <h2>1.5 Open Graph & Social Media Meta Tags</h2>
+      <p>Protokol Open Graph digunakan agar tautan website kamu menampilkan kartu pratinjau yang indah saat dibagikan ke WhatsApp, LinkedIn, X (Twitter), atau Facebook.</p>
+
+      <div class="code-block">
+<pre>&lt;head&gt;
+  &lt;!-- Open Graph Basic --&gt;
+  &lt;meta property="og:title" content="Modul Belajar Web Development Modern"&gt;
+  &lt;meta property="og:description" content="Kuasai HTML5, CSS3, dan JS dari Nol Berdasarkan Standar Industri."&gt;
+  &lt;meta property="og:image" content="https://website.com/assets/og-preview.jpg"&gt;
+  &lt;meta property="og:url" content="https://website.com/modul"&gt;
+  &lt;meta property="og:type" content="website"&gt;
+
+  &lt;!-- Twitter Card --&gt;
+  &lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;/head&gt;</pre>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-title">👁️ Simulasi Tampilan Saat Link Dibagikan di WhatsApp/LinkedIn:</div>
+        <div class="og-preview-card">
+          <div class="og-preview-img">✨ BANNER PREVIEW (1200x630)</div>
+          <div class="og-preview-body">
+            <div class="og-preview-domain">websitekamu.com</div>
+            <div class="og-preview-title">Modul Belajar Web Development Modern</div>
+            <div class="og-preview-desc">Kuasai HTML5, CSS3, dan JS dari Nol Berdasarkan Standar Industri.</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
     <!-- MATERI 1.6 -->
     <article class="topic-card" id="materi-1-6">
-      <h2>1.6 Elemen Semantik HTML5</h2>
-      <p>Penggunaan elemen semantik memberikan konteks bermakna pada struktur web:</p>
-      
-      <ul>
-        <li><code class="tag">&lt;header&gt;</code> : Menampung logo, tajuk, atau menu navigasi atas.</li>
-        <li><code class="tag">&lt;nav&gt;</code> : Menampung daftar tautan navigasi utama.</li>
-        <li><code class="tag">&lt;main&gt;</code> : Menampung konten utama halaman web.</li>
-        <li><code class="tag">&lt;footer&gt;</code> : Bagian catatan kaki, hak cipta, atau tautan tambahan.</li>
-      </ul>
+      <h2>1.6 Data Attributes (`data-*`)</h2>
+      <p>Data Attributes memungkinkan kamu menyimpan data kustom pada elemen HTML secara valid tanpa mengganggu tampilan, yang kemudian dapat diproses oleh CSS atau JavaScript.</p>
+
+      <div class="code-block">
+<pre>&lt;!-- Menyimpan metadata kustom pada elemen --&gt;
+&lt;div class="user-card" data-user-id="1082" data-role="admin" data-status="active"&gt;
+  &lt;h3&gt;Raihan Muzaffar&lt;/h3&gt;
+&lt;/div&gt;
+
+&lt;!-- CSS dapat mengambil nilai atribut ini --&gt;
+&lt;style&gt;
+  .user-card[data-status="active"]::after {
+    content: " • " attr(data-role);
+    color: #22c55e;
+    font-weight: bold;
+  }
+&lt;/style&gt;</pre>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-title">👁️ Hasil Tampilan Browser (Via CSS Attribute Selector):</div>
+        <div style="padding: 0.8rem 1rem; background: #f1f5f9; border-radius: 6px; display: inline-block;">
+          <strong>Raihan Muzaffar</strong> 
+          <span style="color: #22c55e; font-weight: 600; font-size: 0.85rem;"> • ONLINE (data-status="active")</span>
+        </div>
+      </div>
     </article>
 
     <!-- LATIHAN MANDIRI -->
     <article class="topic-card" style="border: 2px solid var(--primary); background-color: var(--primary-light);">
-      <h2 style="color: var(--primary); border-bottom: none; margin-bottom: 0.5rem;">🎯 Latihan Mandiri</h2>
-      <p>Praktikkan materi yang telah dipelajari dengan membuat file baru bernama <code>biodata.html</code>:</p>
+      <h2 style="color: var(--primary); border-bottom: none; margin-bottom: 0.5rem;">🎯 Latihan Praktikum Industry-Grade</h2>
+      <p>Buatlah satu file HTML baru bernama <code>portofolio-aksesibel.html</code> dengan ketentuan standar berikut:</p>
       
       <ol style="color: var(--text-main); margin-bottom: 0;">
-        <li>Buat struktur dasar HTML5 (boilerplate).</li>
-        <li>Gunakan <code class="tag">&lt;h1&gt;</code> untuk judul nama lengkap Anda.</li>
-        <li>Tampilkan foto profil menggunakan tag <code class="tag">&lt;img&gt;</code>.</li>
-        <li>Tulis paragraf <code class="tag">&lt;p&gt;</code> singkat tentang hobi Anda (sertakan format <code class="tag">&lt;strong&gt;</code>).</li>
-        <li>Buat daftar <code class="tag">&lt;ul&gt;</code> berisi 3 keahlian atau makanan favorit.</li>
-        <li>Tambahkan tautan <code class="tag">&lt;a&gt;</code> ke akun media sosial atau portofolio Anda.</li>
+        <li>Gunakan struktur semantik utuh (minimal memuat <code class="tag">&lt;header&gt;</code>, <code class="tag">&lt;nav&gt;</code>, <code class="tag">&lt;main&gt;</code>, <code class="tag">&lt;article&gt;</code>, dan <code class="tag">&lt;footer&gt;</code>).</li>
+        <li>Sematkan meta tag <strong>Open Graph</strong> lengkap pada bagian <code class="tag">&lt;head&gt;</code>.</li>
+        <li>Buat formulir kontak yang memiliki atribut validasi regex <code class="tag">pattern</code> dan <code class="tag">required</code> untuk nomor telepon/email.</li>
+        <li>Gunakan atribut <code class="tag">loading="lazy"</code> serta alternatif deskripsi <code class="tag">alt</code> yang aksesibel pada seluruh gambar.</li>
+        <li>Tambahkan atribut <code class="tag">data-category</code> pada kartu daftar proyek kamu.</li>
       </ol>
     </article>
   </main>
 
   <footer>
-    <p>&copy; 2026 Belajar Web Development - Modul 1 HTML5</p>
+    <p>&copy; 2026 Belajar Web Development - Modul 1 HTML5 Semantik & Aksesibilitas</p>
   </footer>
 
 </body>

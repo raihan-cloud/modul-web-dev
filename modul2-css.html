@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modul 2: Dasar & Stiling CSS3</title>
+  <title>Modul 2: Layout Modern & Arsitektur CSS3</title>
   
   <style>
     /* 1. Variabel CSS & Root Design System */
@@ -233,75 +233,62 @@
       margin-bottom: 0.4rem;
     }
 
-    /* 9. Visual Box Model Demonstration */
-    .box-model-demo {
-      background: #fef08a;
-      padding: 20px;
-      border: 2px dashed #ca8a04;
-      text-align: center;
-      font-weight: bold;
-      color: #854d0e;
+    /* 9. Glassmorphism Demo */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    }
+
+    .glass-bg-container {
+      background: linear-gradient(45deg, #ff7e5f, #feb47b, #6a11cb, #2575fc);
+      background-size: 400% 400%;
+      animation: gradientBG 8s ease infinite;
+      padding: 2rem;
       border-radius: 8px;
+      color: white;
     }
 
-    .box-model-border {
-      background: #fed7aa;
-      padding: 15px;
-      border: 3px solid #ea580c;
-      color: #9a3412;
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    .box-model-padding {
-      background: #bbf7d0;
-      padding: 15px;
-      border: 2px dashed #16a34a;
-      color: #166534;
+    /* 10. CSS Grid Demo */
+    .grid-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
     }
 
-    .box-model-content {
-      background: #bfdbfe;
-      padding: 10px;
-      border: 2px solid #2563eb;
-      color: #1e40af;
-    }
-
-    /* 10. Flexbox Demo Styles */
-    .flex-demo-container {
-      display: flex;
-      gap: 12px;
-      justify-content: space-between;
-      background: #f1f5f9;
-      padding: 1rem;
-      border-radius: 8px;
-    }
-
-    .flex-demo-item {
+    .grid-demo-item {
       background: var(--primary);
       color: white;
       padding: 1rem;
       border-radius: 6px;
       text-align: center;
-      flex: 1;
       font-weight: 600;
+      font-size: 0.85rem;
     }
 
-    /* 11. Interactive Button Demo */
-    .btn-interactive {
+    /* 11. BEM Demo */
+    .btn-bem {
       background-color: var(--primary);
       color: white;
-      padding: 0.75rem 1.5rem;
+      padding: 0.6rem 1.2rem;
       border: none;
       border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    .btn-interactive:hover {
-      background-color: var(--primary-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    .btn-bem--danger {
+      background-color: #ef4444;
     }
 
     footer {
@@ -326,16 +313,11 @@
       .topic-card {
         padding: 1.5rem;
       }
-
-      .flex-demo-container {
-        flex-direction: column;
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigasi Atas -->
   <header>
     <div class="nav-container">
       <a href="index.html" class="back-link">&larr; Kembali ke Daftar Modul</a>
@@ -344,192 +326,184 @@
   </header>
 
   <main>
-    <!-- Header Modul -->
     <section class="module-header">
-      <h1>🎨 Modul 2: Dasar & Stiling CSS3</h1>
-      <p>Mengubah tampilan halaman HTML polos menjadi menarik, rapi, dan profesional menggunakan CSS3 (Cascading Style Sheets).</p>
+      <h1>🎨 Modul 2: Layout Modern & Arsitektur CSS3</h1>
+      <p>Menguasai Arsitektur CSS Modern: Dark Mode berbasis Variabel, CSS Grid, Fluid Typography, Glassmorphism, dan Metode BEM.</p>
     </section>
 
-    <!-- KONSEP DASAR / ANALOGI -->
     <div class="analogy">
-      <strong style="display: block; margin-bottom: 0.25rem;">💡 Konsep Dasar: Apa itu CSS?</strong>
-      Jika HTML adalah <strong>kerangka bangunan</strong>, maka **CSS (Cascading Style Sheets)** adalah **desain interiornya**: cat dinding, warna perabotan, jenis font, hingga tata letak ruangan. Tanpa CSS, web kamu hanya akan berisi teks polos dan gambar tanpa dekorasi.
+      <strong style="display: block; margin-bottom: 0.25rem;">💡 Paradigma CSS Industri Modern</strong>
+      CSS bukan sekadar pemberi warna teks, melainkan **sistem desain spasial dan arsitektur visual**. Pembuat web profesional tidak lagi menggunakan trik lama seperti `float` atau menentukan ukuran font manual di puluhan breakpoint `@media`, melainkan memanfaatkan fitur native engine CSS modern.
     </div>
 
-    <!-- MATERI 2.1 -->
     <article class="topic-card" id="materi-2-1">
-      <h2>2.1 Cara Menghubungkan CSS ke HTML</h2>
-      <p>Ada tiga cara utama untuk menerapkan style CSS ke dalam file HTML:</p>
+      <h2>2.1 CSS Variables & Dark Mode System</h2>
+      <p>Penggunaan Custom Properties (CSS Variables) memungkinkan pengelolaan sistem warna terpusat dan pembuatan fitur Mode Gelap (*Dark Mode*) hanya dalam beberapa baris kode.</p>
 
-      <h3>1. External CSS (Paling Direkomendasikan)</h3>
-      <p>Memisahkan kode CSS di file terpisah bernama <code>style.css</code>, lalu dihubungkan melalui tag <code class="tag">&lt;link&gt;</code> di dalam bagian <code class="tag">&lt;head&gt;</code>.</p>
-      
       <div class="code-block">
-<pre>&lt;!-- Di dalam file index.html --&gt;
-&lt;head&gt;
-  &lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;</pre>
+<pre>:root {
+  --bg-primary: #ffffff;
+  --text-primary: #0f172a;
+  --brand-color: #2563eb;
+}
+
+/* Mengubah variabel secara otomatis saat pengguna memilih Mode Gelap */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0f172a;
+    --text-primary: #f8fafc;
+  }
+}
+
+/* Penerapan variabel pada elemen */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}</pre>
       </div>
 
-      <h3>2. Internal CSS</h3>
-      <p>Menuliskan kode CSS di dalam file HTML yang sama dengan membungkusnya menggunakan tag <code class="tag">&lt;style&gt;</code> di bagian <code class="tag">&lt;head&gt;</code>.</p>
-
-      <h3>3. Inline CSS</h3>
-      <p>Menuliskan atribut <code>style=""</code> langsung di dalam tag HTML. <em>(Kurang disarankan untuk proyek skala besar)</em>.</p>
-
       <div class="note">
-        <span class="note-title">Best Practice:</span>
-        Selalu gunakan metode **External CSS** agar kode HTML tetap bersih, mudah dibaca, serta file CSS tersebut dapat digunakan ulang (*reusable*) di halaman web lainnya.
+        <span class="note-title">Keunggulan CSS Variables:</span>
+        Variabel CSS bersifat dinamis dan mewariskan nilai ke elemen anaknya (*cascading*), berbeda dari variabel pada preprocessor seperti SASS yang bernilai statis setelah di-compile.
       </div>
     </article>
 
-    <!-- MATERI 2.2 -->
     <article class="topic-card" id="materi-2-2">
-      <h2>2.2 Selectors & Properti Dasar</h2>
-      <p>CSS bekerja dengan pola **Selector** (elemen mana yang ingin diubah) dan **Declaration** (sifat apa yang ingin diatur).</p>
+      <h2>2.2 Flexbox vs CSS Grid Mastery</h2>
+      <p>Pahami perbedaan mendasar: **Flexbox** dirancang untuk tata letak 1-Dimensi (baris ATAU kolom), sedangkan **CSS Grid** dirancang untuk tata letak 2-Dimensi (baris DAN kolom sekaligus).</p>
 
-      <h3>A. Jenis Selector Utama</h3>
-      <ul>
-        <li><strong>Tag Selector:</strong> Memilih semua tag tertentu (misal: <code>p { color: blue; }</code>).</li>
-        <li><strong>Class Selector (<code>.</code>):</strong> Memilih elemen dengan nama kelas spesifik (misal: <code>.kartu { background: white; }</code>).</li>
-        <li><strong>ID Selector (<code>#</code>):</strong> Memilih satu elemen unik (misal: <code>#header-utama { font-size: 24px; }</code>).</li>
-      </ul>
-
+      <h3>Simulasi Responsive Grid Tanpa Media Queries (`auto-fit`)</h3>
       <div class="code-block">
-<pre>/* Contoh penulisan CSS dasar */
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f8fafc;
-  color: #0f172a;
-}
-
-.judul-utama {
-  color: #2563eb;
-  font-size: 1.8rem;
-  text-align: center;
+<pre>/* Kolom otomatis menyesuaikan jumlah & lebar layar tanpa @media */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
 }</pre>
       </div>
 
       <div class="preview-box">
-        <div class="preview-title">👁️ Hasil Tampilan Browser:</div>
-        <div style="font-family: 'Segoe UI', sans-serif; background-color: #f8fafc; padding: 1rem; border-radius: 6px;">
-          <h2 style="color: #2563eb; font-size: 1.5rem; text-align: center; margin-bottom: 0.5rem; border-bottom: none;">
-            Contoh Judul Utama
-          </h2>
-          <p style="text-align: center; color: #475569; margin-bottom: 0;">Teks ini menggunakan font Segoe UI dan warna terstruktur.</p>
+        <div class="preview-title">👁️ Hasil CSS Grid Auto-Fit (Coba resize jendela browser):</div>
+        <div class="grid-demo">
+          <div class="grid-demo-item">Widget A</div>
+          <div class="grid-demo-item">Widget B</div>
+          <div class="grid-demo-item">Widget C</div>
+          <div class="grid-demo-item">Widget D</div>
         </div>
       </div>
     </article>
 
-    <!-- MATERI 2.3 -->
     <article class="topic-card" id="materi-2-3">
-      <h2>2.3 CSS Box Model</h2>
-      <p>Setiap elemen di HTML dianggap sebagai sebuah "kotak" (*box*). Konsep ini menentukan bagaimana ukuran dan ruang antar elemen dihitung.</p>
+      <h2>2.3 Fluid Typography dengan `clamp()`</h2>
+      <p>Fungsi `clamp(MIN, VAL, MAX)` memungkinkan ukuran font membesar dan mengecil secara fleksibel menyesuaikan lebar layar monitor tanpa perlu menulis banyak `@media` query.</p>
 
-      <div class="preview-box" style="margin-bottom: 1.5rem;">
-        <div class="preview-title">📦 Struktur Anatomi Box Model:</div>
-        <div class="box-model-demo">
-          MARGIN (Ruang Luar)
-          <div class="box-model-border">
-            BORDER (Garis Tepi)
-            <div class="box-model-padding">
-              PADDING (Ruang Dalam)
-              <div class="box-model-content">
-                CONTENT (Teks / Gambar)
-              </div>
-            </div>
+      <div class="code-block">
+<pre>h1 {
+  /* Min: 1.5rem, Fleksibel: 4vw, Max: 3rem */
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}</pre>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-title">👁️ Contoh Teks Fluid (Resize Layar Untuk Melihat Perubahan):</div>
+        <h1 style="font-size: clamp(1.2rem, 3.5vw, 2.2rem); color: var(--primary); line-height: 1.2;">
+          Judul Ini Tumbuh & Menyusut Secara Halus
+        </h1>
+      </div>
+    </article>
+
+    <article class="topic-card" id="materi-2-4">
+      <h2>2.4 CSS Animations & Glassmorphism UI</h2>
+      <p>Menciptakan antarmuka modern berbahan efek kaca transparan menggunakan `backdrop-filter` dan animasi performa tinggi via `transform` & `opacity`.</p>
+
+      <div class="code-block">
+<pre>.card-glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px); /* Memburamkan latar belakang */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+}</pre>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-title">👁️ Live Demo Glassmorphic Card:</div>
+        <div class="glass-bg-container">
+          <div class="glass-card">
+            <h3 style="margin-bottom: 0.4rem; color: #0f172a;">Efek Kaca Transparan</h3>
+            <p style="color: #334155; font-size: 0.9rem; margin: 0;">Memanfaatkan `backdrop-filter: blur()` native browser untuk tampilan UI modern.</p>
           </div>
         </div>
       </div>
+    </article>
+
+    <article class="topic-card" id="materi-2-5">
+      <h2>2.5 Container Queries (`@container`)</h2>
+      <p>Teknik responsif masa depan: Jika Media Queries mengubah tampilan berdasarkan lebar **layar HP/Browser**, Container Queries mengubah tampilan berdasarkan lebar **induk pembungkusnya (Parent Container)**.</p>
 
       <div class="code-block">
-<pre>/* Mengatur Box Model elemen kartu */
-.card {
-  width: 300px;
-  padding: 20px;       /* Ruang antara konten & border */
-  border: 2px solid #cbd5e1; /* Garis pembatas */
-  margin: 15px;        /* Jarak dengan elemen di luarnya */
-  box-sizing: border-box; /* Memastikan ukuran tetap konsisten */
+<pre>/* 1. Deklarasikan kontainer pembungkus */
+.card-wrapper {
+  container-type: inline-size;
+}
+
+/* 2. Berikan rule berdasarkan lebar kontainer pembungkus */
+@container (min-width: 400px) {
+  .card-content {
+    display: flex;
+    flex-direction: row;
+  }
 }</pre>
       </div>
 
       <div class="note">
-        <strong>Tips Penting (<code>box-sizing: border-box</code>):</strong> Secara default, menambahkan padding dan border akan menambah total lebar elemen. Menggunakan <code>box-sizing: border-box</code> membuat total lebar elemen tetap sesuai nilai <code>width</code> yang ditentukan.
+        <strong>Mengapa Ini Penting?</strong> Komponen kartu (Card UI) kini dapat diletakkan di sidebar yang sempit maupun di area konten utama yang luas, dan kartu tersebut akan beradaptasi secara otomatis tanpa bergantung pada lebar viewport layar.
       </div>
     </article>
 
-    <!-- MATERI 2.4 -->
-    <article class="topic-card" id="materi-2-4">
-      <h2>2.4 Layout Modern dengan Flexbox</h2>
-      <p>Flexbox adalah teknik CSS modern untuk menyusun tata letak elemen secara sejajar (horisontal atau vertikal) dengan mudah dan responsif.</p>
+    <article class="topic-card" id="materi-2-6">
+      <h2>2.6 Metode BEM & Clean Architecture</h2>
+      <p><strong>BEM (Block Element Modifier)</strong> adalah standar penamaan class CSS agar struktur kode tetap rapi, mudah dirawat, dan tidak saling berbenturan (*CSS specificity collisions*) pada proyek skala besar.</p>
 
       <div class="code-block">
-<pre>/* Mengaktifkan Flexbox pada kontainer */
-.flex-container {
-  display: flex;
-  justify-content: space-between; /* Meratakan jarak antar kolom */
-  align-items: center;            /* Meratakan vertikal di tengah */
-  gap: 1rem;                      /* Jarak antar item */
-}</pre>
+<pre>/* Penulisan BEM: Block__Element--Modifier */
+
+/* Block: Komponen Utama */
+.card {}
+
+/* Element: Bagian terikat di dalam Block */
+.card__title {}
+.card__button {}
+
+/* Modifier: Variasi gaya dari Element/Block */
+.card__button--danger { background: red; }
+.card__button--success { background: green; }</pre>
       </div>
 
       <div class="preview-box">
-        <div class="preview-title">👁️ Hasil Tampilan Browser (Flexbox Container):</div>
-        <div class="flex-demo-container">
-          <div class="flex-demo-item">Kolom 1</div>
-          <div class="flex-demo-item">Kolom 2</div>
-          <div class="flex-demo-item">Kolom 3</div>
+        <div class="preview-title">👁️ Contoh Hasil Kelas BEM:</div>
+        <div style="display: flex; gap: 0.8rem;">
+          <button class="btn-bem">.btn-bem (Default)</button>
+          <button class="btn-bem btn-bem--danger">.btn-bem--danger</button>
         </div>
       </div>
     </article>
 
-    <!-- MATERI 2.5 -->
-    <article class="topic-card" id="materi-2-5">
-      <h2>2.5 Interaktivitas & State Pseudo-Classes</h2>
-      <p>CSS memungkinkan kita memberikan respons visual saat pengguna berinteraksi dengan elemen, seperti mengarahkan kursor (*hover*) atau mengeklik tombol.</p>
-
-      <div class="code-block">
-<pre>/* Style tombol dasar */
-.tombol {
-  background-color: #2563eb;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 6px;
-  transition: all 0.3s ease; /* Transisi animasi halus */
-}
-
-/* Efek saat kursor berada di atas tombol */
-.tombol:hover {
-  background-color: #1d4ed8;
-  transform: translateY(-2px); /* Mengangkat tombol sedikit */
-}</pre>
-      </div>
-
-      <div class="preview-box">
-        <div class="preview-title">👁️ Hasil Tampilan (Arahkan kursor ke tombol):</div>
-        <div style="text-align: center; padding: 1rem;">
-          <button type="button" class="btn-interactive">Hover Saya!</button>
-        </div>
-      </div>
-    </article>
-
-    <!-- LATIHAN MANDIRI -->
     <article class="topic-card" style="border: 2px solid var(--accent); background-color: #f3e8ff;">
-      <h2 style="color: var(--accent); border-bottom: none; margin-bottom: 0.5rem;">🎯 Latihan Mandiri Modul 2</h2>
-      <p style="color: #581c87;">Saatnya menghias file <code>biodata.html</code> yang telah kamu buat di Modul 1!</p>
+      <h2 style="color: var(--accent); border-bottom: none; margin-bottom: 0.5rem;">🎯 Latihan Praktikum Industry-Grade</h2>
+      <p style="color: #581c87;">Buatlah file stylesheet modular bernama <code>theme-dashboard.css</code> dengan ketentuan berikut:</p>
       
       <ol style="color: #0f172a; margin-bottom: 0;">
-        <li>Buat file CSS baru bernama <code>style.css</code> di folder yang sama dengan <code>biodata.html</code>.</li>
-        <li>Hubungkan file CSS tersebut menggunakan tag <code class="tag">&lt;link rel="stylesheet" href="style.css"&gt;</code> pada bagian <code class="tag">&lt;head&gt;</code>.</li>
-        <li>Atur warna latar belakang halaman (<code>body</code>) dengan warna lembut (misal: <code>#f8fafc</code>).</li>
-        <li>Bungkus konten biodatamu dalam sebuah kartu (<code>&lt;div class="card"&gt;</code>), lalu beri gaya: <code>background-color: white</code>, <code>padding</code>, <code>border-radius</code>, dan <code>box-shadow</code>.</li>
-        <li>Ubah gaya tombol atau link sosial mediamu agar memiliki efek saat di-hover.</li>
+        <li>Deklarasikan variabel warna di <code class="tag">:root</code> untuk skema warna terang dan gelap.</li>
+        <li>Buat tata letak grid kartu menggunakan CSS Grid <code class="tag">repeat(auto-fit, minmax(...))</code>.</li>
+        <li>Gunakan fungsi <code class="tag">clamp()</code> untuk mengatur ukuran teks judul utama dashboard.</li>
+        <li>Terapkan metode penamaan class berbasis <strong>BEM Architecture</strong> pada komponen kartu dan tombol.</li>
+        <li>Tambahkan kartu promo dengan efek <strong>Glassmorphism</strong>.</li>
       </ol>
     </article>
   </main>
 
   <footer>
-    <p>&copy; 2026 Belajar Web Development - Modul 2 CSS3</p>
+    <p>&copy; 2026 Belajar Web Development - Modul 2 CSS3 Layout & Arsitektur Modern</p>
   </footer>
 
 </body>

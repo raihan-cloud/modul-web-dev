@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modul 3: Dasar & Interaktivitas JavaScript</title>
+  <title>Modul 3: Modern Vanilla JavaScript (ES6+)</title>
   
   <style>
     /* 1. Variabel CSS & Root Design System */
     :root {
-      --primary: #059669;        /* Emerald Green untuk Modul 3 */
+      --primary: #059669;        /* Emerald Green */
       --primary-hover: #047857;
       --primary-light: #ecfdf5;
       --secondary: #0284c7;
@@ -285,6 +285,38 @@
       margin: 0.5rem 0;
     }
 
+    /* Custom Demo Styling */
+    .active-card {
+      background-color: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .todo-list {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .todo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0.8rem;
+      background-color: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .todo-item button {
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
     footer {
       text-align: center;
       color: var(--text-muted);
@@ -322,201 +354,241 @@
   <main>
     <!-- Header Modul -->
     <section class="module-header">
-      <h1>⚡ Modul 3: Dasar & Interaktivitas JavaScript</h1>
-      <p>Memberikan logika, merespons tindakan pengguna, serta memanipulasi elemen halaman web secara real-time menggunakan JavaScript Vanilla.</p>
+      <h1>⚡ Modul 3: Modern Vanilla JavaScript (ES6+)</h1>
+      <p>Menguasai Logika Web, Manipulasi DOM Modern, Event Delegation, Asynchronous Data Fetching, dan State Persistence.</p>
     </section>
 
     <!-- KONSEP DASAR / ANALOGI -->
     <div class="analogy">
-      <strong style="display: block; margin-bottom: 0.25rem;">💡 Konsep Dasar: Apa peran JavaScript?</strong>
-      Jika <strong>HTML</strong> adalah struktur rumah dan <strong>CSS</strong> adalah dekorasinya, maka **JavaScript** adalah **sistem kelistrikan dan otomatisasinya**: tombol lampu yang menyala saat ditekan, pintu otomatis yang terbuka saat didekati, hingga bel pintu yang berbunyi.
+      <strong style="display: block; margin-bottom: 0.25rem;">💡 Paradigma JavaScript Industri Modern</strong>
+      JavaScript bukan sekadar script untuk efek animasi sederhana. Pada arsitektur web modern, JavaScript Vanilla (ES6+) berfungsi sebagai **engine logika utama** yang mengelola status (*state*), berkomunikasi dengan Server API secara asynchronous, dan mengubah tampilan DOM tanpa perlu memuat ulang seluruh halaman (*Single Page App Experience*).
     </div>
 
     <!-- MATERI 3.1 -->
     <article class="topic-card" id="materi-3-1">
-      <h2>3.1 Menghubungkan JavaScript ke HTML</h2>
-      <p>Sama seperti CSS, kode JavaScript dapat diletakkan di dalam file HTML atau dipisahkan ke dalam file eksternal berekstensi <code>.js</code>.</p>
-
-      <h3>1. External JavaScript (Sangat Direkomendasikan)</h3>
-      <p>Menuliskan kode pada file terpisah bernama <code>script.js</code>, lalu memanggilnya sebelum tag penutup <code class="tag">&lt;/body&gt;</code>.</p>
+      <h2>3.1 Loading Strategy Modern & ES6 Modules</h2>
+      <p>Penggunaan atribut <code class="tag">defer</code> atau <code class="tag">type="module"</code> merupakan standar wajib untuk memuat file JavaScript tanpa menghentikan proses rendering halaman HTML oleh browser.</p>
 
       <div class="code-block">
-<pre>&lt;!-- Di bagian bawah file index.html --&gt;
-  &lt;script src="script.js"&gt;&lt;/script&gt;
-&lt;/body&gt;</pre>
+<pre>&lt;!-- Diletakkan di tag &lt;head&gt; dengan atribut defer --&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- Menggunakan ES6 Module untuk arsitektur terpisah --&gt;
+&lt;script type="module" src="main.js"&gt;&lt;/script&gt;</pre>
       </div>
 
       <div class="note">
-        <span class="note-title">Mengapa di Bawah?</span>
-        Meletakkan tag <code class="tag">&lt;script&gt;</code> di akhir elemen <code class="tag">&lt;body&gt;</code> memastikan seluruh elemen HTML telah selesai di-load oleh browser sebelum JavaScript mencoba memanipulasinya.
+        <span class="note-title">Mengapa Menggunakan `defer`?</span>
+        Atribut <code>defer</code> mengunduh file script secara parallel di latar belakang saat HTML di-parse, dan mengeksekusinya secara berurutan tepat setelah struktur DOM siap disajikan.
       </div>
     </article>
 
     <!-- MATERI 3.2 -->
     <article class="topic-card" id="materi-3-2">
-      <h2>3.2 Variabel & Tipe Data Dasar</h2>
-      <p>Variabel digunakan untuk menyimpan data dalam memori program. Di JavaScript modern (ES6+), kita menggunakan <code>let</code> dan <code>const</code>.</p>
-
-      <ul>
-        <li><code>const</code>: Digunakan untuk nilai tetap yang <strong>tidak akan diubah</strong> nilainya.</li>
-        <li><code>let</code>: Digunakan untuk variabel yang nilainya <strong>dapat berubah</strong>.</li>
-      </ul>
+      <h2>3.2 Syntax Modern (Shorthand ES6+)</h2>
+      <p>Memanfaatkan fitur modern JavaScript seperti <strong>Arrow Functions</strong>, <strong>Template Literals</strong>, dan <strong>Destructuring</strong> untuk menghasilkan kode yang bersih dan minim *boilerplate*.</p>
 
       <div class="code-block">
-<pre>// Contoh Variabel dan Tipe Data
-const namaWebsite = "Portfolio Saya"; // String
-let jumlahPengunjung = 150;           // Number
-let isOnline = true;                  // Boolean
+<pre>// 1. Arrow Function & Template Literals
+const sapaUser = (nama, peran = 'Developer') => {
+  return `Selamat datang ${nama}, kamu login sebagai ${peran}.`;
+};
 
-// Mengubah nilai variabel let
-jumlahPengunjung = jumlahPengunjung + 1;</pre>
+// 2. Destructuring Object & Array
+const config = { theme: 'dark', language: 'id' };
+const { theme, language } = config;</pre>
       </div>
     </article>
 
     <!-- MATERI 3.3 -->
     <article class="topic-card" id="materi-3-3">
-      <h2>3.3 Manipulasi DOM (Document Object Model)</h2>
-      <p>DOM memungkinkan JavaScript membaca dan mengubah struktur, teks, maupun gaya CSS dari halaman HTML secara langsung saat program berjalan.</p>
+      <h2>3.3 DOM Selection & Class Manipulation</h2>
+      <p>Alih-alih mengubah properti <code class="tag">style.color</code> secara langsung (inline style), alur kerja modern merekomendasikan penggunaan <code class="tag">classList.add()</code>, <code class="tag">remove()</code>, atau <code class="tag">toggle()</code> dengan kombinasi class CSS.</p>
 
       <div class="code-block">
-<pre>// 1. Mengambil elemen berdasarkan ID
-const teksTarget = document.getElementById("teks-demo");
+<pre>const cardElement = document.querySelector('.card-target');
 
-// 2. Mengubah isi teks
-teksTarget.textContent = "Halo! Teks ini diubah oleh JavaScript!";
-
-// 3. Mengubah gaya CSS
-teksTarget.style.color = "#059669";</pre>
+// Mengubah state visual via CSS Class
+cardElement.classList.toggle('active-card');</pre>
       </div>
 
       <!-- LIVE PREVIEW DEMO 1 -->
       <div class="preview-box">
-        <div class="preview-title">👁️ Live Demo: Manipulasi Teks DOM</div>
-        <p id="teks-demo" style="font-weight: 600; font-size: 1.1rem; color: var(--text-main); margin-bottom: 1rem;">
-          Teks awal sebelum diubah...
-        </p>
-        <button type="button" class="btn-action" id="btn-ubah-teks">✨ Ubah Teks & Warna</button>
-        <button type="button" class="btn-action btn-secondary" id="btn-reset-teks">🔄 Reset</button>
+        <div class="preview-title">👁️ Live Demo: State Class Toggling</div>
+        <div id="demo-card-box" class="preview-box" style="margin-top: 0; margin-bottom: 1rem; transition: all 0.3s ease;">
+          <p id="demo-card-text" style="margin: 0; font-weight: 600;">Status Kartu: Default (Inactive)</p>
+        </div>
+        <button type="button" class="btn-action" id="btn-toggle-card">🔄 Toggle State Kartu</button>
       </div>
     </article>
 
     <!-- MATERI 3.4 -->
     <article class="topic-card" id="materi-3-4">
-      <h2>3.4 Event Handling (Merespons Interaksi)</h2>
-      <p>Event adalah peristiwa yang terjadi di browser, seperti klik mouse, pengetikan keyboard, atau saat form dikirim (*submit*). Kita menggunakan <code>addEventListener()</code> untuk meresponsnya.</p>
-
-      <div class="code-block">
-<pre>const tombol = document.querySelector("#tombol-klik");
-
-// Mendengarkan kejadian 'click'
-tombol.addEventListener("click", function() {
-  alert("Tombol berhasil diklik!");
-});</pre>
-      </div>
+      <h2>3.4 Event Delegation (Arsitektur Event Efisien)</h2>
+      <p>Teknik memasang 1 *Event Listener* pada induk (*Parent Element*) untuk menangani interaksi pada banyak elemen anak, termasuk elemen yang ditambahkan secara dinamis.</p>
 
       <!-- LIVE PREVIEW DEMO 2 -->
       <div class="preview-box">
-        <div class="preview-title">👁️ Live Demo: Counter Hitungan Interaktif</div>
-        <p>Klik tombol di bawah untuk menambah atau mengurangi nilai counter secara live:</p>
-        <span class="counter-badge" id="counter-val">0</span>
-        <div style="display: flex; gap: 0.5rem;">
-          <button type="button" class="btn-action" id="btn-tambah">➕ Tambah</button>
-          <button type="button" class="btn-action btn-secondary" id="btn-kurang">➖ Kurang</button>
-          <button type="button" class="btn-action btn-secondary" id="btn-reset-counter">🔄 Reset</button>
+        <div class="preview-title">👁️ Live Demo: Dynamic List via Event Delegation</div>
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+          <input type="text" id="input-todo" class="input-field" placeholder="Ketik tugas baru...">
+          <button type="button" class="btn-action" id="btn-add-todo">➕ Tambah</button>
         </div>
+        
+        <ul id="todo-wrapper" class="todo-list">
+          <li class="todo-item">
+            <span>Mempelajari CSS Grid</span>
+            <button class="btn-del">Hapus</button>
+          </li>
+        </ul>
       </div>
     </article>
 
     <!-- MATERI 3.5 -->
     <article class="topic-card" id="materi-3-5">
-      <h2>3.5 Studi Kasus: Live Input Greeting</h2>
-      <p>Menghubungkan input teks dari pengguna dengan tampilan langsung di layar (*Real-time Preview*).</p>
+      <h2>3.5 Asynchronous JS & Fetch API (`async/await`)</h2>
+      <p>Mengambil data external secara *asynchronous* dari server API tanpa perlu memuat ulang (*reload*) halaman web.</p>
+
+      <div class="code-block">
+<pre>const loadData = async () => {
+  try {
+    const res = await fetch('https://api.github.com/users/octocat');
+    const data = await res.json();
+    console.log(data);
+  } catch (err) {
+    console.error('Gagal mengambil data:', err);
+  }
+};</pre>
+      </div>
 
       <!-- LIVE PREVIEW DEMO 3 -->
       <div class="preview-box">
-        <div class="preview-title">👁️ Live Demo: Salam Diri Interaktif</div>
-        <div style="margin-bottom: 1rem;">
-          <label for="input-nama" style="display: block; font-weight: 600; margin-bottom: 0.4rem;">Ketik Nama Kamu:</label>
-          <input type="text" id="input-nama" class="input-field" placeholder="Contoh: Raihan">
+        <div class="preview-title">👁️ Live Demo: Fetching Public API (Quotes Generator)</div>
+        <div id="quote-display" style="background: var(--primary-light); padding: 1rem; border-radius: 6px; margin-bottom: 1rem; font-style: italic;">
+          "Klik tombol di bawah untuk mengambil kutipan acak dari server API."
         </div>
-        <div style="background-color: var(--primary-light); padding: 1rem; border-radius: 6px; border: 1px solid #a7f3d0;">
-          <p style="margin: 0; font-weight: 600; color: var(--primary-hover);" id="output-salam">
-            Halo! Selamat datang di Modul 3 👋
-          </p>
+        <button type="button" class="btn-action" id="btn-fetch-quote">🌐 Fetch Quote Baru</button>
+      </div>
+    </article>
+
+    <!-- MATERI 3.6 -->
+    <article class="topic-card" id="materi-3-6">
+      <h2>3.6 State Persistence via `localStorage`</h2>
+      <p>Menyimpan status data pengguna di dalam browser agar informasi tidak hilang saat halaman di-refresh.</p>
+
+      <!-- LIVE PREVIEW DEMO 4 -->
+      <div class="preview-box">
+        <div class="preview-title">👁️ Live Demo: Counter dengan LocalStorage Persistence</div>
+        <span class="counter-badge" id="counter-val">0</span>
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="button" class="btn-action" id="btn-tambah">➕ Tambah</button>
+          <button type="button" class="btn-action btn-secondary" id="btn-reset-counter">🔄 Reset Storage</button>
         </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.8rem;">
+          💡 Try it: Tambah angka, lalu **refresh browser**. Angka akan tetap bertahan!
+        </p>
       </div>
     </article>
 
     <!-- LATIHAN MANDIRI -->
     <article class="topic-card" style="border: 2px solid var(--primary); background-color: var(--primary-light);">
-      <h2 style="color: var(--primary); border-bottom: none; margin-bottom: 0.5rem;">🎯 Latihan Mandiri Modul 3</h2>
-      <p style="color: #065f46;">Saatnya memberikan interaktivitas pada file <code>biodata.html</code> milikmu!</p>
+      <h2 style="color: var(--primary); border-bottom: none; margin-bottom: 0.5rem;">🎯 Latihan Praktikum Industry-Grade</h2>
+      <p style="color: #065f46;">Buatlah file modul JS modular bernama <code>app-interactive.js</code> dengan ketentuan berikut:</p>
       
       <ol style="color: #0f172a; margin-bottom: 0;">
-        <li>Buat file baru bernama <code>script.js</code> di folder proyekmu.</li>
-        <li>Hubungkan file JS tersebut ke <code>biodata.html</code> sebelum tag penutup <code class="tag">&lt;/body&gt;</code>.</li>
-        <li>Buatlah **Tombol Like / Apresiasi** pada halaman biodatamu yang akan bertambah hitungannya setiap kali diklik.</li>
-        <li><em>(Tantangan Bonus)</em>: Buatlah tombol **Dark Mode Toggle** sederhana yang dapat mengubah warna background halaman dari terang ke gelap saat diklik!</li>
+        <li>Gunakan sintaks <strong>ES6+ Arrow Functions</strong> dan <strong>Template Literals</strong> di seluruh fungsi.</li>
+        <li>Implementasikan fitur <strong>Dark Mode Switcher</strong> yang menyimpan preferensi tema ke <code class="tag">localStorage</code>.</li>
+        <li>Buat fitur daftar tugas (*Task Manager*) yang memanfaatkan teknik <strong>Event Delegation</strong> untuk tombol hapus.</li>
+        <li>Gunakan <code class="tag">async/await</code> Fetch API untuk menampilkan data cuaca atau profil GitHub interaktif.</li>
       </ol>
     </article>
   </main>
 
   <footer>
-    <p>&copy; 2026 Belajar Web Development - Modul 3 JavaScript Dasar</p>
+    <p>&copy; 2026 Belajar Web Development - Modul 3 JavaScript Modern ES6+</p>
   </footer>
 
-  <!-- SCRIPT LOGIKA JAVASCRIPT UNTUK DEMO LIVE -->
+  <!-- SCRIPT LOGIKA JAVASCRIPT LOGIC FOR LIVE DEMOS -->
   <script>
-    // --- DEMO 1: Manipulasi DOM ---
-    const teksTarget = document.getElementById("teks-demo");
-    const btnUbahTeks = document.getElementById("btn-ubah-teks");
-    const btnResetTeks = document.getElementById("btn-reset-teks");
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // --- DEMO 1: Class Toggling ---
+      const demoCardBox = document.getElementById("demo-card-box");
+      const demoCardText = document.getElementById("demo-card-text");
+      const btnToggleCard = document.getElementById("btn-toggle-card");
 
-    btnUbahTeks.addEventListener("click", function() {
-      teksTarget.textContent = "🎉 Berhasil! Teks dan warna diubah secara fleksibel oleh JavaScript!";
-      teksTarget.style.color = "#059669";
-    });
+      btnToggleCard?.addEventListener("click", () => {
+        demoCardBox.classList.toggle("active-card");
+        const isActive = demoCardBox.classList.contains("active-card");
+        demoCardText.textContent = `Status Kartu: ${isActive ? 'Aktif (Active Class Appended)' : 'Default (Inactive)'}`;
+      });
 
-    btnResetTeks.addEventListener("click", function() {
-      teksTarget.textContent = "Teks awal sebelum diubah...";
-      teksTarget.style.color = "var(--text-main)";
-    });
+      // --- DEMO 2: Event Delegation ---
+      const todoWrapper = document.getElementById("todo-wrapper");
+      const inputTodo = document.getElementById("input-todo");
+      const btnAddTodo = document.getElementById("btn-add-todo");
 
-    // --- DEMO 2: Counter Interaktif ---
-    let count = 0;
-    const counterVal = document.getElementById("counter-val");
-    const btnTambah = document.getElementById("btn-tambah");
-    const btnKurang = document.getElementById("btn-kurang");
-    const btnResetCounter = document.getElementById("btn-reset-counter");
+      // Tambah item
+      btnAddTodo?.addEventListener("click", () => {
+        const val = inputTodo.value.trim();
+        if (!val) return;
 
-    btnTambah.addEventListener("click", function() {
-      count++;
-      counterVal.textContent = count;
-    });
+        const li = document.createElement("li");
+        li.className = "todo-item";
+        li.innerHTML = `<span>${val}</span><button class="btn-del">Hapus</button>`;
+        todoWrapper.appendChild(li);
+        inputTodo.value = "";
+      });
 
-    btnKurang.addEventListener("click", function() {
-      if (count > 0) {
-        count--;
+      // Delegation pada parent (#todo-wrapper)
+      todoWrapper?.addEventListener("click", (e) => {
+        if (e.target.classList.contains("btn-del")) {
+          e.target.closest("li").remove();
+        }
+      });
+
+      // --- DEMO 3: Fetch API (Quotes Generator) ---
+      const btnFetchQuote = document.getElementById("btn-fetch-quote");
+      const quoteDisplay = document.getElementById("quote-display");
+
+      const quotes = [
+        "First, solve the problem. Then, write the code. – John Johnson",
+        "Clean code always looks like it was written by someone who cares. – Robert C. Martin",
+        "Simplicity is prerequisite for reliability. – Edsger W. Dijkstra",
+        "JavaScript is the programming language of the Web. Master it well!"
+      ];
+
+      btnFetchQuote?.addEventListener("click", async () => {
+        quoteDisplay.textContent = "⏳ Memuat data dari server...";
+        
+        // Simulasi network delay
+        await new Promise(resolve => setTimeout(resolve, 600));
+        
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        quoteDisplay.textContent = `"${randomQuote}"`;
+      });
+
+      // --- DEMO 4: LocalStorage Persistence ---
+      const counterVal = document.getElementById("counter-val");
+      const btnTambah = document.getElementById("btn-tambah");
+      const btnResetCounter = document.getElementById("btn-reset-counter");
+
+      // Ambil data awal dari LocalStorage atau default 0
+      let count = parseInt(localStorage.getItem("module3_counter")) || 0;
+      if (counterVal) counterVal.textContent = count;
+
+      btnTambah?.addEventListener("click", () => {
+        count++;
         counterVal.textContent = count;
-      }
-    });
+        localStorage.setItem("module3_counter", count);
+      });
 
-    btnResetCounter.addEventListener("click", function() {
-      count = 0;
-      counterVal.textContent = count;
-    });
+      btnResetCounter?.addEventListener("click", () => {
+        count = 0;
+        counterVal.textContent = count;
+        localStorage.removeItem("module3_counter");
+      });
 
-    // --- DEMO 3: Live Input Greeting ---
-    const inputNama = document.getElementById("input-nama");
-    const outputSalam = document.getElementById("output-salam");
-
-    inputNama.addEventListener("input", function(e) {
-      const nama = e.target.value.trim();
-      if (nama !== "") {
-        outputSalam.textContent = `Halo ${nama}! Selamat datang di Modul 3 👋`;
-      } else {
-        outputSalam.textContent = "Halo! Selamat datang di Modul 3 👋";
-      }
     });
   </script>
 </body>
