@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.2 Aksesibilitas (a11y) & ARIA Attributes — DEVPATH</title>
+  <meta name="description" content="Pelajari standar WCAG, peran Screen Reader, dan penggunaan atribut ARIA (aria-label, aria-hidden, aria-expanded) dalam web modern.">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+<body>
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+
+  <div class="lesson-layout">
+    <!-- LESSON SIDEBAR -->
+    <aside class="lesson-sidebar" aria-label="Lesson navigation">
+      <div class="lesson-sidebar__header">
+        <a href="../modules/html5.html" class="lesson-sidebar__back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Kembali ke Modul 01
+        </a>
+        <div class="lesson-sidebar__module-title">HTML5 Fundamentals</div>
+      </div>
+      <nav class="lesson-sidebar__nav">
+        <a href="semantic-html.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Struktur Semantik &amp; Hierarki SEO</span>
+        </a>
+        <a href="accessibility.html" class="lesson-sidebar__item lesson-sidebar__item--active">
+          <span class="lesson-sidebar__item-number">2</span>
+          <span class="lesson-sidebar__item-text">Aksesibilitas (a11y) &amp; ARIA</span>
+        </a>
+        <a href="forms.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">3</span>
+          <span class="lesson-sidebar__item-text">Form &amp; Validasi Bawaan</span>
+        </a>
+        <a href="media.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">4</span>
+          <span class="lesson-sidebar__item-text">Optimasi Media &amp; Cegah CLS</span>
+        </a>
+        <a href="open-graph.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">5</span>
+          <span class="lesson-sidebar__item-text">Open Graph &amp; Social Meta</span>
+        </a>
+        <a href="data-attributes.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">6</span>
+          <span class="lesson-sidebar__item-text">Data Attributes &amp; Custom State</span>
+        </a>
+      </nav>
+      <div class="lesson-sidebar__progress">
+        <div class="lesson-sidebar__progress-label">
+          <span>Modul Progress</span>
+          <span>33%</span>
+        </div>
+        <div class="progress"><div class="progress__bar" style="width: 33%;"></div></div>
+      </div>
+    </aside>
+
+    <!-- LESSON MAIN -->
+    <div class="lesson-main">
+      <header class="lesson-topbar">
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="lesson-header__breadcrumb" style="margin-bottom: 0;">
+            <a href="../modules/index.html">Modul</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <a href="../modules/html5.html">HTML5</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <span>1.2 Aksesibilitas &amp; ARIA</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="lesson-content">
+        <div class="lesson-header">
+          <div class="lesson-header__meta">
+            <span class="badge badge--accent">Pelajaran 2 dari 6</span>
+            <span class="lesson-header__meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              20 menit
+            </span>
+            <span class="lesson-header__meta-item">Tingkat: Pemula</span>
+          </div>
+          <h1 class="lesson-header__title">1.2 Aksesibilitas (a11y) &amp; ARIA Attributes</h1>
+          <p class="lesson-header__desc">Website profesional harus mematuhi standar WCAG agar ramah bagi pengguna Screen Reader dan navigasi keyboard.</p>
+        </div>
+
+        <div class="lesson-body">
+          <p>Website profesional di industri global wajib mematuhi standar <strong>WCAG (Web Content Accessibility Guidelines)</strong>. Ini memastikan produk digital dapat dinikmati oleh penyandang disabilitas penglihatan menggunakan <strong>Screen Reader</strong> (seperti NVDA, JAWS, atau Apple VoiceOver), serta pengguna dengan keterbatasan motorik yang bernavigasi khusus menggunakan keyboard (Tab key).</p>
+
+          <h2>Prinsip Inti ARIA (Accessible Rich Internet Applications)</h2>
+          <p>Atribut ARIA melengkapi elemen HTML agar pembaca layar memahami fungsi, nama, dan status sebuah komponen visual:</p>
+
+          <ul>
+            <li><strong><code>aria-label</code>:</strong> Memberi label teks eksplisit pada elemen interaktif yang tidak memiliki teks terlihat (misalnya: tombol ikon 'X' untuk menutup modal).</li>
+            <li><strong><code>aria-hidden="true"</code>:</strong> Menyembunyikan elemen dekoratif murni dari Screen Reader agar tidak menimbulkan kebisingan yang membingungkan.</li>
+            <li><strong><code>aria-expanded</code>:</strong> Memberitahu Screen Reader apakah menu dropdown atau accordion sedang terbuka (<code>"true"</code>) atau tertutup (<code>"false"</code>).</li>
+            <li><strong><code>alt</code> attribute:</strong> Memberikan deskripsi alternatif gambar bermakna, atau dikosongkan (<code>alt=""</code>) untuk ilustrasi dekoratif.</li>
+          </ul>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">HTML — Contoh Implementasi ARIA</span>
+              <button class="code-block__copy" type="button" aria-label="Copy code">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copy
+              </button>
+            </div>
+            <div class="code-block__body">
+              <pre class="code-block__pre"><code>&lt;!-- 1. Tombol Ikon Tanpa Teks Terlihat --&gt;
+&lt;!-- Tanpa aria-label, pembaca layar hanya membaca "button", tanpa kejelasan aksi --&gt;
+&lt;button aria-label="Tutup Jendela Konfirmasi" class="btn-close"&gt;
+  &lt;svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"&gt;
+    &lt;line x1="18" y1="6" x2="6" y2="18"&gt;&lt;/line&gt;
+    &lt;line x1="6" y1="6" x2="18" y2="18"&gt;&lt;/line&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;
+
+&lt;!-- 2. Menu Dropdown Interaktif --&gt;
+&lt;button aria-expanded="false" aria-controls="menu-list" class="btn-dropdown"&gt;
+  Pengaturan Profil
+&lt;/button&gt;
+&lt;ul id="menu-list" hidden&gt;
+  &lt;li&gt;&lt;a href="#"&gt;Ubah Kata Sandi&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;Privasi Akun&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- 3. Manajemen Gambar (Alt Text) --&gt;
+&lt;!-- Gambar informatif wajib memiliki alt deskriptif --&gt;
+&lt;img src="laporan-q3.png" alt="Grafik batang menunjukkan kenaikan laba kuartal 3 sebesar 24%"&gt;
+
+&lt;!-- Gambar dekorasi murni: alt dikosongkan dan tandai aria-hidden --&gt;
+&lt;img src="garis-hiasan.svg" alt="" aria-hidden="true"&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="callout callout--warning">
+            <div class="callout__title">⚠️ Aturan Pertama ARIA: "Don't Use ARIA" Jika Tag Native Ada</div>
+            <div class="callout__body">
+              <p>Jangan pernah membuat <code>&lt;div role="button" tabindex="0"&gt;</code> jika Anda bisa menggunakan <code>&lt;button&gt;</code> asli. Tag HTML native sudah memiliki fokus keyboard, event Enter/Space, dan integrasi a11y bawaan secara otomatis tanpa butuh kode JavaScript tambahan.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- LESSON NAVIGATION -->
+        <nav class="lesson-nav">
+          <a href="semantic-html.html" class="lesson-nav__link lesson-nav__link--prev">
+            <span class="lesson-nav__label">&larr; Sebelumnya</span>
+            <span class="lesson-nav__title">1.1 Struktur Semantik &amp; SEO</span>
+          </a>
+          <a href="forms.html" class="lesson-nav__link lesson-nav__link--next">
+            <span class="lesson-nav__label">Pelajaran Selanjutnya &rarr;</span>
+            <span class="lesson-nav__title">1.3 Form &amp; Validasi Bawaan</span>
+          </a>
+        </nav>
+
+        <footer class="footer">
+          <p class="footer__text">&copy; 2026 DEVPATH. Web Development Learning Platform.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

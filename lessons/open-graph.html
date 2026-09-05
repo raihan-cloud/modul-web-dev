@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.5 Open Graph & Social Meta Tags — DEVPATH</title>
+  <meta name="description" content="Pelajari protokol Open Graph dan Twitter Cards untuk menghasilkan kartu pratinjau kaya saat tautan dibagikan di media sosial.">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+<body>
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+
+  <div class="lesson-layout">
+    <!-- LESSON SIDEBAR -->
+    <aside class="lesson-sidebar" aria-label="Lesson navigation">
+      <div class="lesson-sidebar__header">
+        <a href="../modules/html5.html" class="lesson-sidebar__back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Kembali ke Modul 01
+        </a>
+        <div class="lesson-sidebar__module-title">HTML5 Fundamentals</div>
+      </div>
+      <nav class="lesson-sidebar__nav">
+        <a href="semantic-html.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Struktur Semantik &amp; Hierarki SEO</span>
+        </a>
+        <a href="accessibility.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Aksesibilitas (a11y) &amp; ARIA</span>
+        </a>
+        <a href="forms.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Form &amp; Validasi Bawaan</span>
+        </a>
+        <a href="media.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Optimasi Media &amp; Cegah CLS</span>
+        </a>
+        <a href="open-graph.html" class="lesson-sidebar__item lesson-sidebar__item--active">
+          <span class="lesson-sidebar__item-number">5</span>
+          <span class="lesson-sidebar__item-text">Open Graph &amp; Social Meta</span>
+        </a>
+        <a href="data-attributes.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">6</span>
+          <span class="lesson-sidebar__item-text">Data Attributes &amp; Custom State</span>
+        </a>
+      </nav>
+      <div class="lesson-sidebar__progress">
+        <div class="lesson-sidebar__progress-label">
+          <span>Modul Progress</span>
+          <span>83%</span>
+        </div>
+        <div class="progress"><div class="progress__bar" style="width: 83%;"></div></div>
+      </div>
+    </aside>
+
+    <!-- LESSON MAIN -->
+    <div class="lesson-main">
+      <header class="lesson-topbar">
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="lesson-header__breadcrumb" style="margin-bottom: 0;">
+            <a href="../modules/index.html">Modul</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <a href="../modules/html5.html">HTML5</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <span>1.5 Open Graph</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="lesson-content">
+        <div class="lesson-header">
+          <div class="lesson-header__meta">
+            <span class="badge badge--accent">Pelajaran 5 dari 6</span>
+            <span class="lesson-header__meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              15 menit
+            </span>
+            <span class="lesson-header__meta-item">Tingkat: Pemula</span>
+          </div>
+          <h1 class="lesson-header__title">1.5 Open Graph &amp; Social Meta Tags</h1>
+          <p class="lesson-header__desc">Kustomisasi tampilan URL website Anda saat dibagikan di WhatsApp, LinkedIn, Discord, Telegram, dan Twitter/X.</p>
+        </div>
+
+        <div class="lesson-body">
+          <p>Pernahkah Anda menempelkan URL di WhatsApp, LinkedIn, atau Twitter/X, dan seketika muncul kartu pratinjau yang indah berisi thumbnail cover, judul rapi, dan deskripsi singkat? Efek tersebut dikendalikan oleh protokol metadata <strong>Open Graph (OG)</strong> dan <strong>Twitter Cards</strong> yang dideklarasikan di dalam tag <code>&lt;head&gt;</code> dokumen HTML.</p>
+
+          <h2>Anatomi Meta Tags Wajib</h2>
+          <ul>
+            <li><code>og:title</code>: Judul halaman saat ditampilkan sebagai kartu sharing.</li>
+            <li><code>og:description</code>: Rangkuman satu atau dua kalimat yang menarik pembaca untuk mengklik.</li>
+            <li><code>og:image</code>: URL mutlak gambar sampul (resolusi standar industri: <strong>1200 x 630 piksel</strong>).</li>
+            <li><code>og:url</code>: Alamat kanonikal permanen dari tautan tersebut.</li>
+            <li><code>twitter:card</code>: Tipe kartu pada platform Twitter/X, biasanya <code>summary_large_image</code> untuk visual besar.</li>
+            <li><code>theme-color</code>: Warna bilah status browser di perangkat mobile (Chrome Android/Safari iOS).</li>
+          </ul>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">HTML — Head Metadata Snippet</span>
+              <button class="code-block__copy" type="button" aria-label="Copy code">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copy
+              </button>
+            </div>
+            <div class="code-block__body">
+              <pre class="code-block__pre"><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+  &lt;!-- Penyesuaian Warna Status Bar Mobile --&gt;
+  &lt;meta name="theme-color" content="#2563eb"&gt;
+
+  &lt;!-- Meta Standar SEO --&gt;
+  &lt;title&gt;Portofolio Web Developer | Raihan&lt;/title&gt;
+  &lt;meta name="description" content="Koleksi proyek frontend modern dengan arsitektur bersih dan performa tinggi."&gt;
+
+  &lt;!-- Open Graph (WhatsApp, LinkedIn, Facebook, Slack) --&gt;
+  &lt;meta property="og:type" content="website"&gt;
+  &lt;meta property="og:url" content="https://portofoliokamu.com/"&gt;
+  &lt;meta property="og:title" content="Portofolio Web Developer | Raihan"&gt;
+  &lt;meta property="og:description" content="Koleksi proyek frontend modern dengan arsitektur bersih dan performa tinggi."&gt;
+  &lt;meta property="og:image" content="https://portofoliokamu.com/assets/og-cover.jpg"&gt;
+
+  &lt;!-- Twitter / X Card --&gt;
+  &lt;meta name="twitter:card" content="summary_large_image"&gt;
+  &lt;meta name="twitter:title" content="Portofolio Web Developer | Raihan"&gt;
+  &lt;meta name="twitter:description" content="Koleksi proyek frontend modern dengan arsitektur bersih."&gt;
+  &lt;meta name="twitter:image" content="https://portofoliokamu.com/assets/og-cover.jpg"&gt;
+&lt;/head&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="callout callout--warning">
+            <div class="callout__title">⚠️ URL Gambar Harus Bersifat Mutlak (Absolute URL)</div>
+            <div class="callout__body">
+              <p>Crawler sosial media seperti WhatsApp dan Facebook scraper tidak dapat memecahkan path relatif seperti <code>assets/og-cover.jpg</code>. Selalu sertakan domain lengkap protokol <code>https://...</code> pada atribut <code>og:image</code>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- LESSON NAVIGATION -->
+        <nav class="lesson-nav">
+          <a href="media.html" class="lesson-nav__link lesson-nav__link--prev">
+            <span class="lesson-nav__label">&larr; Sebelumnya</span>
+            <span class="lesson-nav__title">1.4 Optimasi Media &amp; CLS</span>
+          </a>
+          <a href="data-attributes.html" class="lesson-nav__link lesson-nav__link--next">
+            <span class="lesson-nav__label">Pelajaran Selanjutnya &rarr;</span>
+            <span class="lesson-nav__title">1.6 Data Attributes &amp; Custom State</span>
+          </a>
+        </nav>
+
+        <footer class="footer">
+          <p class="footer__text">&copy; 2026 DEVPATH. Web Development Learning Platform.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

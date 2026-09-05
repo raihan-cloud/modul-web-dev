@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.1 Struktur Semantik & Hierarki SEO — DEVPATH</title>
+  <meta name="description" content="Pelajari cara membangun website dengan elemen semantik HTML5 yang optimal untuk SEO dan Googlebot.">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+<body>
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+
+  <div class="lesson-layout">
+    <!-- LESSON SIDEBAR -->
+    <aside class="lesson-sidebar" aria-label="Lesson navigation">
+      <div class="lesson-sidebar__header">
+        <a href="../modules/html5.html" class="lesson-sidebar__back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Kembali ke Modul 01
+        </a>
+        <div class="lesson-sidebar__module-title">HTML5 Fundamentals</div>
+      </div>
+      <nav class="lesson-sidebar__nav">
+        <a href="semantic-html.html" class="lesson-sidebar__item lesson-sidebar__item--active">
+          <span class="lesson-sidebar__item-number">1</span>
+          <span class="lesson-sidebar__item-text">Struktur Semantik &amp; Hierarki SEO</span>
+        </a>
+        <a href="accessibility.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">2</span>
+          <span class="lesson-sidebar__item-text">Aksesibilitas (a11y) &amp; ARIA</span>
+        </a>
+        <a href="forms.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">3</span>
+          <span class="lesson-sidebar__item-text">Form &amp; Validasi Bawaan</span>
+        </a>
+        <a href="media.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">4</span>
+          <span class="lesson-sidebar__item-text">Optimasi Media &amp; Cegah CLS</span>
+        </a>
+        <a href="open-graph.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">5</span>
+          <span class="lesson-sidebar__item-text">Open Graph &amp; Social Meta</span>
+        </a>
+        <a href="data-attributes.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">6</span>
+          <span class="lesson-sidebar__item-text">Data Attributes &amp; Custom State</span>
+        </a>
+      </nav>
+      <div class="lesson-sidebar__progress">
+        <div class="lesson-sidebar__progress-label">
+          <span>Modul Progress</span>
+          <span>16%</span>
+        </div>
+        <div class="progress"><div class="progress__bar" style="width: 16%;"></div></div>
+      </div>
+    </aside>
+
+    <!-- LESSON MAIN -->
+    <div class="lesson-main">
+      <header class="lesson-topbar">
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="lesson-header__breadcrumb" style="margin-bottom: 0;">
+            <a href="../modules/index.html">Modul</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <a href="../modules/html5.html">HTML5</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <span>1.1 Semantik &amp; SEO</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="lesson-content">
+        <div class="lesson-header">
+          <div class="lesson-header__meta">
+            <span class="badge badge--accent">Pelajaran 1 dari 6</span>
+            <span class="lesson-header__meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              20 menit
+            </span>
+            <span class="lesson-header__meta-item">Tingkat: Pemula</span>
+          </div>
+          <h1 class="lesson-header__title">1.1 Struktur Semantik &amp; Hierarki SEO</h1>
+          <p class="lesson-header__desc">Membangun arsitektur dokumen HTML5 yang bermakna, menghindari div-soup, dan memberi sinyal yang jelas bagi crawler mesin pencari (SEO).</p>
+        </div>
+
+        <div class="lesson-body">
+          <p>Membangun website dengan <code>&lt;div&gt;</code> untuk segala hal (<em>Div Soup</em>) adalah kesalahan pemula terbesar. Robot perayap mesin pencari (seperti Googlebot) tidak memiliki mata fisik. Mereka membaca struktur kode untuk memahami mana yang merupakan judul utama, mana konten pendukung, dan mana yang sekadar menu navigasi atau dekorasi.</p>
+
+          <h2>Elemen Struktural Wajib HTML5</h2>
+          <ul>
+            <li><code>&lt;header&gt;</code>: Kepala dokumen atau area navigasi atas (berisi identitas situs, logo, dan menu navigasi).</li>
+            <li><code>&lt;main&gt;</code>: <strong>Aturan emas:</strong> Hanya boleh ada SATU tag <code>&lt;main&gt;</code> dalam satu halaman. Ini adalah jantung dari konten unik halaman Anda.</li>
+            <li><code>&lt;article&gt;</code>: Konten independen yang masuk akal dan bernilai jika dibaca secara terpisah (misal: postingan blog, kartu produk, thread komentar).</li>
+            <li><code>&lt;aside&gt;</code>: Konten sekunder yang berada di luar topik utama (misal: sidebar, rekomendasi artikel, banner promosi, daftar kategori).</li>
+            <li><code>&lt;figure&gt; &amp; &lt;figcaption&gt;</code>: Pembungkus untuk media ilustrasi atau diagram yang memiliki teks keterangan caption kontekstual.</li>
+          </ul>
+
+          <div class="callout callout--danger">
+            <div class="callout__title">❌ Bad Practice: Div Soup (Sulit Dibaca Mesin Pencari)</div>
+            <div class="callout__body">
+              <p>Struktur di bawah ini menyamarkan makna konten. Mesin pencari kesulitan menentukan prioritas indeks:</p>
+            </div>
+          </div>
+
+          <div class="code-block code-block--bad">
+            <div class="code-block__header">
+              <span class="code-block__lang">HTML — Bad Practice</span>
+              <button class="code-block__copy" type="button" aria-label="Copy code">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copy
+              </button>
+            </div>
+            <div class="code-block__body">
+              <pre class="code-block__pre"><code>&lt;div class="header-utama"&gt;...&lt;/div&gt;
+&lt;div class="konten-tengah"&gt;
+  &lt;div class="postingan"&gt;...&lt;/div&gt;
+  &lt;div class="sidebar-kanan"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="footer-bawah"&gt;...&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="callout callout--success">
+            <div class="callout__title">✅ Good Practice: Industry Standard Semantic Layout</div>
+            <div class="callout__body">
+              <p>Menggunakan tag semantik asli memberikan hierarki yang jelas bagi Googlebot, Screen Reader, dan developer lain:</p>
+            </div>
+          </div>
+
+          <div class="code-block code-block--good">
+            <div class="code-block__header">
+              <span class="code-block__lang">HTML — Good Practice</span>
+              <button class="code-block__copy" type="button" aria-label="Copy code">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copy
+              </button>
+            </div>
+            <div class="code-block__body">
+              <pre class="code-block__pre"><code>&lt;header&gt;
+  &lt;nav aria-label="Navigasi Utama"&gt;
+    &lt;!-- Menu Navigasi --&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Judul Artikel Utama&lt;/h1&gt;
+      &lt;p&gt;Ditulis pada &lt;time datetime="2026-10-15"&gt;15 Oktober 2026&lt;/time&gt;&lt;/p&gt;
+    &lt;/header&gt;
+    
+    &lt;section&gt;
+      &lt;h2&gt;Bab Pendahuluan&lt;/h2&gt;
+      &lt;p&gt;Isi konten pembelajaran di sini...&lt;/p&gt;
+      
+      &lt;figure&gt;
+        &lt;img src="grafik.jpg" alt="Grafik peningkatan pengguna kuartal 3"&gt;
+        &lt;figcaption&gt;Gambar 1.1: Lonjakan pengguna kuartal 3.&lt;/figcaption&gt;
+      &lt;/figure&gt;
+    &lt;/section&gt;
+  &lt;/article&gt;
+
+  &lt;aside&gt;
+    &lt;h3&gt;Artikel Terkait&lt;/h3&gt;
+    &lt;!-- Link artikel dan materi relevan --&gt;
+  &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;&copy; 2026 Hak Cipta Dilindungi.&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="callout callout--tip">
+            <div class="callout__title">💡 Tips Implementasi di Dunia Kerja</div>
+            <div class="callout__body">
+              <p>Dalam proyek berskala besar, pastikan hanya ada satu tag <code>&lt;h1&gt;</code> per halaman yang merepresentasikan topik terpenting halaman tersebut. Gunakan <code>&lt;h2&gt;</code> hingga <code>&lt;h6&gt;</code> secara berurutan tanpa melompati tingkat hierarki.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- LESSON NAVIGATION -->
+        <nav class="lesson-nav">
+          <a href="../modules/html5.html" class="lesson-nav__link lesson-nav__link--prev">
+            <span class="lesson-nav__label">&larr; Kembali</span>
+            <span class="lesson-nav__title">Overview Modul 01</span>
+          </a>
+          <a href="accessibility.html" class="lesson-nav__link lesson-nav__link--next">
+            <span class="lesson-nav__label">Pelajaran Selanjutnya &rarr;</span>
+            <span class="lesson-nav__title">1.2 Aksesibilitas (a11y) &amp; ARIA</span>
+          </a>
+        </nav>
+
+        <footer class="footer">
+          <p class="footer__text">&copy; 2026 DEVPATH. Web Development Learning Platform.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

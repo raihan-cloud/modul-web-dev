@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.3 Form & Validasi Bawaan Lanjutan — DEVPATH</title>
+  <meta name="description" content="Pelajari validasi form native HTML5 tanpa JavaScript: required, regex pattern, datalist autocomplete, dan pseudo-class :valid :invalid.">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    .demo-form input:focus:valid {
+      border-color: var(--color-success) !important;
+      box-shadow: 0 0 0 3px var(--color-success-light) !important;
+    }
+    .demo-form input:focus:invalid:not(:placeholder-shown) {
+      border-color: var(--color-danger) !important;
+      box-shadow: 0 0 0 3px var(--color-danger-light) !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+
+  <div class="lesson-layout">
+    <!-- LESSON SIDEBAR -->
+    <aside class="lesson-sidebar" aria-label="Lesson navigation">
+      <div class="lesson-sidebar__header">
+        <a href="../modules/html5.html" class="lesson-sidebar__back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Kembali ke Modul 01
+        </a>
+        <div class="lesson-sidebar__module-title">HTML5 Fundamentals</div>
+      </div>
+      <nav class="lesson-sidebar__nav">
+        <a href="semantic-html.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Struktur Semantik &amp; Hierarki SEO</span>
+        </a>
+        <a href="accessibility.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Aksesibilitas (a11y) &amp; ARIA</span>
+        </a>
+        <a href="forms.html" class="lesson-sidebar__item lesson-sidebar__item--active">
+          <span class="lesson-sidebar__item-number">3</span>
+          <span class="lesson-sidebar__item-text">Form &amp; Validasi Bawaan</span>
+        </a>
+        <a href="media.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">4</span>
+          <span class="lesson-sidebar__item-text">Optimasi Media &amp; Cegah CLS</span>
+        </a>
+        <a href="open-graph.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">5</span>
+          <span class="lesson-sidebar__item-text">Open Graph &amp; Social Meta</span>
+        </a>
+        <a href="data-attributes.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">6</span>
+          <span class="lesson-sidebar__item-text">Data Attributes &amp; Custom State</span>
+        </a>
+      </nav>
+      <div class="lesson-sidebar__progress">
+        <div class="lesson-sidebar__progress-label">
+          <span>Modul Progress</span>
+          <span>50%</span>
+        </div>
+        <div class="progress"><div class="progress__bar" style="width: 50%;"></div></div>
+      </div>
+    </aside>
+
+    <!-- LESSON MAIN -->
+    <div class="lesson-main">
+      <header class="lesson-topbar">
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="lesson-header__breadcrumb" style="margin-bottom: 0;">
+            <a href="../modules/index.html">Modul</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <a href="../modules/html5.html">HTML5</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <span>1.3 Form &amp; Validasi</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="lesson-content">
+        <div class="lesson-header">
+          <div class="lesson-header__meta">
+            <span class="badge badge--accent">Pelajaran 3 dari 6</span>
+            <span class="lesson-header__meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              25 menit
+            </span>
+            <span class="lesson-header__meta-item">Tingkat: Pemula</span>
+          </div>
+          <h1 class="lesson-header__title">1.3 Form &amp; Validasi Bawaan Lanjutan</h1>
+          <p class="lesson-header__desc">Manfaatkan kekuatan engine validasi native HTML5 untuk formulir yang aman, cepat, dan bekerja tanpa dependensi library JavaScript berat.</p>
+        </div>
+
+        <div class="lesson-body">
+          <p>HTML5 dilengkapi mesin validasi data terintegrasi langsung di level browser. Anda tidak perlu mengimpor library validator JavaScript berukuran besar hanya untuk mengecek field wajib diisi, format email, batasan panjang teks, atau pencocokan pola regex.</p>
+
+          <h2>Atribut Validasi Penting</h2>
+          <ul>
+            <li><code>required</code>: Menandai kolom wajib diisi sebelum form dapat disubmit.</li>
+            <li><code>pattern="[regex]"</code>: Menguji input teks terhadap aturan Regular Expression (misal: tepat 6 digit PIN, format nomor telepon, atau karakter tertentu).</li>
+            <li><code>minlength</code> &amp; <code>maxlength</code>: Membatasi panjang karakter minimum dan maksimum yang diizinkan.</li>
+            <li><code>&lt;datalist&gt;</code>: Memberikan saran auto-complete otomatis saat user mengetik, namun tetap mengizinkan input fleksibel.</li>
+          </ul>
+
+          <!-- LIVE DEMO BOX -->
+          <div class="preview-box">
+            <div class="preview-title">👁️ Live Demo: Uji Coba Form HTML5 Native</div>
+            <form class="demo-form" id="html5-validation-demo" onsubmit="alert('Semua Validasi HTML5 Lolos! Form siap diproses.'); return false;">
+              <div class="form-group" style="margin-bottom: var(--space-4);">
+                <label for="demo-email" class="form-label">Email (Validasi format @ otomatis):</label>
+                <input type="email" id="demo-email" class="input" required placeholder="name@example.com">
+              </div>
+
+              <div class="form-group" style="margin-bottom: var(--space-4);">
+                <label for="demo-pin" class="form-label">PIN Keamanan (Pattern Regex: Tepat 6 angka):</label>
+                <input type="password" id="demo-pin" class="input" pattern="\d{6}" required placeholder="Contoh: 123456" title="Harus berupa 6 digit angka tanpa huruf atau spasi">
+              </div>
+
+              <div class="form-group" style="margin-bottom: var(--space-4);">
+                <label for="demo-browser" class="form-label">Browser Favorit (Datalist Auto-Complete):</label>
+                <input list="browsers" id="demo-browser" name="browser" class="input" placeholder="Ketik C untuk Chrome, F untuk Firefox..." required>
+                <datalist id="browsers">
+                  <option value="Google Chrome">
+                  <option value="Mozilla Firefox">
+                  <option value="Apple Safari">
+                  <option value="Microsoft Edge">
+                  <option value="Brave Browser">
+                </datalist>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--md">Uji Validasi Form</button>
+            </form>
+          </div>
+
+          <div class="callout callout--tip">
+            <div class="callout__title">💡 Tips UI/UX Modern: Pseudo-class `:valid` dan `:invalid`</div>
+            <div class="callout__body">
+              <p>Pada form demo di atas, CSS pseudo-class <code>:focus:valid</code> dan <code>:focus:invalid:not(:placeholder-shown)</code> digunakan untuk memberi indikator border hijau atau merah secara instan saat pengguna mengetik, memberikan umpan balik visual yang menyenangkan (feedback loop).</p>
+            </div>
+          </div>
+
+          <h2>Contoh Kode Markup Form</h2>
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">HTML — Native Validation Snippet</span>
+              <button class="code-block__copy" type="button" aria-label="Copy code">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copy
+              </button>
+            </div>
+            <div class="code-block__body">
+              <pre class="code-block__pre"><code>&lt;form action="/api/submit" method="POST"&gt;
+  &lt;!-- Validasi Email Native --&gt;
+  &lt;label for="user-email"&gt;Alamat Email&lt;/label&gt;
+  &lt;input type="email" id="user-email" required placeholder="user@domain.com"&gt;
+
+  &lt;!-- Validasi Pola Regex (6 Angka) --&gt;
+  &lt;label for="user-pin"&gt;PIN 6 Digit&lt;/label&gt;
+  &lt;input type="text" id="user-pin" pattern="\d{6}" maxlength="6" required title="Masukkan 6 angka"&gt;
+
+  &lt;!-- Autocomplete dari list --&gt;
+  &lt;input list="cities" id="city-input" placeholder="Pilih kota..."&gt;
+  &lt;datalist id="cities"&gt;
+    &lt;option value="Jakarta"&gt;
+    &lt;option value="Surabaya"&gt;
+    &lt;option value="Bandung"&gt;
+  &lt;/datalist&gt;
+
+  &lt;button type="submit"&gt;Kirim Data&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- LESSON NAVIGATION -->
+        <nav class="lesson-nav">
+          <a href="accessibility.html" class="lesson-nav__link lesson-nav__link--prev">
+            <span class="lesson-nav__label">&larr; Sebelumnya</span>
+            <span class="lesson-nav__title">1.2 Aksesibilitas &amp; ARIA</span>
+          </a>
+          <a href="media.html" class="lesson-nav__link lesson-nav__link--next">
+            <span class="lesson-nav__label">Pelajaran Selanjutnya &rarr;</span>
+            <span class="lesson-nav__title">1.4 Optimasi Media &amp; CLS</span>
+          </a>
+        </nav>
+
+        <footer class="footer">
+          <p class="footer__text">&copy; 2026 DEVPATH. Web Development Learning Platform.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

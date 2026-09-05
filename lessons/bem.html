@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.6 Metode BEM & Clean Architecture — DEVPATH</title>
+  <meta name="description" content="Pelajari metodologi penamaan BEM (Block Element Modifier) untuk struktur CSS modular skala enterprise yang bebas benturan spesifisitas.">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+<body>
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+
+  <div class="lesson-layout">
+    <!-- LESSON SIDEBAR -->
+    <aside class="lesson-sidebar" aria-label="Lesson navigation">
+      <div class="lesson-sidebar__header">
+        <a href="../modules/css3.html" class="lesson-sidebar__back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Kembali ke Modul 02
+        </a>
+        <div class="lesson-sidebar__module-title">CSS3 Modern Layout</div>
+      </div>
+      <nav class="lesson-sidebar__nav">
+        <a href="css-variables.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">CSS Variables &amp; Dark Mode</span>
+        </a>
+        <a href="flexbox-grid.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Flexbox vs CSS Grid Mastery</span>
+        </a>
+        <a href="fluid-typography.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Fluid Typography dengan clamp()</span>
+        </a>
+        <a href="animations.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">CSS Animations &amp; Glassmorphism</span>
+        </a>
+        <a href="container-queries.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Container Queries (@container)</span>
+        </a>
+        <a href="bem.html" class="lesson-sidebar__item lesson-sidebar__item--active">
+          <span class="lesson-sidebar__item-number">6</span>
+          <span class="lesson-sidebar__item-text">Metode BEM &amp; Clean Architecture</span>
+        </a>
+      </nav>
+      <div class="lesson-sidebar__progress">
+        <div class="lesson-sidebar__progress-label">
+          <span>Modul Progress</span>
+          <span>100%</span>
+        </div>
+        <div class="progress"><div class="progress__bar progress__bar--success" style="width: 100%;"></div></div>
+      </div>
+    </aside>
+
+    <!-- LESSON MAIN -->
+    <div class="lesson-main">
+      <header class="lesson-topbar">
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="lesson-header__breadcrumb" style="margin-bottom: 0;">
+            <a href="../modules/index.html">Modul</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <a href="../modules/css3.html">CSS3</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <span>2.6 Metode BEM</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="lesson-content">
+        <div class="lesson-header">
+          <div class="lesson-header__meta">
+            <span class="badge badge--success">Pelajaran 6 dari 6 (Selesai)</span>
+            <span class="lesson-header__meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              25 menit
+            </span>
+            <span class="lesson-header__meta-item">Tingkat: Menengah</span>
+          </div>
+          <h1 class="lesson-header__title">2.6 Metode BEM &amp; Clean Architecture</h1>
+          <p class="lesson-header__desc">Block Element Modifier (BEM) adalah standar industri untuk penulisan CSS rapi, mudah dipelihara, dan bebas dari konflik specificity.</p>
+        </div>
+
+        <div class="lesson-body">
+          <p><strong>BEM (Block Element Modifier)</strong> adalah standar konvensi penamaan class CSS terpopuler di industri teknologi dunia. Tujuannya adalah memastikan setiap developer dalam tim dapat membaca kode dan langsung memahami relasi antar komponen visual tanpa takut merusak bagian web yang lain (<em>zero CSS specificity wars</em>).</p>
+
+          <h2>Struktur Anatomi Penamaan BEM</h2>
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">CSS — BEM Architecture</span>
+              <button class="code-block__copy" type="button" aria-label="Copy code">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copy
+              </button>
+            </div>
+            <div class="code-block__body">
+              <pre class="code-block__pre"><code>/* Formula: .block__element--modifier */
+
+/* 1. BLOCK: Komponen mandiri yang bermakna sendiri */
+.btn {}
+.card {}
+
+/* 2. ELEMENT: Bagian anak yang terikat di dalam Block (dua underscore) */
+.card__header {}
+.card__title {}
+.card__body {}
+.card__action {}
+
+/* 3. MODIFIER: Varian gaya atau status dari Block/Element (dua minus) */
+.btn--primary {}
+.btn--danger {}
+.btn--lg {}
+.card--highlighted {}</code></pre>
+            </div>
+          </div>
+
+          <div class="preview-box">
+            <div class="preview-title">👁️ Contoh Hasil Kelas BEM di Aplikasi Ini:</div>
+            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+              <button class="btn btn--secondary btn--sm">.btn.btn--secondary</button>
+              <button class="btn btn--primary btn--sm">.btn.btn--primary</button>
+              <button class="btn btn--danger btn--sm">.btn.btn--danger</button>
+            </div>
+          </div>
+
+          <!-- LATIHAN PRAKTIKUM INDUSTRY GRADE -->
+          <div class="card" style="border: 2px solid var(--color-accent); background-color: var(--color-accent-light); margin-top: var(--space-8);">
+            <h3 style="color: var(--color-accent); margin-bottom: var(--space-3);">🎯 Latihan Praktikum Industry-Grade Modul 02</h3>
+            <p style="color: var(--color-text); margin-bottom: var(--space-3);">
+              Buatlah file stylesheet modular bernama <code>theme-dashboard.css</code> dengan spesifikasi berikut:
+            </p>
+            <ol style="margin-bottom: 0; color: var(--color-text);">
+              <li>Deklarasikan variabel warna di <code>:root</code> untuk skema tema terang dan gelap.</li>
+              <li>Buat tata letak grid kartu menggunakan CSS Grid <code>repeat(auto-fit, minmax(200px, 1fr))</code>.</li>
+              <li>Gunakan fungsi matematika <code>clamp()</code> untuk mengatur skala fluid font judul dashboard.</li>
+              <li>Terapkan konvensi penamaan class berbasis <strong>BEM Architecture</strong> pada komponen kartu dan tombol.</li>
+              <li>Sertakan setidaknya satu kartu dengan efek visual <strong>Glassmorphism</strong>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- LESSON NAVIGATION -->
+        <nav class="lesson-nav">
+          <a href="container-queries.html" class="lesson-nav__link lesson-nav__link--prev">
+            <span class="lesson-nav__label">&larr; Sebelumnya</span>
+            <span class="lesson-nav__title">2.5 Container Queries</span>
+          </a>
+          <a href="../modules/javascript.html" class="lesson-nav__link lesson-nav__link--next">
+            <span class="lesson-nav__label">Modul Selanjutnya &rarr;</span>
+            <span class="lesson-nav__title">Modul 03: JavaScript ES6+</span>
+          </a>
+        </nav>
+
+        <footer class="footer">
+          <p class="footer__text">&copy; 2026 DEVPATH. Web Development Learning Platform.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

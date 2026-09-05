@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modules — DEVPATH</title>
+  <meta name="description" content="Browse all learning modules in DEVPATH. Master HTML5, CSS3, and JavaScript fundamentals.">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+<body>
+  <div class="page">
+    <div class="sidebar-overlay" aria-hidden="true"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Main navigation">
+      <a href="../index.html" class="sidebar__brand">
+        <span class="sidebar__logo" aria-hidden="true">D</span>
+        <span>
+          <span class="sidebar__brand-name">DEVPATH</span>
+          <span class="sidebar__brand-tag">Learning Platform</span>
+        </span>
+      </a>
+      <nav class="sidebar__nav">
+        <span class="sidebar__section-label">Menu</span>
+        <a href="../index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg> Dashboard</a>
+        <a href="index.html" class="sidebar__link sidebar__link--active"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Modules</a>
+        <a href="../playground/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> Playground</a>
+        <a href="../quiz/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Quiz</a>
+        <a href="../progress/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> Progress</a>
+        <a href="../resources/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Resources</a>
+      </nav>
+      <div class="sidebar__footer">
+        <span class="sidebar__section-label">Preferences</span>
+        <button class="sidebar__link" data-theme-toggle style="width:100%;border:none;background:none;cursor:pointer;text-align:left;">
+          <svg class="sidebar__link-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="sidebar__link-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          Dark Mode
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+          <div class="topbar__search" role="button" tabindex="0"><svg class="topbar__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><span class="topbar__search-text">Search lessons...</span><kbd class="topbar__search-kbd">⌘K</kbd></div>
+        </div>
+        <div class="topbar__right">
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme"><svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button>
+          <div class="topbar__avatar">L</div>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="section">
+          <div style="margin-bottom: var(--space-2);">
+            <h1 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">Modules</h1>
+            <p style="color: var(--color-text-secondary); margin-bottom:0;">Learn the fundamentals. Build real interfaces. Think like a developer.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="grid grid--3">
+            <a href="html5.html" class="module-card">
+              <span class="module-card__number">01</span>
+              <h3 class="module-card__title">HTML5 Fundamentals</h3>
+              <p class="module-card__desc">Semantic HTML, accessibility, forms, media optimization, Open Graph, dan data attributes.</p>
+              <div class="module-card__meta">
+                <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> 6 Lessons</span>
+                <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 120 min</span>
+              </div>
+              <div class="progress" style="margin-bottom:var(--space-3);"><div class="progress__bar progress__bar--success" style="width:72%;"></div></div>
+              <div class="module-card__footer">
+                <span class="badge badge--success">72% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Continue &rarr;</span>
+              </div>
+            </a>
+
+            <a href="css3.html" class="module-card">
+              <span class="module-card__number">02</span>
+              <h3 class="module-card__title">CSS3 Modern Layout</h3>
+              <p class="module-card__desc">CSS Variables, Flexbox, Grid, fluid typography, animations, container queries, dan BEM.</p>
+              <div class="module-card__meta">
+                <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> 6 Lessons</span>
+                <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 150 min</span>
+              </div>
+              <div class="progress" style="margin-bottom:var(--space-3);"><div class="progress__bar" style="width:35%;"></div></div>
+              <div class="module-card__footer">
+                <span class="badge badge--accent">35% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Continue &rarr;</span>
+              </div>
+            </a>
+
+            <a href="javascript.html" class="module-card">
+              <span class="module-card__number">03</span>
+              <h3 class="module-card__title">JavaScript ES6+</h3>
+              <p class="module-card__desc">Modern syntax, DOM manipulation, event delegation, async/await, Web Storage, dan ES Modules.</p>
+              <div class="module-card__meta">
+                <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> 6 Lessons</span>
+                <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 180 min</span>
+              </div>
+              <div class="progress" style="margin-bottom:var(--space-3);"><div class="progress__bar" style="width:15%;"></div></div>
+              <div class="module-card__footer">
+                <span class="badge badge--default">15% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Start &rarr;</span>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <p class="footer__text">&copy; 2026 DEVPATH. Web Development Learning Platform.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

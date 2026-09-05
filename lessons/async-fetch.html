@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.5 Asynchronous JS & Fetch API — DEVPATH</title>
+  <meta name="description" content="Kuasai komunikasi data server modern dengan async/await, penanganan error try/catch, dan Fetch API pada Vanilla JavaScript.">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+<body>
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+
+  <div class="lesson-layout">
+    <!-- LESSON SIDEBAR -->
+    <aside class="lesson-sidebar" aria-label="Lesson navigation">
+      <div class="lesson-sidebar__header">
+        <a href="../modules/javascript.html" class="lesson-sidebar__back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Kembali ke Modul 03
+        </a>
+        <div class="lesson-sidebar__module-title">JavaScript ES6+</div>
+      </div>
+      <nav class="lesson-sidebar__nav">
+        <a href="es6-modules.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Loading Strategy &amp; ES6 Modules</span>
+        </a>
+        <a href="es6-syntax.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Syntax Modern (ES6+ Shorthand)</span>
+        </a>
+        <a href="dom-manipulation.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">DOM Selection &amp; Class Toggle</span>
+        </a>
+        <a href="event-delegation.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Event Delegation Architecture</span>
+        </a>
+        <a href="async-fetch.html" class="lesson-sidebar__item lesson-sidebar__item--active">
+          <span class="lesson-sidebar__item-number">5</span>
+          <span class="lesson-sidebar__item-text">Async/Await &amp; Fetch API</span>
+        </a>
+        <a href="local-storage.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">6</span>
+          <span class="lesson-sidebar__item-text">State Persistence via localStorage</span>
+        </a>
+      </nav>
+      <div class="lesson-sidebar__progress">
+        <div class="lesson-sidebar__progress-label">
+          <span>Modul Progress</span>
+          <span>83%</span>
+        </div>
+        <div class="progress"><div class="progress__bar" style="width: 83%;"></div></div>
+      </div>
+    </aside>
+
+    <!-- LESSON MAIN -->
+    <div class="lesson-main">
+      <header class="lesson-topbar">
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="lesson-header__breadcrumb" style="margin-bottom: 0;">
+            <a href="../modules/index.html">Modul</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <a href="../modules/javascript.html">JavaScript</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <span>3.5 Async/Await</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="lesson-content">
+        <div class="lesson-header">
+          <div class="lesson-header__meta">
+            <span class="badge badge--accent">Pelajaran 5 dari 6</span>
+            <span class="lesson-header__meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              35 menit
+            </span>
+            <span class="lesson-header__meta-item">Tingkat: Menengah</span>
+          </div>
+          <h1 class="lesson-header__title">3.5 Asynchronous JS &amp; Fetch API (`async/await`)</h1>
+          <p class="lesson-header__desc">Mengambil data dari Server REST API secara asinkron tanpa memuat ulang (reload) seluruh halaman web.</p>
+        </div>
+
+        <div class="lesson-body">
+          <p>Dunia web modern bekerja secara asinkron (<em>non-blocking asynchronous</em>). Ketika aplikasi Anda mengirim request ke server eksternal, antarmuka pengguna tidak boleh macet atau membeku saat menunggu respon jaringan. Pola <strong><code>async/await</code></strong> membuat penulisan kode asynchronous sejelas dan sebersih kode sinkron biasa.</p>
+
+          <h2>Pola Standar Industri: `async/await` + `try/catch`</h2>
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">JavaScript — Fetch Pattern</span>
+              <button class="code-block__copy" type="button" aria-label="Copy code">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copy
+              </button>
+            </div>
+            <div class="code-block__body">
+              <pre class="code-block__pre"><code>const fetchUserData = async (username) => {
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    
+    // Periksa status HTTP 200 OK
+    if (!response.ok) {
+      throw new Error(`HTTP Error status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Data user:", data);
+    return data;
+  } catch (error) {
+    console.error("Gagal mengambil data dari server:", error.message);
+  }
+};</code></pre>
+            </div>
+          </div>
+
+          <!-- LIVE PREVIEW DEMO -->
+          <div class="preview-box">
+            <div class="preview-title">👁️ Live Demo: Asynchronous Quotes Generator</div>
+            <div id="demo-quote-box" style="background-color: var(--color-bg-tertiary); padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--color-accent); margin-bottom: var(--space-3); font-style: italic;">
+              "Klik tombol di bawah untuk memuat kutipan inspiratif web developer secara asinkron."
+            </div>
+            <button type="button" class="btn btn--primary btn--md" id="demo-quote-btn">
+              🌐 Generate Kutipan Baru
+            </button>
+          </div>
+
+          <div class="callout callout--tip">
+            <div class="callout__title">💡 Selalu Cek `response.ok`</div>
+            <div class="callout__body">
+              <p>Fetch API <strong>tidak akan mereject Promise</strong> hanya karena server mengembalikan error 404 Not Found atau 500 Server Error. Promise hanya reject jika terjadi kegagalan jaringan fisik (offline/CORS blocked). Oleh karena itu, selalu uji <code>if (!response.ok)</code> sebelum menguraikan JSON.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- LESSON NAVIGATION -->
+        <nav class="lesson-nav">
+          <a href="event-delegation.html" class="lesson-nav__link lesson-nav__link--prev">
+            <span class="lesson-nav__label">&larr; Sebelumnya</span>
+            <span class="lesson-nav__title">3.4 Event Delegation</span>
+          </a>
+          <a href="local-storage.html" class="lesson-nav__link lesson-nav__link--next">
+            <span class="lesson-nav__label">Pelajaran Selanjutnya &rarr;</span>
+            <span class="lesson-nav__title">3.6 State via localStorage</span>
+          </a>
+        </nav>
+
+        <footer class="footer">
+          <p class="footer__text">&copy; 2026 DEVPATH. Web Development Learning Platform.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/app.js"></script>
+  <script>
+    // Async Demo Script
+    document.addEventListener('DOMContentLoaded', () => {
+      const box = document.getElementById('demo-quote-box');
+      const btn = document.getElementById('demo-quote-btn');
+
+      const quotes = [
+        "Simplicity is prerequisite for reliability. — Edsger W. Dijkstra",
+        "Make it work, make it right, make it fast. — Kent Beck",
+        "Code is like humor. When you have to explain it, it’s bad. — Cory House",
+        "First, solve the problem. Then, write the code. — John Johnson",
+        "Experience is the name everyone gives to their mistakes. — Oscar Wilde"
+      ];
+
+      btn?.addEventListener('click', async () => {
+        box.textContent = "Mengambil kutipan...";
+        btn.disabled = true;
+
+        // Simulasi async network call dengan delay
+        await new Promise(r => setTimeout(r, 400));
+
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        box.textContent = `"${quotes[randomIndex]}"`;
+        btn.disabled = false;
+      });
+    });
+  </script>
+</body>
+</html>

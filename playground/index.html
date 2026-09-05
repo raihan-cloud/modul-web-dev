@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Playground — DEVPATH</title>
+  <meta name="description" content="Eksperimen langsung dengan HTML, CSS, dan JavaScript secara interaktif dengan live preview real-time.">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    .playground-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      height: calc(100vh - var(--topbar-height) - 130px);
+      min-height: 520px;
+    }
+    .playground-pane {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background-color: var(--color-surface);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .playground-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-3) var(--space-4);
+      background-color: var(--color-bg-secondary);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .playground-tabs {
+      display: flex;
+      gap: var(--space-1);
+    }
+    .playground-tab {
+      padding: var(--space-2) var(--space-3);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      border: none;
+      background: none;
+      border-radius: var(--radius-sm);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .playground-tab:hover {
+      color: var(--color-text);
+      background-color: var(--color-bg-tertiary);
+    }
+    .playground-tab--active {
+      color: var(--color-accent);
+      background-color: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+    }
+    .editor-wrapper {
+      flex: 1;
+      position: relative;
+    }
+    .code-editor-textarea {
+      width: 100%;
+      height: 100%;
+      padding: var(--space-4);
+      border: none;
+      resize: none;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      background-color: #1e1e2e;
+      color: #cdd6f4;
+      outline: none;
+      box-sizing: border-box;
+      tab-size: 2;
+    }
+    .preview-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: #ffffff;
+    }
+    @media (max-width: 900px) {
+      .playground-container {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+      .playground-pane {
+        height: 380px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="sidebar-overlay" aria-hidden="true"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Main navigation">
+      <a href="../index.html" class="sidebar__brand">
+        <span class="sidebar__logo" aria-hidden="true">D</span>
+        <span>
+          <span class="sidebar__brand-name">DEVPATH</span>
+          <span class="sidebar__brand-tag">Learning Platform</span>
+        </span>
+      </a>
+      <nav class="sidebar__nav">
+        <span class="sidebar__section-label">Menu</span>
+        <a href="../index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg> Dashboard</a>
+        <a href="../modules/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Modules</a>
+        <a href="index.html" class="sidebar__link sidebar__link--active"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> Playground</a>
+        <a href="../quiz/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Quiz</a>
+        <a href="../progress/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> Progress</a>
+        <a href="../resources/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Resources</a>
+      </nav>
+      <div class="sidebar__footer">
+        <span class="sidebar__section-label">Preferences</span>
+        <button class="sidebar__link" data-theme-toggle style="width:100%;border:none;background:none;cursor:pointer;text-align:left;">
+          <svg class="sidebar__link-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="sidebar__link-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          Dark Mode
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+          <div style="font-weight: var(--weight-bold); font-size: var(--text-base);">Live Code Playground</div>
+        </div>
+        <div class="topbar__right">
+          <select id="preset-selector" class="input" style="padding: 4px 12px; font-size: var(--text-xs); height: 32px;">
+            <option value="card">Template: Glassmorphic Card</option>
+            <option value="grid">Template: Auto-fit Responsive Grid</option>
+            <option value="todo">Template: Interactive Todo App</option>
+            <option value="empty">Template: Halaman Kosong</option>
+          </select>
+          <button class="btn btn--primary btn--sm" id="btn-run-code">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Jalankan (Run)
+          </button>
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme"><svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button>
+          <div class="topbar__avatar">L</div>
+        </div>
+      </header>
+
+      <main class="content" style="padding-top: var(--space-5);">
+        <div class="playground-container">
+          <!-- LEFT PANE: CODE EDITORS -->
+          <div class="playground-pane">
+            <div class="playground-header">
+              <div class="playground-tabs">
+                <button class="playground-tab playground-tab--active" data-lang="html">HTML</button>
+                <button class="playground-tab" data-lang="css">CSS</button>
+                <button class="playground-tab" data-lang="js">JavaScript</button>
+              </div>
+              <button class="btn btn--secondary btn--sm" id="btn-reset-code" style="padding: 2px 8px; font-size: var(--text-xs);">Reset</button>
+            </div>
+            <div class="editor-wrapper">
+              <textarea id="editor-html" class="code-editor-textarea" spellcheck="false" placeholder="Tulis HTML di sini..."></textarea>
+              <textarea id="editor-css" class="code-editor-textarea" spellcheck="false" placeholder="Tulis CSS di sini..." style="display: none;"></textarea>
+              <textarea id="editor-js" class="code-editor-textarea" spellcheck="false" placeholder="Tulis JavaScript di sini..." style="display: none;"></textarea>
+            </div>
+          </div>
+
+          <!-- RIGHT PANE: LIVE PREVIEW IFRAME -->
+          <div class="playground-pane">
+            <div class="playground-header">
+              <span style="font-size: var(--text-xs); font-weight: var(--weight-bold); color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">
+                Pratinjau Langsung (Live Preview)
+              </span>
+              <span style="font-size: var(--text-xs); color: var(--color-success); font-weight: var(--weight-semibold);">● Realtime Output</span>
+            </div>
+            <div style="flex: 1; position: relative;">
+              <iframe id="preview-frame" class="preview-iframe" title="Playground Preview"></iframe>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const editorHtml = document.getElementById('editor-html');
+      const editorCss = document.getElementById('editor-css');
+      const editorJs = document.getElementById('editor-js');
+      const previewFrame = document.getElementById('preview-frame');
+      const btnRun = document.getElementById('btn-run-code');
+      const btnReset = document.getElementById('btn-reset-code');
+      const presetSelector = document.getElementById('preset-selector');
+      const tabs = document.querySelectorAll('.playground-tab');
+
+      // Presets
+      const presets = {
+        card: {
+          html: `<div class="card-wrap">\n  <div class="glass-card">\n    <h2>Glassmorphism UI</h2>\n    <p>Efek modern kaca transparan menggunakan backdrop-filter: blur().</p>\n    <button class="btn-glow" onclick="alert('Halo dari DEVPATH Playground!')">Klik Saya</button>\n  </div>\n</div>`,
+          css: `body {\n  margin: 0;\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: linear-gradient(135deg, #1e3a8a, #9333ea);\n  font-family: system-ui, sans-serif;\n}\n.glass-card {\n  background: rgba(255, 255, 255, 0.15);\n  backdrop-filter: blur(12px);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n  border-radius: 16px;\n  padding: 32px;\n  color: white;\n  max-width: 320px;\n  box-shadow: 0 8px 32px rgba(0,0,0,0.2);\n}\n.glass-card h2 {\n  margin-top: 0;\n}\n.btn-glow {\n  background: white;\n  color: #1e3a8a;\n  border: none;\n  padding: 10px 20px;\n  border-radius: 8px;\n  font-weight: bold;\n  cursor: pointer;\n  transition: transform 0.2s;\n}\n.btn-glow:hover {\n  transform: translateY(-2px);\n}`,
+          js: `console.log("Glassmorphism template loaded!");`
+        },
+        grid: {
+          html: `<div class="container">\n  <h1>Responsive Auto-Fit Grid</h1>\n  <div class="grid">\n    <div class="card">Card 01</div>\n    <div class="card">Card 02</div>\n    <div class="card">Card 03</div>\n    <div class="card">Card 04</div>\n  </div>\n</div>`,
+          css: `body {\n  font-family: system-ui, sans-serif;\n  padding: 24px;\n  background: #f8fafc;\n}\n.grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));\n  gap: 16px;\n}\n.card {\n  background: white;\n  border: 1px solid #e2e8f0;\n  padding: 24px;\n  border-radius: 12px;\n  text-align: center;\n  font-weight: bold;\n  color: #2563eb;\n  box-shadow: 0 2px 4px rgba(0,0,0,0.05);\n}`,
+          js: `console.log("Grid template loaded!");`
+        },
+        todo: {
+          html: `<div class="app">\n  <h2>Task Manager</h2>\n  <div class="input-group">\n    <input type="text" id="task-input" placeholder="Tulis tugas baru...">\n    <button id="add-btn">Tambah</button>\n  </div>\n  <ul id="task-list"></ul>\n</div>`,
+          css: `body {\n  font-family: system-ui, sans-serif;\n  background: #0f172a;\n  color: white;\n  display: flex;\n  justify-content: center;\n  padding: 40px 20px;\n}\n.app {\n  width: 100%;\n  max-width: 400px;\n  background: #1e293b;\n  padding: 24px;\n  border-radius: 12px;\n}\n.input-group {\n  display: flex;\n  gap: 8px;\n  margin-bottom: 16px;\n}\ninput {\n  flex: 1;\n  padding: 8px 12px;\n  border-radius: 6px;\n  border: 1px solid #334155;\n  background: #0f172a;\n  color: white;\n}\nbutton {\n  background: #2563eb;\n  color: white;\n  border: none;\n  padding: 8px 16px;\n  border-radius: 6px;\n  cursor: pointer;\n}\nul {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\nli {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 12px;\n  background: #0f172a;\n  margin-bottom: 8px;\n  border-radius: 6px;\n}\nli button {\n  background: #ef4444;\n  padding: 2px 8px;\n  font-size: 12px;\n}`,
+          js: `const input = document.getElementById('task-input');\nconst btn = document.getElementById('add-btn');\nconst list = document.getElementById('task-list');\n\nbtn.addEventListener('click', () => {\n  if (!input.value.trim()) return;\n  const li = document.createElement('li');\n  li.innerHTML = \`<span>\${input.value}</span><button onclick="this.parentElement.remove()">Hapus</button>\`;\n  list.appendChild(li);\n  input.value = '';\n});`
+        },
+        empty: {
+          html: `<h1>Halo Dunia!</h1>\n<p>Mulai coding di sini.</p>`,
+          css: `body {\n  font-family: system-ui, sans-serif;\n  padding: 20px;\n}`,
+          js: `console.log("Ready!");`
+        }
+      };
+
+      function loadPreset(key) {
+        const p = presets[key] || presets.card;
+        editorHtml.value = p.html;
+        editorCss.value = p.css;
+        editorJs.value = p.js;
+        runCode();
+      }
+
+      function runCode() {
+        const html = editorHtml.value;
+        const css = editorCss.value;
+        const js = editorJs.value;
+
+        const doc = `<!DOCTYPE html>
+<html>
+<head>
+  <style>${css}</style>
+</head>
+<body>
+  ${html}
+  <script>${js}<\/script>
+</body>
+</html>`;
+        previewFrame.srcdoc = doc;
+      }
+
+      // Tab switching
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('playground-tab--active'));
+          tab.classList.add('playground-tab--active');
+          const lang = tab.dataset.lang;
+
+          editorHtml.style.display = lang === 'html' ? 'block' : 'none';
+          editorCss.style.display = lang === 'css' ? 'block' : 'none';
+          editorJs.style.display = lang === 'js' ? 'block' : 'none';
+        });
+      });
+
+      // Events
+      btnRun?.addEventListener('click', runCode);
+      btnReset?.addEventListener('click', () => loadPreset(presetSelector.value));
+      presetSelector?.addEventListener('change', (e) => loadPreset(e.target.value));
+
+      // Auto update on change with debounce
+      let debounceTimer;
+      [editorHtml, editorCss, editorJs].forEach(ed => {
+        ed.addEventListener('input', () => {
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(runCode, 500);
+        });
+      });
+
+      // Load initial
+      loadPreset('card');
+    });
+  </script>
+</body>
+</html>

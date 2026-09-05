@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.6 State Persistence via `localStorage` — DEVPATH</title>
+  <meta name="description" content="Pelajari cara menyimpan data status pengguna secara persisten di browser dengan Web Storage API (localStorage) agar data tidak hilang saat refresh.">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    .counter-badge-demo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-accent);
+      background-color: var(--color-accent-light);
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-4);
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+
+  <div class="lesson-layout">
+    <!-- LESSON SIDEBAR -->
+    <aside class="lesson-sidebar" aria-label="Lesson navigation">
+      <div class="lesson-sidebar__header">
+        <a href="../modules/javascript.html" class="lesson-sidebar__back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Kembali ke Modul 03
+        </a>
+        <div class="lesson-sidebar__module-title">JavaScript ES6+</div>
+      </div>
+      <nav class="lesson-sidebar__nav">
+        <a href="es6-modules.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Loading Strategy &amp; ES6 Modules</span>
+        </a>
+        <a href="es6-syntax.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Syntax Modern (ES6+ Shorthand)</span>
+        </a>
+        <a href="dom-manipulation.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">DOM Selection &amp; Class Toggle</span>
+        </a>
+        <a href="event-delegation.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Event Delegation Architecture</span>
+        </a>
+        <a href="async-fetch.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Async/Await &amp; Fetch API</span>
+        </a>
+        <a href="local-storage.html" class="lesson-sidebar__item lesson-sidebar__item--active">
+          <span class="lesson-sidebar__item-number">6</span>
+          <span class="lesson-sidebar__item-text">State Persistence via localStorage</span>
+        </a>
+      </nav>
+      <div class="lesson-sidebar__progress">
+        <div class="lesson-sidebar__progress-label">
+          <span>Modul Progress</span>
+          <span>100%</span>
+        </div>
+        <div class="progress"><div class="progress__bar progress__bar--success" style="width: 100%;"></div></div>
+      </div>
+    </aside>
+
+    <!-- LESSON MAIN -->
+    <div class="lesson-main">
+      <header class="lesson-topbar">
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="lesson-header__breadcrumb" style="margin-bottom: 0;">
+            <a href="../modules/index.html">Modul</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <a href="../modules/javascript.html">JavaScript</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <span>3.6 localStorage</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="lesson-content">
+        <div class="lesson-header">
+          <div class="lesson-header__meta">
+            <span class="badge badge--success">Pelajaran 6 dari 6 (Selesai)</span>
+            <span class="lesson-header__meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              30 menit
+            </span>
+            <span class="lesson-header__meta-item">Tingkat: Menengah</span>
+          </div>
+          <h1 class="lesson-header__title">3.6 State Persistence via `localStorage`</h1>
+          <p class="lesson-header__desc">Simpan status preferensi tema, progres belajar, atau keranjang belanja pengguna secara persisten di browser tanpa database backend.</p>
+        </div>
+
+        <div class="lesson-body">
+          <p>Fitur <strong>Web Storage API (<code>localStorage</code>)</strong> memungkinkan penyimpanan data pasangan kunci-nilai (key-value) langsung di browser klien. Data ini bertahan selamanya bahkan setelah tab ditutup atau komputer direstart, hingga pengguna membersihkan cache peramban.</p>
+
+          <h2>Operasi Dasar `localStorage`</h2>
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">JavaScript — Web Storage API</span>
+              <button class="code-block__copy" type="button" aria-label="Copy code">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copy
+              </button>
+            </div>
+            <div class="code-block__body">
+              <pre class="code-block__pre"><code>// 1. Menyimpan data string sederhana
+localStorage.setItem('theme', 'dark');
+
+// 2. Mengambil data
+const currentTheme = localStorage.getItem('theme'); // "dark"
+
+// 3. Menyimpan Objek Kompleks menggunakan JSON serialization
+const userProgress = { module1: 100, module2: 100, module3: 100 };
+localStorage.setItem('progress', JSON.stringify(userProgress));
+
+// 4. Membaca kembali Objek
+const savedData = JSON.parse(localStorage.getItem('progress'));
+console.log(savedData.module1); // 100
+
+// 5. Menghapus data
+localStorage.removeItem('theme');
+localStorage.clear(); // Hapus semua key</code></pre>
+            </div>
+          </div>
+
+          <!-- LIVE PREVIEW DEMO -->
+          <div class="preview-box">
+            <div class="preview-title">👁️ Live Demo: Counter Persisten (Coba tambah angka lalu refresh halaman browser!)</div>
+            <div style="text-align: center; padding: var(--space-4) 0;">
+              <div class="counter-badge-demo" id="demo-counter-val">0</div>
+              <div style="display: flex; gap: var(--space-2); justify-content: center;">
+                <button type="button" class="btn btn--primary btn--md" id="demo-btn-increment">➕ Tambah Angka</button>
+                <button type="button" class="btn btn--secondary btn--md" id="demo-btn-reset">🔄 Reset Storage</button>
+              </div>
+              <p style="font-size: var(--text-xs); color: var(--color-text-secondary); margin-top: var(--space-3); margin-bottom: 0;">
+                💡 Buktikan sendiri: Tambah angka di atas, lalu <strong>tekan Refresh (F5 / Ctrl+R)</strong> di browsermu. Angka tidak akan ter-reset ke 0!
+              </p>
+            </div>
+          </div>
+
+          <!-- LATIHAN MANDIRI -->
+          <div class="card" style="border: 2px solid var(--color-accent); background-color: var(--color-accent-light); margin-top: var(--space-8);">
+            <h3 style="color: var(--color-accent); margin-bottom: var(--space-3);">🎯 Latihan Praktikum Industry-Grade Modul 03</h3>
+            <p style="color: var(--color-text); margin-bottom: var(--space-3);">
+              Buatlah file modul JS modular bernama <code>app-interactive.js</code> dengan ketentuan standar industri berikut:
+            </p>
+            <ol style="margin-bottom: 0; color: var(--color-text);">
+              <li>Gunakan sintaks <strong>ES6+ Arrow Functions</strong> dan <strong>Template Literals</strong> di seluruh logika aplikasi.</li>
+              <li>Implementasikan fitur <strong>Dark Mode Switcher</strong> yang menyimpan preferensi tema ke <code>localStorage</code> secara otomatis.</li>
+              <li>Buat fitur daftar tugas interaktif (<em>Task Manager</em>) yang memanfaatkan teknik <strong>Event Delegation</strong> untuk tombol hapus dinamis.</li>
+              <li>Gunakan <code>async/await</code> Fetch API untuk menampilkan data cuaca atau profil pengguna GitHub secara dinamis.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- LESSON NAVIGATION -->
+        <nav class="lesson-nav">
+          <a href="async-fetch.html" class="lesson-nav__link lesson-nav__link--prev">
+            <span class="lesson-nav__label">&larr; Sebelumnya</span>
+            <span class="lesson-nav__title">3.5 Asynchronous &amp; Fetch API</span>
+          </a>
+          <a href="../progress/index.html" class="lesson-nav__link lesson-nav__link--next">
+            <span class="lesson-nav__label">Langkah Selanjutnya &rarr;</span>
+            <span class="lesson-nav__title">Lihat Progress &amp; Sertifikat</span>
+          </a>
+        </nav>
+
+        <footer class="footer">
+          <p class="footer__text">&copy; 2026 DEVPATH. Web Development Learning Platform.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/app.js"></script>
+  <script>
+    // Live Counter Demo with localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+      const STORAGE_KEY = 'devpath_demo_counter';
+      const counterVal = document.getElementById('demo-counter-val');
+      const btnInc = document.getElementById('demo-btn-increment');
+      const btnReset = document.getElementById('demo-btn-reset');
+
+      // Ambil nilai tersimpan di localStorage atau default 0
+      let count = parseInt(localStorage.getItem(STORAGE_KEY), 10) || 0;
+      if (counterVal) counterVal.textContent = count;
+
+      btnInc?.addEventListener('click', () => {
+        count++;
+        localStorage.setItem(STORAGE_KEY, count);
+        if (counterVal) counterVal.textContent = count;
+      });
+
+      btnReset?.addEventListener('click', () => {
+        count = 0;
+        localStorage.removeItem(STORAGE_KEY);
+        if (counterVal) counterVal.textContent = count;
+      });
+    });
+  </script>
+</body>
+</html>

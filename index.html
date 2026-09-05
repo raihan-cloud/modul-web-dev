@@ -1,406 +1,332 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modul Belajar Web Development Modern</title>
-  
-  <!-- CSS Internal untuk Desain Modern & Clean -->
-  <style>
-    /* 1. Variabel Warna & Reset Dasar */
-    :root {
-      --primary: #2563eb;        /* Warna Biru Utama */
-      --primary-hover: #1d4ed8;
-      --bg-body: #f8fafc;        /* Background Halaman */
-      --card-bg: #ffffff;        /* Background Kartu */
-      --text-main: #0f172a;      /* Warna Teks Utama */
-      --text-muted: #64748b;     /* Warna Teks Sekunder */
-      --border-color: #e2e8f0;
-      --code-bg: #f1f5f9;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-      --radius: 12px;
-    }
+  <title>Dashboard — DEVPATH</title>
+  <meta name="description" content="DEVPATH: Web Development Learning Platform. Learn the fundamentals. Build real interfaces. Think like a developer.">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth; /* Pergerakan scroll halus saat navigasi diklik */
-    }
-
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-body);
-      color: var(--text-main);
-      line-height: 1.6;
-      padding-top: 80px; /* Space agar tidak tertutup Navbar Fixed */
-    }
-
-    /* 2. Sticky Navbar Modern */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border-color);
-      z-index: 1000;
-    }
-
-    .navbar {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1.5rem;
-    }
-
-    .brand {
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    .nav-menu {
-      display: flex;
-      list-style: none;
-      gap: 1.2rem;
-    }
-
-    .nav-menu a {
-      text-decoration: none;
-      color: var(--text-main);
-      font-weight: 600;
-      font-size: 0.95rem;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .nav-menu a:hover {
-      background-color: var(--code-bg);
-      color: var(--primary);
-    }
-
-    /* 3. Layout Utama & Hero Section */
-    main {
-      display: block;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 2.5rem 1rem;
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 3rem;
-    }
-
-    .hero h1 {
-      font-size: 2.2rem;
-      color: var(--text-main);
-      margin-bottom: 0.8rem;
-    }
-
-    .hero p {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* 4. Section Modul & Card Layout */
-    .module-section {
-      margin-bottom: 3.5rem;
-    }
-
-    .module-title {
-      font-size: 1.6rem;
-      color: var(--text-main);
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .module-subtitle {
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.2rem;
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-num {
-      display: inline-block;
-      background-color: var(--code-bg);
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      margin-bottom: 0.8rem;
-    }
-
-    .card h3 {
-      font-size: 1.15rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-
-    code {
-      background-color: var(--code-bg);
-      color: #d97706;
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      font-family: Consolas, monospace;
-      font-size: 0.88rem;
-    }
-
-    .btn-link {
-      display: inline-block;
-      text-decoration: none;
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .btn-link:hover {
-      text-decoration: underline;
-    }
-
-    /* 5. Footer Modern */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid var(--border-color);
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-top: 2rem;
-    }
-
-    /* Responsif untuk Layar HP */
-    @media (max-width: 600px) {
-      .navbar {
-        flex-direction: column;
-        gap: 0.8rem;
-      }
-      .nav-menu {
-        gap: 0.5rem;
-      }
-      body {
-        padding-top: 110px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
+  <div class="page">
 
-  <!-- Navigasi Utama -->
-  <header>
-    <nav class="navbar">
-      <a href="#" class="brand">🎓 ModulDev</a>
-      <ul class="nav-menu">
-        <li><a href="#html">Modul 1: HTML5</a></li>
-        <li><a href="#css">Modul 2: CSS3</a></li>
-        <li><a href="#javascript">Modul 3: JS</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" aria-hidden="true"></div>
 
-  <main>
-    <!-- Header / Hero Section -->
-    <section class="hero">
-      <h1>Kurikulum Web Development Industry-Ready</h1>
-      <p>Modul pembelajaran terstruktur berfokus pada standar praktik industri terkini, optimasi performa, aksesibilitas, serta penulisan kode yang bersih dan profesional.</p>
-    </section>
+    <!-- ================================================================ -->
+    <!-- SIDEBAR -->
+    <!-- ================================================================ -->
+    <aside class="sidebar" aria-label="Main navigation">
+      <a href="index.html" class="sidebar__brand">
+        <span class="sidebar__logo" aria-hidden="true">D</span>
+        <span>
+          <span class="sidebar__brand-name">DEVPATH</span>
+          <span class="sidebar__brand-tag">Learning Platform</span>
+        </span>
+      </a>
 
-    <!-- MODUL 1: HTML5 -->
-    <section id="html" class="module-section">
-      <h2 class="module-title">🧱 Modul 1: Semantik & Aksesibilitas HTML5</h2>
-      <p class="module-subtitle">Bukan sekadar tag biasa, pelajari cara membangun pondasi web ramah SEO dan pembaca layar.</p>
-      
-      <div class="card-grid">
-        <article class="card">
-          <span class="card-num">Materi 1.1</span>
-          <h3>Struktur Semantik & SEO</h3>
-          <p>Menggunakan tag <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, dan <code>&lt;section&gt;</code> agar terindeks sempurna di Google.</p>
-          <a href="modul1-html.html#materi-1-1" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+      <nav class="sidebar__nav">
+        <span class="sidebar__section-label">Menu</span>
 
-        <article class="card">
-          <span class="card-num">Materi 1.2</span>
-          <h3>Aksesibilitas (a11y) & ARIA</h3>
-          <p>Menerapkan atribut <code>aria-label</code>, <code>role</code>, dan navigasi keyboard agar website ramah untuk penyandang disabilitas.</p>
-          <a href="modul1-html.html#materi-1-2" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+        <a href="index.html" class="sidebar__link sidebar__link--active">
+          <svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+          Dashboard
+        </a>
+        <a href="modules/index.html" class="sidebar__link">
+          <svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          Modules
+        </a>
+        <a href="playground/index.html" class="sidebar__link">
+          <svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          Playground
+        </a>
+        <a href="quiz/index.html" class="sidebar__link">
+          <svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          Quiz
+        </a>
+        <a href="progress/index.html" class="sidebar__link">
+          <svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          Progress
+        </a>
+        <a href="resources/index.html" class="sidebar__link">
+          <svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          Resources
+        </a>
+      </nav>
 
-        <article class="card">
-          <span class="card-num">Materi 1.3</span>
-          <h3>Form & Validasi Bawaan</h3>
-          <p>Membuat form canggih dengan regex pattern, <code>required</code>, <code>type="email"</code>, dan atribut validasi tanpa butuh JS rumit.</p>
-          <a href="modul1-html.html#materi-1-3" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
-
-        <article class="card">
-          <span class="card-num">Materi 1.4</span>
-          <h3>Optimasi Media & Lazy Loading</h3>
-          <p>Mempercepat loading web menggunakan gambar responsif <code>srcset</code>, format WebP/AVIF, dan atribut <code>loading="lazy"</code>.</p>
-          <a href="modul1-html.html#materi-1-4" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
-
-        <article class="card">
-          <span class="card-num">Materi 1.5</span>
-          <h3>Open Graph & Social Meta</h3>
-          <p>Mengatur tag <code>&lt;meta property="og:*"&gt;</code> agar tampilan preview link di WhatsApp, Twitter, dan LinkedIn terlihat rapi.</p>
-          <a href="modul1-html.html#materi-1-5" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
-
-        <article class="card">
-          <span class="card-num">Materi 1.6</span>
-          <h3>Data Attributes & Custom State</h3>
-          <p>Menyimpan data kustom langsung pada elemen HTML dengan atribut <code>data-*</code> untuk diolah oleh JavaScript nanti.</p>
-          <a href="modul1-html.html#materi-1-6" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+      <div class="sidebar__footer">
+        <span class="sidebar__section-label">Preferences</span>
+        <button class="sidebar__link" data-theme-toggle style="width:100%;border:none;background:none;cursor:pointer;text-align:left;">
+          <svg class="sidebar__link-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="sidebar__link-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          Dark Mode
+        </button>
       </div>
-    </section>
+    </aside>
 
-    <!-- MODUL 2: CSS3 -->
-    <section id="css" class="module-section">
-      <h2 class="module-title">🎨 Modul 2: Layout Modern & Arsitektur CSS3</h2>
-      <p class="module-subtitle">Kuasai tata letak responsif, sistem desain bertema, dan mikro-interaksi tanpa library luar.</p>
-      
-      <div class="card-grid">
-        <article class="card">
-          <span class="card-num">Materi 2.1</span>
-          <h3>CSS Variables & Dark Mode</h3>
-          <p>Membangun sistem tema dinamis (Dark/Light mode) berbasis variabel CSS <code>:root</code> dan skema warna preferensi user.</p>
-          <a href="modul2-css.html#materi-2-1" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+    <!-- ================================================================ -->
+    <!-- MAIN CONTENT -->
+    <!-- ================================================================ -->
+    <div class="main">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="topbar__search" role="button" tabindex="0" aria-label="Search lessons">
+            <svg class="topbar__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span class="topbar__search-text">Search lessons...</span>
+            <kbd class="topbar__search-kbd">⌘K</kbd>
+          </div>
+        </div>
+        <div class="topbar__right">
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+          <div class="topbar__avatar" aria-label="Learner profile">L</div>
+        </div>
+      </header>
 
-        <article class="card">
-          <span class="card-num">Materi 2.2</span>
-          <h3>Flexbox vs CSS Grid Mastery</h3>
-          <p>Memahami kapan menggunakan Flexbox (1-Dimensi) dan CSS Grid (2-Dimensi) untuk tata letak dashboard yang rumit.</p>
-          <a href="modul2-css.html#materi-2-2" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+      <!-- Page Content -->
+      <main class="content">
 
-        <article class="card">
-          <span class="card-num">Materi 2.3</span>
-          <h3>Fluid Typography & Clamp</h3>
-          <p>Mengatur ukuran font dan spacing responsif otomatis mengikuti layar menggunakan fungsi <code>clamp()</code>, <code>min()</code>, dan <code>max()</code>.</p>
-          <a href="modul2-css.html#materi-2-3" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+        <!-- ============================================================ -->
+        <!-- Hero / Welcome -->
+        <!-- ============================================================ -->
+        <section class="section">
+          <div style="margin-bottom: var(--space-2);">
+            <h1 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">Selamat datang kembali</h1>
+            <p style="color: var(--color-text-secondary); font-size: var(--text-base); margin-bottom: 0;">Lanjutkan perjalananmu menjadi Web Developer.</p>
+          </div>
+        </section>
 
-        <article class="card">
-          <span class="card-num">Materi 2.4</span>
-          <h3>Animations & Glassmorphism</h3>
-          <p>Membuat efek transisi halus, micro-interaction dengan <code>@keyframes</code>, serta efek kaca blur modern via <code>backdrop-filter</code>.</p>
-          <a href="modul2-css.html#materi-2-4" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+        <!-- ============================================================ -->
+        <!-- Continue Learning -->
+        <!-- ============================================================ -->
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Continue Learning</h2>
+          </div>
 
-        <article class="card">
-          <span class="card-num">Materi 2.5</span>
-          <h3>Container Queries & Modern Media</h3>
-          <p>Teknik responsif masa depan: mengubah gaya komponen berdasarkan ukuran wadah (parent), bukan sekadar lebar layar HP.</p>
-          <a href="modul2-css.html#materi-2-5" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+          <div class="continue-card">
+            <div class="continue-card__info">
+              <span class="continue-card__module-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                HTML5 Fundamentals
+              </span>
+              <h3 class="continue-card__title">Accessibility &amp; ARIA</h3>
+              <p class="continue-card__subtitle">Menerapkan standar WCAG dan atribut ARIA untuk website yang ramah aksesibilitas.</p>
+              <div class="continue-card__meta">
+                <span class="continue-card__meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  20 min
+                </span>
+                <span class="continue-card__meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  Beginner
+                </span>
+                <span class="continue-card__meta-item">
+                  Lesson 2 of 6
+                </span>
+              </div>
+              <div class="progress__label">
+                <span class="progress__label-text">Progress</span>
+                <span class="progress__label-value">72%</span>
+              </div>
+              <div class="progress">
+                <div class="progress__bar progress__bar--success" style="width: 72%;"></div>
+              </div>
+            </div>
+            <div style="flex-shrink: 0;">
+              <a href="lessons/accessibility.html" class="btn btn--primary btn--lg">Lanjutkan &rarr;</a>
+            </div>
+          </div>
+        </section>
 
-        <article class="card">
-          <span class="card-num">Materi 2.6</span>
-          <h3>Metode BEM & Clean CSS Architecture</h3>
-          <p>Standar penulisan nama class CSS profesional (*Block Element Modifier*) agar kode tidak bentrok saat proyek membesar.</p>
-          <a href="modul2-css.html#materi-2-6" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
-      </div>
-    </section>
+        <!-- ============================================================ -->
+        <!-- Your Learning Path -->
+        <!-- ============================================================ -->
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Your Learning Path</h2>
+            <a href="modules/index.html" class="section__action">View all &rarr;</a>
+          </div>
 
-    <!-- MODUL 3: JAVASCRIPT -->
-    <section id="javascript" class="module-section">
-      <h2 class="module-title">⚡ Modul 3: Logika ES6+, DOM & Web API</h2>
-      <p class="module-subtitle">Kuasai JavaScript murni modern (*Vanilla JS*) untuk manipulasi data dan integrasi API.</p>
-      
-      <div class="card-grid">
-        <article class="card">
-          <span class="card-num">Materi 3.1</span>
-          <h3>Modern ES6+ Core Features</h3>
-          <p>Menguasai fitur modern: Arrow Functions, Destructuring, Spread/Rest Operator, dan Template Literals.</p>
-          <a href="modul3-js.html#materi-3-1" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+          <div class="grid grid--3">
+            <!-- Module 1: HTML5 -->
+            <a href="modules/html5.html" class="module-card">
+              <span class="module-card__number">01</span>
+              <h3 class="module-card__title">HTML5</h3>
+              <p class="module-card__desc">Semantic HTML &amp; Accessibility</p>
+              <div class="module-card__meta">
+                <span class="module-card__meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  6 Lessons
+                </span>
+                <span class="module-card__meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  120 min
+                </span>
+              </div>
+              <div class="progress" style="margin-bottom: var(--space-3);">
+                <div class="progress__bar progress__bar--success" style="width: 72%;"></div>
+              </div>
+              <div class="module-card__footer">
+                <span class="badge badge--success">72% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Continue &rarr;</span>
+              </div>
+            </a>
 
-        <article class="card">
-          <span class="card-num">Materi 3.2</span>
-          <h3>DOM & Event Delegation</h3>
-          <p>Manipulasi elemen HTML efisien dan teknik *Event Delegation* untuk menghemat penggunaan memori browser.</p>
-          <a href="modul3-js.html#materi-3-2" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+            <!-- Module 2: CSS3 -->
+            <a href="modules/css3.html" class="module-card">
+              <span class="module-card__number">02</span>
+              <h3 class="module-card__title">CSS3</h3>
+              <p class="module-card__desc">Modern Layout &amp; Architecture</p>
+              <div class="module-card__meta">
+                <span class="module-card__meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  6 Lessons
+                </span>
+                <span class="module-card__meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  150 min
+                </span>
+              </div>
+              <div class="progress" style="margin-bottom: var(--space-3);">
+                <div class="progress__bar" style="width: 35%;"></div>
+              </div>
+              <div class="module-card__footer">
+                <span class="badge badge--accent">35% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Continue &rarr;</span>
+              </div>
+            </a>
 
-        <article class="card">
-          <span class="card-num">Materi 3.3</span>
-          <h3>Async JS & Fetch API</h3>
-          <p>Mengambil data dari REST API publik secara *asynchronous* menggunakan <code>fetch()</code> dan sintaks <code>async/await</code>.</p>
-          <a href="modul3-js.html#materi-3-3" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+            <!-- Module 3: JavaScript -->
+            <a href="modules/javascript.html" class="module-card">
+              <span class="module-card__number">03</span>
+              <h3 class="module-card__title">JavaScript</h3>
+              <p class="module-card__desc">ES6+ &amp; Web APIs</p>
+              <div class="module-card__meta">
+                <span class="module-card__meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  6 Lessons
+                </span>
+                <span class="module-card__meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  180 min
+                </span>
+              </div>
+              <div class="progress" style="margin-bottom: var(--space-3);">
+                <div class="progress__bar" style="width: 15%;"></div>
+              </div>
+              <div class="module-card__footer">
+                <span class="badge badge--default">15% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Start &rarr;</span>
+              </div>
+            </a>
+          </div>
+        </section>
 
-        <article class="card">
-          <span class="card-num">Materi 3.4</span>
-          <h3>Web Storage API</h3>
-          <p>Menyimpan data aplikasi (seperti item keranjang atau token user) di browser menggunakan <code>localStorage</code> dan <code>sessionStorage</code>.</p>
-          <a href="modul3-js.html#materi-3-4" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+        <!-- ============================================================ -->
+        <!-- Statistics -->
+        <!-- ============================================================ -->
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Statistics</h2>
+          </div>
 
-        <article class="card">
-          <span class="card-num">Materi 3.5</span>
-          <h3>ES Modules (ESM)</h3>
-          <p>Memecah skrip menjadi file-file kecil terpisah menggunakan <code>export</code> dan <code>import</code> untuk arsitektur kode rapi.</p>
-          <a href="modul3-js.html#materi-3-5" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
+          <div class="grid grid--4">
+            <div class="stat-card">
+              <div class="stat-card__label">Lessons Completed</div>
+              <div class="stat-card__value">18</div>
+              <div class="stat-card__sub">of 18 total lessons</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__label">Learning Progress</div>
+              <div class="stat-card__value">42%</div>
+              <div class="stat-card__sub">across all modules</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__label">Learning Time</div>
+              <div class="stat-card__value">8h 30m</div>
+              <div class="stat-card__sub">total time invested</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__label">Current Streak</div>
+              <div class="stat-card__value">5 days</div>
+              <div class="stat-card__sub">keep going!</div>
+            </div>
+          </div>
+        </section>
 
-        <article class="card">
-          <span class="card-num">Materi 3.6</span>
-          <h3>Error Handling & DevTools Debugging</h3>
-          <p>Menangani error secara aman dengan <code>try...catch</code> serta teknik debugging profesional via Browser DevTools.</p>
-          <a href="modul3-js.html#materi-3-6" class="btn-link">Pelajari Materi &rarr;</a>
-        </article>
-      </div>
-    </section>
-  </main>
+        <!-- ============================================================ -->
+        <!-- Recent Activity -->
+        <!-- ============================================================ -->
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Recent Activity</h2>
+          </div>
 
-  <footer>
-    <p>&copy; Modul Belajar Web Development Modern. Dibuat untuk panduan praktikum industri.</p>
-  </footer>
+          <div class="card card--flat">
+            <ul class="activity-list">
+              <li class="activity-item">
+                <div class="activity-item__icon activity-item__icon--completed" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="activity-item__content">
+                  <div class="activity-item__title">Semantic HTML</div>
+                  <div class="activity-item__time">2 hours ago</div>
+                </div>
+                <span class="activity-item__badge badge badge--success">Completed</span>
+              </li>
+              <li class="activity-item">
+                <div class="activity-item__icon activity-item__icon--progress" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+                <div class="activity-item__content">
+                  <div class="activity-item__title">Accessibility &amp; ARIA</div>
+                  <div class="activity-item__time">Yesterday</div>
+                </div>
+                <span class="activity-item__badge badge badge--accent">Continue</span>
+              </li>
+              <li class="activity-item">
+                <div class="activity-item__icon activity-item__icon--completed" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="activity-item__content">
+                  <div class="activity-item__title">HTML Forms</div>
+                  <div class="activity-item__time">2 days ago</div>
+                </div>
+                <span class="activity-item__badge badge badge--success">Completed</span>
+              </li>
+              <li class="activity-item">
+                <div class="activity-item__icon activity-item__icon--completed" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="activity-item__content">
+                  <div class="activity-item__title">CSS Variables &amp; Dark Mode</div>
+                  <div class="activity-item__time">3 days ago</div>
+                </div>
+                <span class="activity-item__badge badge badge--success">Completed</span>
+              </li>
+            </ul>
+          </div>
+        </section>
 
+        <!-- Footer -->
+        <footer class="footer">
+          <p class="footer__text">&copy; 2026 DEVPATH. Web Development Learning Platform.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
 </body>
 </html>

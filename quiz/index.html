@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz & Evaluasi — DEVPATH</title>
+  <meta name="description" content="Uji pemahaman Anda tentang HTML5, CSS3, dan JavaScript modern dengan kuis interaktif berstandar industri.">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    .quiz-question-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      margin-bottom: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background-color: var(--color-bg);
+      cursor: pointer;
+      font-size: var(--text-sm);
+      transition: all var(--transition-fast);
+      text-align: left;
+      width: 100%;
+    }
+    .quiz-option:hover:not([disabled]) {
+      border-color: var(--color-accent);
+      background-color: var(--color-accent-light);
+    }
+    .quiz-option--correct {
+      border-color: var(--color-success) !important;
+      background-color: var(--color-success-light) !important;
+      color: var(--color-success) !important;
+      font-weight: var(--weight-bold);
+    }
+    .quiz-option--wrong {
+      border-color: var(--color-danger) !important;
+      background-color: var(--color-danger-light) !important;
+      color: var(--color-danger) !important;
+    }
+    .quiz-explanation {
+      margin-top: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      font-size: var(--text-xs);
+      line-height: 1.6;
+      display: none;
+    }
+    .quiz-explanation--visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="sidebar-overlay" aria-hidden="true"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Main navigation">
+      <a href="../index.html" class="sidebar__brand">
+        <span class="sidebar__logo" aria-hidden="true">D</span>
+        <span>
+          <span class="sidebar__brand-name">DEVPATH</span>
+          <span class="sidebar__brand-tag">Learning Platform</span>
+        </span>
+      </a>
+      <nav class="sidebar__nav">
+        <span class="sidebar__section-label">Menu</span>
+        <a href="../index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg> Dashboard</a>
+        <a href="../modules/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Modules</a>
+        <a href="../playground/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> Playground</a>
+        <a href="index.html" class="sidebar__link sidebar__link--active"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Quiz</a>
+        <a href="../progress/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> Progress</a>
+        <a href="../resources/index.html" class="sidebar__link"><svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Resources</a>
+      </nav>
+      <div class="sidebar__footer">
+        <span class="sidebar__section-label">Preferences</span>
+        <button class="sidebar__link" data-theme-toggle style="width:100%;border:none;background:none;cursor:pointer;text-align:left;">
+          <svg class="sidebar__link-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="sidebar__link-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          Dark Mode
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+          <div style="font-weight: var(--weight-bold); font-size: var(--text-base);">Evaluasi &amp; Quiz</div>
+        </div>
+        <div class="topbar__right">
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme"><svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button>
+          <div class="topbar__avatar">L</div>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="section" style="max-width: 800px; margin: 0 auto;">
+          <div style="margin-bottom: var(--space-6);">
+            <h1 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">Uji Pemahaman Web Development</h1>
+            <p style="color: var(--color-text-secondary);">Jawab kuis konsep industri di bawah ini untuk menguji kesiapan Anda dalam menerapkan HTML5, CSS3, dan ES6+.</p>
+          </div>
+
+          <!-- Score Card -->
+          <div class="card" style="margin-bottom: var(--space-6); background: linear-gradient(135deg, var(--color-surface), var(--color-bg-secondary));">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4);">
+              <div>
+                <span style="font-size: var(--text-xs); color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">Skor Kamu</span>
+                <div style="font-size: var(--text-2xl); font-weight: var(--weight-bold); color: var(--color-accent);" id="score-counter">0 / 6 Soal Selesai</div>
+              </div>
+              <button class="btn btn--secondary btn--sm" id="btn-reset-quiz">Ulangi Kuis</button>
+            </div>
+            <div class="progress" style="margin-top: var(--space-3);"><div class="progress__bar" id="score-progress-bar" style="width: 0%;"></div></div>
+          </div>
+
+          <!-- Questions Container -->
+          <div id="quiz-container">
+            <!-- Question 1 -->
+            <div class="quiz-question-card" data-correct="1">
+              <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 01: HTML5</span>
+              <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">1. Berapa jumlah tag &lt;main&gt; yang diperbolehkan dalam sebuah halaman web?</h3>
+              <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Berdasarkan standar dokumen semantik W3C.</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-index="0">A. Bebas sebanyak mungkin seperti tag &lt;div&gt;</button>
+                <button class="quiz-option" data-index="1">B. Tepat hanya SATU tag &lt;main&gt; per halaman</button>
+                <button class="quiz-option" data-index="2">C. Maksimal dua (satu untuk mobile, satu untuk desktop)</button>
+              </div>
+              <div class="quiz-explanation callout callout--info">
+                <strong>Penjelasan:</strong> Tag <code>&lt;main&gt;</code> merepresentasikan konten utama dokumen yang unik, sehingga standar HTML5 menetapkan hanya boleh ada 1 tag main per halaman.
+              </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-question-card" data-correct="2">
+              <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 01: HTML5</span>
+              <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">2. Atribut apa yang digunakan untuk menyembunyikan ikon dekoratif murni dari Screen Reader?</h3>
+              <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Agar screen reader tidak membacakan elemen visual yang tidak informatif.</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-index="0">A. <code>hidden="invisible"</code></button>
+                <button class="quiz-option" data-index="1">B. <code>display="none"</code></button>
+                <button class="quiz-option" data-index="2">C. <code>aria-hidden="true"</code></button>
+              </div>
+              <div class="quiz-explanation callout callout--info">
+                <strong>Penjelasan:</strong> <code>aria-hidden="true"</code> memberi tahu screen reader untuk mengabaikan elemen dekoratif tanpa mengganggu tampilannya di layar pengguna normal.
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-question-card" data-correct="0">
+              <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 02: CSS3</span>
+              <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">3. Apa fungsi fungsi CSS <code>clamp(MIN, PREFERRED, MAX)</code>?</h3>
+              <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Dalam arsitektur Fluid Typography modern.</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-index="0">A. Menjaga nilai fleksibel tetap berada di antara batas minimum dan maksimum tanpa media query</button>
+                <button class="quiz-option" data-index="1">B. Memotong teks yang meluap ke luar kontainer (ellipsis)</button>
+                <button class="quiz-option" data-index="2">C. Mengunci animasi agar berhenti pada frame tertentu</button>
+              </div>
+              <div class="quiz-explanation callout callout--info">
+                <strong>Penjelasan:</strong> <code>clamp()</code> mengambil 3 parameter (min, preferred, max) untuk memastikan nilai responsif tidak pernah lebih kecil dari min atau lebih besar dari max.
+              </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="quiz-question-card" data-correct="1">
+              <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 02: CSS3</span>
+              <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">4. Dalam metodologi BEM, bagaimana cara penulisan elemen dan modifier yang benar?</h3>
+              <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Block Element Modifier standard.</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-index="0">A. <code>.block-element.modifier</code></button>
+                <button class="quiz-option" data-index="1">B. <code>.block__element--modifier</code></button>
+                <button class="quiz-option" data-index="2">C. <code>.block::element:modifier</code></button>
+              </div>
+              <div class="quiz-explanation callout callout--info">
+                <strong>Penjelasan:</strong> BEM membedakan Element dengan dua garis bawah (<code>__</code>) dan Modifier dengan dua tanda minus (<code>--</code>).
+              </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="quiz-question-card" data-correct="2">
+              <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 03: JavaScript</span>
+              <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">5. Mengapa teknik Event Delegation lebih hemat memori dibanding memasang listener di setiap tombol?</h3>
+              <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Arsitektur DOM event efisien.</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-index="0">A. Karena listener dijalankan di background Web Worker</button>
+                <button class="quiz-option" data-index="1">B. Karena event listener langsung dihapus otomatis setelah 1 detik</button>
+                <button class="quiz-option" data-index="2">C. Hanya 1 listener terpasang pada Parent Element memanfaatkan event bubbling</button>
+              </div>
+              <div class="quiz-explanation callout callout--info">
+                <strong>Penjelasan:</strong> Event bubbling meneruskan klik elemen anak ke atas menuju parent, sehingga kita cukup memasang 1 listener di parent untuk mengawasi ribuan anak.
+              </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="quiz-question-card" data-correct="0">
+              <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 03: JavaScript</span>
+              <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">6. Bagaimana cara menyimpan objek JavaScript kompleks ke dalam <code>localStorage</code>?</h3>
+              <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Web Storage API persistence.</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-index="0">A. Diserialisasi menjadi string menggunakan <code>JSON.stringify()</code></button>
+                <button class="quiz-option" data-index="1">B. Langsung dimasukkan <code>localStorage.setItem('data', obj)</code> tanpa konversi</button>
+                <button class="quiz-option" data-index="2">C. Menggunakan fungsi <code>obj.toLocalStorage()</code></button>
+              </div>
+              <div class="quiz-explanation callout callout--info">
+                <strong>Penjelasan:</strong> <code>localStorage</code> hanya menerima string. Jika objek langsung disimpan tanpa <code>JSON.stringify()</code>, nilainya akan berubah menjadi teks <code>"[object Object]"</code> yang rusak.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <p class="footer__text">&copy; 2026 DEVPATH. Web Development Learning Platform.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.quiz-question-card');
+      const scoreCounter = document.getElementById('score-counter');
+      const scoreProgressBar = document.getElementById('score-progress-bar');
+      const btnReset = document.getElementById('btn-reset-quiz');
+
+      let correctCount = 0;
+      let answeredCount = 0;
+      const totalQuestions = cards.length;
+
+      function updateScore() {
+        scoreCounter.textContent = `${correctCount} Benar / ${answeredCount} dari ${totalQuestions} Terjawab`;
+        const percentage = Math.round((answeredCount / totalQuestions) * 100);
+        scoreProgressBar.style.width = `${percentage}%`;
+        if (percentage === 100) {
+          scoreProgressBar.classList.add('progress__bar--success');
+        }
+      }
+
+      cards.forEach(card => {
+        const correctIndex = parseInt(card.dataset.correct, 10);
+        const options = card.querySelectorAll('.quiz-option');
+        const explanation = card.querySelector('.quiz-explanation');
+
+        options.forEach(opt => {
+          opt.addEventListener('click', () => {
+            const selectedIndex = parseInt(opt.dataset.index, 10);
+            answeredCount++;
+
+            // Disable all options in this card
+            options.forEach(o => o.setAttribute('disabled', 'true'));
+
+            if (selectedIndex === correctIndex) {
+              opt.classList.add('quiz-option--correct');
+              opt.innerHTML += ' ✅ (Jawaban Tepat!)';
+              correctCount++;
+            } else {
+              opt.classList.add('quiz-option--wrong');
+              opt.innerHTML += ' ❌ (Salah)';
+              // Highlight the correct one
+              options[correctIndex].classList.add('quiz-option--correct');
+            }
+
+            explanation.classList.add('quiz-explanation--visible');
+            updateScore();
+          });
+        });
+      });
+
+      btnReset?.addEventListener('click', () => {
+        window.location.reload();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.5 Container Queries (`@container`) — DEVPATH</title>
+  <meta name="description" content="Pelajari masa depan desain responsif: Container Queries yang mengadaptasi tampilan berdasarkan lebar parent container, bukan viewport browser.">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    .cq-wrapper {
+      container-type: inline-size;
+      width: 100%;
+      border: 1px dashed var(--color-border);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      background-color: var(--color-bg);
+    }
+    .cq-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+    }
+    @container (min-width: 450px) {
+      .cq-card {
+        flex-direction: row;
+        align-items: center;
+      }
+      .cq-card-icon {
+        width: 64px;
+        height: 64px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+
+  <div class="lesson-layout">
+    <!-- LESSON SIDEBAR -->
+    <aside class="lesson-sidebar" aria-label="Lesson navigation">
+      <div class="lesson-sidebar__header">
+        <a href="../modules/css3.html" class="lesson-sidebar__back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Kembali ke Modul 02
+        </a>
+        <div class="lesson-sidebar__module-title">CSS3 Modern Layout</div>
+      </div>
+      <nav class="lesson-sidebar__nav">
+        <a href="css-variables.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">CSS Variables &amp; Dark Mode</span>
+        </a>
+        <a href="flexbox-grid.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Flexbox vs CSS Grid Mastery</span>
+        </a>
+        <a href="fluid-typography.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">Fluid Typography dengan clamp()</span>
+        </a>
+        <a href="animations.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
+          <span class="lesson-sidebar__item-number">&#10003;</span>
+          <span class="lesson-sidebar__item-text">CSS Animations &amp; Glassmorphism</span>
+        </a>
+        <a href="container-queries.html" class="lesson-sidebar__item lesson-sidebar__item--active">
+          <span class="lesson-sidebar__item-number">5</span>
+          <span class="lesson-sidebar__item-text">Container Queries (@container)</span>
+        </a>
+        <a href="bem.html" class="lesson-sidebar__item">
+          <span class="lesson-sidebar__item-number">6</span>
+          <span class="lesson-sidebar__item-text">Metode BEM &amp; Clean Architecture</span>
+        </a>
+      </nav>
+      <div class="lesson-sidebar__progress">
+        <div class="lesson-sidebar__progress-label">
+          <span>Modul Progress</span>
+          <span>83%</span>
+        </div>
+        <div class="progress"><div class="progress__bar" style="width: 83%;"></div></div>
+      </div>
+    </aside>
+
+    <!-- LESSON MAIN -->
+    <div class="lesson-main">
+      <header class="lesson-topbar">
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__menu-btn" data-sidebar-toggle aria-label="Toggle menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="lesson-header__breadcrumb" style="margin-bottom: 0;">
+            <a href="../modules/index.html">Modul</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <a href="../modules/css3.html">CSS3</a>
+            <span class="lesson-header__breadcrumb-sep">/</span>
+            <span>2.5 Container Queries</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <button class="topbar__icon-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="lesson-content">
+        <div class="lesson-header">
+          <div class="lesson-header__meta">
+            <span class="badge badge--accent">Pelajaran 5 dari 6</span>
+            <span class="lesson-header__meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              25 menit
+            </span>
+            <span class="lesson-header__meta-item">Tingkat: Menengah</span>
+          </div>
+          <h1 class="lesson-header__title">2.5 Container Queries (`@container`)</h1>
+          <p class="lesson-header__desc">Paradigma baru responsive design: komponen yang mengubah tata letaknya sendiri berdasarkan ukuran wadah induknya, bukan layar browser.</p>
+        </div>
+
+        <div class="lesson-body">
+          <p>Teknik responsif masa depan telah tiba di browser modern: Jika Media Queries mengubah tampilan berdasarkan lebar <strong>viewport layar browser/HP</strong>, Container Queries mengubah tampilan berdasarkan lebar <strong>elemen pembungkusnya (Parent Container)</strong>.</p>
+
+          <h2>2 Langkah Mendeklarasikan Container Query</h2>
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">CSS — Container Queries Syntax</span>
+              <button class="code-block__copy" type="button" aria-label="Copy code">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copy
+              </button>
+            </div>
+            <div class="code-block__body">
+              <pre class="code-block__pre"><code>/* 1. Daftarkan elemen induk sebagai container */
+.card-wrapper {
+  container-type: inline-size;
+  container-name: product-widget; /* opsional */
+}
+
+/* 2. Berikan aturan tampilan saat wadah induknya >= 450px */
+@container (min-width: 450px) {
+  .card-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- LIVE PREVIEW DEMO -->
+          <div class="preview-box">
+            <div class="preview-title">👁️ Live Demo: Komponen Card yang Memantau Lebar Container Sendiri</div>
+            <div class="cq-wrapper">
+              <div class="cq-card">
+                <div style="width: 48px; height: 48px; background-color: var(--color-accent); color: white; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">
+                  CQ
+                </div>
+                <div>
+                  <h4 style="margin-bottom: 2px;">Komponen Modular Mandiri</h4>
+                  <p style="margin-bottom: 0; font-size: var(--text-sm); color: var(--color-text-secondary);">
+                    Jika container sempit (&lt; 450px), kartu ini menumpuk secara vertikal. Jika container melebar, kartu otomatis menyusun elemen secara horizontal!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout callout--info">
+            <div class="callout__title">💡 Mengapa Ini Sangat Penting Bagi Desain Sistem Modern?</div>
+            <div class="callout__body">
+              <p>Komponen UI (seperti Product Card atau Comment Widget) kini dapat diletakkan di dalam Sidebar yang sempit (300px) maupun di area Konten Utama yang luas (800px), dan kartu tersebut akan beradaptasi secara cerdas tanpa perlu class modifier terpisah (seperti <code>.card--compact</code>).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- LESSON NAVIGATION -->
+        <nav class="lesson-nav">
+          <a href="animations.html" class="lesson-nav__link lesson-nav__link--prev">
+            <span class="lesson-nav__label">&larr; Sebelumnya</span>
+            <span class="lesson-nav__title">2.4 CSS Animations</span>
+          </a>
+          <a href="bem.html" class="lesson-nav__link lesson-nav__link--next">
+            <span class="lesson-nav__label">Pelajaran Selanjutnya &rarr;</span>
+            <span class="lesson-nav__title">2.6 Metode BEM &amp; Clean Architecture</span>
+          </a>
+        </nav>
+
+        <footer class="footer">
+          <p class="footer__text">&copy; 2026 DEVPATH. Web Development Learning Platform.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
