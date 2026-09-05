@@ -133,7 +133,7 @@
           <!-- Questions Container -->
           <div id="quiz-container">
             <!-- Question 1 -->
-            <div class="quiz-question-card" data-correct="1">
+            <div class="quiz-question-card" data-correct="1" data-quiz-id="quiz-html-main-tag">
               <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 01: HTML5</span>
               <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">1. Berapa jumlah tag &lt;main&gt; yang diperbolehkan dalam sebuah halaman web?</h3>
               <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Berdasarkan standar dokumen semantik W3C.</p>
@@ -148,7 +148,7 @@
             </div>
 
             <!-- Question 2 -->
-            <div class="quiz-question-card" data-correct="2">
+            <div class="quiz-question-card" data-correct="2" data-quiz-id="quiz-html-aria-hidden">
               <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 01: HTML5</span>
               <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">2. Atribut apa yang digunakan untuk menyembunyikan ikon dekoratif murni dari Screen Reader?</h3>
               <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Agar screen reader tidak membacakan elemen visual yang tidak informatif.</p>
@@ -163,7 +163,7 @@
             </div>
 
             <!-- Question 3 -->
-            <div class="quiz-question-card" data-correct="0">
+            <div class="quiz-question-card" data-correct="0" data-quiz-id="quiz-css-clamp">
               <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 02: CSS3</span>
               <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">3. Apa fungsi fungsi CSS <code>clamp(MIN, PREFERRED, MAX)</code>?</h3>
               <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Dalam arsitektur Fluid Typography modern.</p>
@@ -178,7 +178,7 @@
             </div>
 
             <!-- Question 4 -->
-            <div class="quiz-question-card" data-correct="1">
+            <div class="quiz-question-card" data-correct="1" data-quiz-id="quiz-css-bem">
               <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 02: CSS3</span>
               <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">4. Dalam metodologi BEM, bagaimana cara penulisan elemen dan modifier yang benar?</h3>
               <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Block Element Modifier standard.</p>
@@ -193,7 +193,7 @@
             </div>
 
             <!-- Question 5 -->
-            <div class="quiz-question-card" data-correct="2">
+            <div class="quiz-question-card" data-correct="2" data-quiz-id="quiz-js-event-delegation">
               <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 03: JavaScript</span>
               <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">5. Mengapa teknik Event Delegation lebih hemat memori dibanding memasang listener di setiap tombol?</h3>
               <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Arsitektur DOM event efisien.</p>
@@ -208,7 +208,7 @@
             </div>
 
             <!-- Question 6 -->
-            <div class="quiz-question-card" data-correct="0">
+            <div class="quiz-question-card" data-correct="0" data-quiz-id="quiz-js-localstorage-json">
               <span class="badge badge--accent" style="margin-bottom: var(--space-2);">Modul 03: JavaScript</span>
               <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">6. Bagaimana cara menyimpan objek JavaScript kompleks ke dalam <code>localStorage</code>?</h3>
               <p style="color: var(--color-text-secondary); font-size: var(--text-sm);">Web Storage API persistence.</p>
@@ -231,61 +231,9 @@
     </div>
   </div>
 
-  <script src="../assets/js/app.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.quiz-question-card');
-      const scoreCounter = document.getElementById('score-counter');
-      const scoreProgressBar = document.getElementById('score-progress-bar');
-      const btnReset = document.getElementById('btn-reset-quiz');
-
-      let correctCount = 0;
-      let answeredCount = 0;
-      const totalQuestions = cards.length;
-
-      function updateScore() {
-        scoreCounter.textContent = `${correctCount} Benar / ${answeredCount} dari ${totalQuestions} Terjawab`;
-        const percentage = Math.round((answeredCount / totalQuestions) * 100);
-        scoreProgressBar.style.width = `${percentage}%`;
-        if (percentage === 100) {
-          scoreProgressBar.classList.add('progress__bar--success');
-        }
-      }
-
-      cards.forEach(card => {
-        const correctIndex = parseInt(card.dataset.correct, 10);
-        const options = card.querySelectorAll('.quiz-option');
-        const explanation = card.querySelector('.quiz-explanation');
-
-        options.forEach(opt => {
-          opt.addEventListener('click', () => {
-            const selectedIndex = parseInt(opt.dataset.index, 10);
-            answeredCount++;
-
-            // Disable all options in this card
-            options.forEach(o => o.setAttribute('disabled', 'true'));
-
-            if (selectedIndex === correctIndex) {
-              opt.classList.add('quiz-option--correct');
-              opt.innerHTML += ' ✅ (Jawaban Tepat!)';
-              correctCount++;
-            } else {
-              opt.classList.add('quiz-option--wrong');
-              opt.innerHTML += ' ❌ (Salah)';
-              // Highlight the correct one
-              options[correctIndex].classList.add('quiz-option--correct');
-            }
-
-            explanation.classList.add('quiz-explanation--visible');
-            updateScore();
-          });
-        });
-      });
-
-      btnReset?.addEventListener('click', () => {
-        window.location.reload();
-      });
-    });
-  </script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  <script src="../assets/js/quiz.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>

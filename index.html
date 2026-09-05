@@ -4,23 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard — DEVPATH</title>
-  <meta name="description" content="DEVPATH: Web Development Learning Platform. Learn the fundamentals. Build real interfaces. Think like a developer.">
-
+  <meta name="description" content="DEVPATH — Modern Web Development Learning Platform. Learn the fundamentals. Build real interfaces. Think like a developer.">
   <link rel="stylesheet" href="assets/css/variables.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
 </head>
-<body>
+<body data-page-type="dashboard">
   <div class="page">
-
-    <!-- Sidebar Overlay (mobile) -->
+    <!-- Sidebar Overlay (Mobile) -->
     <div class="sidebar-overlay" aria-hidden="true"></div>
 
     <!-- ================================================================ -->
     <!-- SIDEBAR -->
     <!-- ================================================================ -->
     <aside class="sidebar" aria-label="Main navigation">
+      <!-- Brand -->
       <a href="index.html" class="sidebar__brand">
         <span class="sidebar__logo" aria-hidden="true">D</span>
         <span>
@@ -29,9 +28,9 @@
         </span>
       </a>
 
+      <!-- Navigation -->
       <nav class="sidebar__nav">
         <span class="sidebar__section-label">Menu</span>
-
         <a href="index.html" class="sidebar__link sidebar__link--active">
           <svg class="sidebar__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
           Dashboard
@@ -58,9 +57,10 @@
         </a>
       </nav>
 
+      <!-- Sidebar Footer -->
       <div class="sidebar__footer">
         <span class="sidebar__section-label">Preferences</span>
-        <button class="sidebar__link" data-theme-toggle style="width:100%;border:none;background:none;cursor:pointer;text-align:left;">
+        <button class="sidebar__link" data-theme-toggle style="width: 100%; border: none; background: none; cursor: pointer; text-align: left;">
           <svg class="sidebar__link-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
           <svg class="sidebar__link-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
           Dark Mode
@@ -102,26 +102,26 @@
         <section class="section">
           <div style="margin-bottom: var(--space-2);">
             <h1 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">Selamat datang kembali</h1>
-            <p style="color: var(--color-text-secondary); font-size: var(--text-base); margin-bottom: 0;">Lanjutkan perjalananmu menjadi Web Developer.</p>
+            <p style="color: var(--color-text-secondary); font-size: var(--text-base); margin-bottom: 0;">Lanjutkan perjalananmu menjadi Web Developer profesional.</p>
           </div>
         </section>
 
         <!-- ============================================================ -->
-        <!-- Continue Learning -->
+        <!-- Continue Learning (Dynamic via localStorage) -->
         <!-- ============================================================ -->
         <section class="section">
           <div class="section__header">
             <h2 class="section__title">Continue Learning</h2>
           </div>
 
-          <div class="continue-card">
+          <div class="continue-card" id="dash-continue-card">
             <div class="continue-card__info">
-              <span class="continue-card__module-badge">
+              <span class="continue-card__module-badge" id="dash-continue-mod-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                 HTML5 Fundamentals
               </span>
-              <h3 class="continue-card__title">Accessibility &amp; ARIA</h3>
-              <p class="continue-card__subtitle">Menerapkan standar WCAG dan atribut ARIA untuk website yang ramah aksesibilitas.</p>
+              <h3 class="continue-card__title" id="dash-continue-title">1.1 Struktur Semantik &amp; Hierarki SEO</h3>
+              <p class="continue-card__subtitle" id="dash-continue-status">○ Not Started</p>
               <div class="continue-card__meta">
                 <span class="continue-card__meta-item">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -131,26 +131,37 @@
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                   Beginner
                 </span>
-                <span class="continue-card__meta-item">
-                  Lesson 2 of 6
-                </span>
               </div>
-              <div class="progress__label">
-                <span class="progress__label-text">Progress</span>
-                <span class="progress__label-value">72%</span>
-              </div>
-              <div class="progress">
-                <div class="progress__bar progress__bar--success" style="width: 72%;"></div>
+              <div class="progress" style="margin-top: var(--space-3);">
+                <div class="progress__bar progress__bar--success" id="dash-continue-bar" style="width: 0%;"></div>
               </div>
             </div>
             <div style="flex-shrink: 0;">
-              <a href="lessons/accessibility.html" class="btn btn--primary btn--lg">Lanjutkan &rarr;</a>
+              <a href="lessons/semantic-html.html" id="dash-continue-btn" class="btn btn--primary btn--lg">Mulai Belajar &rarr;</a>
             </div>
           </div>
         </section>
 
         <!-- ============================================================ -->
-        <!-- Your Learning Path -->
+        <!-- Overall Progress Widget -->
+        <!-- ============================================================ -->
+        <section class="section">
+          <div class="card" style="margin-bottom: var(--space-6);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2); flex-wrap: wrap; gap: var(--space-2);">
+              <div>
+                <span style="font-size: var(--text-xs); color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">Your Progress</span>
+                <div style="font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-text);" id="dash-overall-text">0 of 18 lessons completed</div>
+              </div>
+              <span class="badge badge--accent" id="dash-overall-percent" style="font-size: var(--text-sm); font-weight: var(--weight-bold);">0%</span>
+            </div>
+            <div class="progress" style="height: 10px;">
+              <div class="progress__bar" id="dash-overall-bar" style="width: 0%;"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- Your Learning Path (Modules Cards with Dynamic Progress) -->
         <!-- ============================================================ -->
         <section class="section">
           <div class="section__header">
@@ -175,11 +186,11 @@
                 </span>
               </div>
               <div class="progress" style="margin-bottom: var(--space-3);">
-                <div class="progress__bar progress__bar--success" style="width: 72%;"></div>
+                <div class="progress__bar progress__bar--success" id="dash-mod-bar-html5" style="width: 0%;"></div>
               </div>
               <div class="module-card__footer">
-                <span class="badge badge--success">72% Complete</span>
-                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Continue &rarr;</span>
+                <span class="badge badge--success" id="dash-mod-badge-html5">0% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);" id="dash-mod-btn-html5">Start &rarr;</span>
               </div>
             </a>
 
@@ -199,11 +210,11 @@
                 </span>
               </div>
               <div class="progress" style="margin-bottom: var(--space-3);">
-                <div class="progress__bar" style="width: 35%;"></div>
+                <div class="progress__bar" id="dash-mod-bar-css3" style="width: 0%;"></div>
               </div>
               <div class="module-card__footer">
-                <span class="badge badge--accent">35% Complete</span>
-                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Continue &rarr;</span>
+                <span class="badge badge--accent" id="dash-mod-badge-css3">0% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);" id="dash-mod-btn-css3">Start &rarr;</span>
               </div>
             </a>
 
@@ -223,18 +234,18 @@
                 </span>
               </div>
               <div class="progress" style="margin-bottom: var(--space-3);">
-                <div class="progress__bar" style="width: 15%;"></div>
+                <div class="progress__bar" id="dash-mod-bar-javascript" style="width: 0%;"></div>
               </div>
               <div class="module-card__footer">
-                <span class="badge badge--default">15% Complete</span>
-                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Start &rarr;</span>
+                <span class="badge badge--default" id="dash-mod-badge-javascript">0% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);" id="dash-mod-btn-javascript">Start &rarr;</span>
               </div>
             </a>
           </div>
         </section>
 
         <!-- ============================================================ -->
-        <!-- Statistics -->
+        <!-- Statistics (Dynamic from localStorage) -->
         <!-- ============================================================ -->
         <section class="section">
           <div class="section__header">
@@ -244,78 +255,24 @@
           <div class="grid grid--4">
             <div class="stat-card">
               <div class="stat-card__label">Lessons Completed</div>
-              <div class="stat-card__value">18</div>
-              <div class="stat-card__sub">of 18 total lessons</div>
+              <div class="stat-card__value" id="dash-stat-completed">0 / 18</div>
+              <div class="stat-card__sub">real progress</div>
             </div>
             <div class="stat-card">
-              <div class="stat-card__label">Learning Progress</div>
-              <div class="stat-card__value">42%</div>
-              <div class="stat-card__sub">across all modules</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-card__label">Learning Time</div>
-              <div class="stat-card__value">8h 30m</div>
-              <div class="stat-card__sub">total time invested</div>
+              <div class="stat-card__label">XP Earned</div>
+              <div class="stat-card__value" id="dash-stat-xp">0 XP ⚡</div>
+              <div class="stat-card__sub">from lessons &amp; quizzes</div>
             </div>
             <div class="stat-card">
               <div class="stat-card__label">Current Streak</div>
-              <div class="stat-card__value">5 days</div>
-              <div class="stat-card__sub">keep going!</div>
+              <div class="stat-card__value" id="dash-stat-streak">1 Days 🔥</div>
+              <div class="stat-card__sub">daily learning streak</div>
             </div>
-          </div>
-        </section>
-
-        <!-- ============================================================ -->
-        <!-- Recent Activity -->
-        <!-- ============================================================ -->
-        <section class="section">
-          <div class="section__header">
-            <h2 class="section__title">Recent Activity</h2>
-          </div>
-
-          <div class="card card--flat">
-            <ul class="activity-list">
-              <li class="activity-item">
-                <div class="activity-item__icon activity-item__icon--completed" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <div class="activity-item__content">
-                  <div class="activity-item__title">Semantic HTML</div>
-                  <div class="activity-item__time">2 hours ago</div>
-                </div>
-                <span class="activity-item__badge badge badge--success">Completed</span>
-              </li>
-              <li class="activity-item">
-                <div class="activity-item__icon activity-item__icon--progress" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
-                <div class="activity-item__content">
-                  <div class="activity-item__title">Accessibility &amp; ARIA</div>
-                  <div class="activity-item__time">Yesterday</div>
-                </div>
-                <span class="activity-item__badge badge badge--accent">Continue</span>
-              </li>
-              <li class="activity-item">
-                <div class="activity-item__icon activity-item__icon--completed" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <div class="activity-item__content">
-                  <div class="activity-item__title">HTML Forms</div>
-                  <div class="activity-item__time">2 days ago</div>
-                </div>
-                <span class="activity-item__badge badge badge--success">Completed</span>
-              </li>
-              <li class="activity-item">
-                <div class="activity-item__icon activity-item__icon--completed" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <div class="activity-item__content">
-                  <div class="activity-item__title">CSS Variables &amp; Dark Mode</div>
-                  <div class="activity-item__time">3 days ago</div>
-                </div>
-                <span class="activity-item__badge badge badge--success">Completed</span>
-              </li>
-            </ul>
+            <div class="stat-card">
+              <div class="stat-card__label">Status Kurikulum</div>
+              <div class="stat-card__value" style="font-size: var(--text-lg); color: var(--color-accent); margin-top: 4px;">Aktif</div>
+              <div class="stat-card__sub">Kurikulum 2026</div>
+            </div>
           </div>
         </section>
 
@@ -327,6 +284,8 @@
     </div>
   </div>
 
-  <script src="assets/js/app.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/progress.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

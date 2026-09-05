@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../assets/css/layout.css">
   <link rel="stylesheet" href="../assets/css/components.css">
 </head>
-<body>
+<body data-page-type="dashboard">
   <div class="page">
     <div class="sidebar-overlay" aria-hidden="true"></div>
 
@@ -65,6 +65,7 @@
 
         <section class="section">
           <div class="grid grid--3">
+            <!-- Module 1: HTML5 -->
             <a href="html5.html" class="module-card">
               <span class="module-card__number">01</span>
               <h3 class="module-card__title">HTML5 Fundamentals</h3>
@@ -73,13 +74,14 @@
                 <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> 6 Lessons</span>
                 <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 120 min</span>
               </div>
-              <div class="progress" style="margin-bottom:var(--space-3);"><div class="progress__bar progress__bar--success" style="width:72%;"></div></div>
+              <div class="progress" style="margin-bottom:var(--space-3);"><div class="progress__bar progress__bar--success" id="dash-mod-bar-html5" style="width:0%;"></div></div>
               <div class="module-card__footer">
-                <span class="badge badge--success">72% Complete</span>
-                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Continue &rarr;</span>
+                <span class="badge badge--success" id="dash-mod-badge-html5">0% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);" id="dash-mod-btn-html5">Start &rarr;</span>
               </div>
             </a>
 
+            <!-- Module 2: CSS3 -->
             <a href="css3.html" class="module-card">
               <span class="module-card__number">02</span>
               <h3 class="module-card__title">CSS3 Modern Layout</h3>
@@ -88,13 +90,14 @@
                 <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> 6 Lessons</span>
                 <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 150 min</span>
               </div>
-              <div class="progress" style="margin-bottom:var(--space-3);"><div class="progress__bar" style="width:35%;"></div></div>
+              <div class="progress" style="margin-bottom:var(--space-3);"><div class="progress__bar" id="dash-mod-bar-css3" style="width:0%;"></div></div>
               <div class="module-card__footer">
-                <span class="badge badge--accent">35% Complete</span>
-                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Continue &rarr;</span>
+                <span class="badge badge--accent" id="dash-mod-badge-css3">0% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);" id="dash-mod-btn-css3">Start &rarr;</span>
               </div>
             </a>
 
+            <!-- Module 3: JavaScript -->
             <a href="javascript.html" class="module-card">
               <span class="module-card__number">03</span>
               <h3 class="module-card__title">JavaScript ES6+</h3>
@@ -103,10 +106,10 @@
                 <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> 6 Lessons</span>
                 <span class="module-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 180 min</span>
               </div>
-              <div class="progress" style="margin-bottom:var(--space-3);"><div class="progress__bar" style="width:15%;"></div></div>
+              <div class="progress" style="margin-bottom:var(--space-3);"><div class="progress__bar" id="dash-mod-bar-javascript" style="width:0%;"></div></div>
               <div class="module-card__footer">
-                <span class="badge badge--default">15% Complete</span>
-                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);">Start &rarr;</span>
+                <span class="badge badge--default" id="dash-mod-badge-javascript">0% Complete</span>
+                <span style="font-size:var(--text-xs);color:var(--color-text-tertiary);" id="dash-mod-btn-javascript">Start &rarr;</span>
               </div>
             </a>
           </div>
@@ -118,6 +121,8 @@
       </main>
     </div>
   </div>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>

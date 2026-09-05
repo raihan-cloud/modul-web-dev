@@ -4,23 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1.3 Form & Validasi Bawaan Lanjutan — DEVPATH</title>
-  <meta name="description" content="Pelajari validasi form native HTML5 tanpa JavaScript: required, regex pattern, datalist autocomplete, dan pseudo-class :valid :invalid.">
+  <meta name="description" content="Manfaatkan kekuatan engine validasi native HTML5 untuk formulir yang aman, cepat, dan bekerja tanpa dependensi library JavaScript berat.">
   <link rel="stylesheet" href="../assets/css/variables.css">
   <link rel="stylesheet" href="../assets/css/base.css">
   <link rel="stylesheet" href="../assets/css/layout.css">
   <link rel="stylesheet" href="../assets/css/components.css">
-  <style>
-    .demo-form input:focus:valid {
+  <style>.demo-form input:focus:valid {
       border-color: var(--color-success) !important;
       box-shadow: 0 0 0 3px var(--color-success-light) !important;
     }
     .demo-form input:focus:invalid:not(:placeholder-shown) {
       border-color: var(--color-danger) !important;
       box-shadow: 0 0 0 3px var(--color-danger-light) !important;
-    }
-  </style>
+    }</style>
 </head>
-<body>
+<body data-page-type="lesson-player" data-current-module-id="html5" data-current-lesson-id="html-forms">
   <div class="sidebar-overlay" aria-hidden="true"></div>
 
   <div class="lesson-layout">
@@ -29,42 +27,42 @@
       <div class="lesson-sidebar__header">
         <a href="../modules/html5.html" class="lesson-sidebar__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-          Kembali ke Modul 01
+          Kembali ke Modul
         </a>
         <div class="lesson-sidebar__module-title">HTML5 Fundamentals</div>
       </div>
       <nav class="lesson-sidebar__nav">
-        <a href="semantic-html.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
-          <span class="lesson-sidebar__item-number">&#10003;</span>
-          <span class="lesson-sidebar__item-text">Struktur Semantik &amp; Hierarki SEO</span>
+        <a href="semantic-html.html" class="lesson-sidebar__item" data-sidebar-lesson-id="html-semantic">
+          <span class="lesson-sidebar__item-number">1</span>
+          <span class="lesson-sidebar__item-text">Struktur Semantik & Hierarki SEO</span>
         </a>
-        <a href="accessibility.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
-          <span class="lesson-sidebar__item-number">&#10003;</span>
-          <span class="lesson-sidebar__item-text">Aksesibilitas (a11y) &amp; ARIA</span>
+        <a href="accessibility.html" class="lesson-sidebar__item" data-sidebar-lesson-id="html-accessibility">
+          <span class="lesson-sidebar__item-number">2</span>
+          <span class="lesson-sidebar__item-text">Aksesibilitas (a11y) & ARIA</span>
         </a>
-        <a href="forms.html" class="lesson-sidebar__item lesson-sidebar__item--active">
+        <a href="forms.html" class="lesson-sidebar__item lesson-sidebar__item--active" data-sidebar-lesson-id="html-forms">
           <span class="lesson-sidebar__item-number">3</span>
-          <span class="lesson-sidebar__item-text">Form &amp; Validasi Bawaan</span>
+          <span class="lesson-sidebar__item-text">Form & Validasi Bawaan</span>
         </a>
-        <a href="media.html" class="lesson-sidebar__item">
+        <a href="media.html" class="lesson-sidebar__item" data-sidebar-lesson-id="html-media">
           <span class="lesson-sidebar__item-number">4</span>
-          <span class="lesson-sidebar__item-text">Optimasi Media &amp; Cegah CLS</span>
+          <span class="lesson-sidebar__item-text">Optimasi Media & Cegah CLS</span>
         </a>
-        <a href="open-graph.html" class="lesson-sidebar__item">
+        <a href="open-graph.html" class="lesson-sidebar__item" data-sidebar-lesson-id="html-open-graph">
           <span class="lesson-sidebar__item-number">5</span>
-          <span class="lesson-sidebar__item-text">Open Graph &amp; Social Meta</span>
+          <span class="lesson-sidebar__item-text">Open Graph & Social Meta</span>
         </a>
-        <a href="data-attributes.html" class="lesson-sidebar__item">
+        <a href="data-attributes.html" class="lesson-sidebar__item" data-sidebar-lesson-id="html-data-attributes">
           <span class="lesson-sidebar__item-number">6</span>
-          <span class="lesson-sidebar__item-text">Data Attributes &amp; Custom State</span>
+          <span class="lesson-sidebar__item-text">Data Attributes & Custom State</span>
         </a>
       </nav>
       <div class="lesson-sidebar__progress">
         <div class="lesson-sidebar__progress-label">
           <span>Modul Progress</span>
-          <span>50%</span>
+          <span id="lesson-sidebar-progress-percent">0%</span>
         </div>
-        <div class="progress"><div class="progress__bar" style="width: 50%;"></div></div>
+        <div class="progress"><div class="progress__bar" id="lesson-sidebar-progress-bar" style="width: 0%;"></div></div>
       </div>
     </aside>
 
@@ -80,7 +78,7 @@
             <span class="lesson-header__breadcrumb-sep">/</span>
             <a href="../modules/html5.html">HTML5</a>
             <span class="lesson-header__breadcrumb-sep">/</span>
-            <span>1.3 Form &amp; Validasi</span>
+            <span>Lesson 3</span>
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: var(--space-3);">
@@ -92,6 +90,7 @@
       </header>
 
       <main class="lesson-content">
+        <!-- LESSON HEADER -->
         <div class="lesson-header">
           <div class="lesson-header__meta">
             <span class="badge badge--accent">Pelajaran 3 dari 6</span>
@@ -101,10 +100,22 @@
             </span>
             <span class="lesson-header__meta-item">Tingkat: Pemula</span>
           </div>
-          <h1 class="lesson-header__title">1.3 Form &amp; Validasi Bawaan Lanjutan</h1>
+          <h1 class="lesson-header__title">1.3 Form & Validasi Bawaan Lanjutan</h1>
           <p class="lesson-header__desc">Manfaatkan kekuatan engine validasi native HTML5 untuk formulir yang aman, cepat, dan bekerja tanpa dependensi library JavaScript berat.</p>
         </div>
 
+        <!-- WHAT YOU'LL LEARN -->
+        <div class="card card--flat" style="margin-bottom: var(--space-6); background: var(--color-bg-secondary); border-left: 3px solid var(--color-accent); padding: var(--space-4) var(--space-5);">
+          <strong style="display: block; font-size: var(--text-sm); margin-bottom: var(--space-2); color: var(--color-text);">Yang Akan Anda Pelajari:</strong>
+          <ul style="margin: 0; padding-left: var(--space-4); font-size: var(--text-sm); color: var(--color-text-secondary); list-style: none;">
+            <li style='margin-bottom: 4px;'>✓ Atribut required dan minlength/maxlength</li>
+            <li style='margin-bottom: 4px;'>✓ Validasi pola regex dengan atribut pattern</li>
+            <li style='margin-bottom: 4px;'>✓ Input auto-complete dengan elemen datalist</li>
+            <li style='margin-bottom: 4px;'>✓ Styling dinamis dengan pseudo-class :valid & :invalid</li>
+          </ul>
+        </div>
+
+        <!-- LESSON MAIN CONTENT -->
         <div class="lesson-body">
           <p>HTML5 dilengkapi mesin validasi data terintegrasi langsung di level browser. Anda tidak perlu mengimpor library validator JavaScript berukuran besar hanya untuk mengecek field wajib diisi, format email, batasan panjang teks, atau pencocokan pola regex.</p>
 
@@ -184,17 +195,59 @@
 &lt;/form&gt;</code></pre>
             </div>
           </div>
+
+          <!-- QUICK CHECK QUIZ -->
+          <div class="card quiz-question-card" data-quiz-id="quiz-html-forms" data-correct="1" style="margin-top: var(--space-8); border: 1px solid var(--color-border);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-2);">
+              <span class="badge badge--accent">Quick Check (+50 XP)</span>
+              <span style="font-size: var(--text-xs); color: var(--color-text-tertiary);">Uji Pemahaman</span>
+            </div>
+            <h3 style="font-size: var(--text-base); margin-bottom: var(--space-2);">Elemen HTML5 apa yang menyediakan daftar saran autocomplete bawaan tanpa library JS?</h3>
+            <div class="quiz-options">
+            <button class="quiz-option" data-index="0">&lt;select&gt;</button>
+            <button class="quiz-option" data-index="1">&lt;datalist&gt;</button>
+            <button class="quiz-option" data-index="2">&lt;optgroup&gt;</button>
+            </div>
+            <div class="quiz-explanation callout callout--info">
+              <strong>Penjelasan:</strong> &lt;datalist&gt; dihubungkan ke input teks menggunakan atribut list="id" untuk memberikan autocomplete native browser.
+            </div>
+          </div>
+
+
+          <!-- MARK AS COMPLETE ACTION CARD -->
+          <div class="card" id="completion-action-card" style="margin-top: var(--space-8); border: 1px solid var(--color-border); background: linear-gradient(135deg, var(--color-surface), var(--color-bg-secondary)); text-align: center; padding: var(--space-6);">
+            <div id="completion-uncompleted-view">
+              <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Ready to move on?</h3>
+              <p style="color: var(--color-text-secondary); font-size: var(--text-sm); max-width: 500px; margin: 0 auto var(--space-4);">
+                Tandai materi ini selesai saat Anda sudah memahami konsepnya untuk menambah progress dan +100 XP.
+              </p>
+              <button type="button" class="btn btn--primary btn--md" id="btn-mark-complete">
+                ✓ Mark as complete (+100 XP)
+              </button>
+            </div>
+            <div id="completion-completed-view" style="display: none;">
+              <div style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--color-success-light); color: var(--color-success); margin-bottom: var(--space-2);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <h3 style="font-size: var(--text-lg); color: var(--color-success); margin-bottom: var(--space-1);">✓ Pelajaran Selesai!</h3>
+              <p style="color: var(--color-text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-4);">
+                Pencapaian tersimpan di progress Anda. Siap lanjut ke materi berikutnya?
+              </p>
+              <a href="media.html" class="btn btn--primary btn--md">Lanjutkan ke Pelajaran Berikutnya &rarr;</a>
+            </div>
+          </div>
+
         </div>
 
         <!-- LESSON NAVIGATION -->
         <nav class="lesson-nav">
           <a href="accessibility.html" class="lesson-nav__link lesson-nav__link--prev">
             <span class="lesson-nav__label">&larr; Sebelumnya</span>
-            <span class="lesson-nav__title">1.2 Aksesibilitas &amp; ARIA</span>
+            <span class="lesson-nav__title">1.2 Aksesibilitas & ARIA</span>
           </a>
           <a href="media.html" class="lesson-nav__link lesson-nav__link--next">
             <span class="lesson-nav__label">Pelajaran Selanjutnya &rarr;</span>
-            <span class="lesson-nav__title">1.4 Optimasi Media &amp; CLS</span>
+            <span class="lesson-nav__title">1.4 Optimasi Media & CLS</span>
           </a>
         </nav>
 
@@ -205,6 +258,39 @@
     </div>
   </div>
 
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  <script src="../assets/js/quiz.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // Lesson Completion Controller
+    document.addEventListener('DOMContentLoaded', () => {
+      const lessonId = 'html-forms';
+      const btnComplete = document.getElementById('btn-mark-complete');
+      const uncompletedView = document.getElementById('completion-uncompleted-view');
+      const completedView = document.getElementById('completion-completed-view');
+
+      function updateCompletionUI() {
+        const isDone = window.DEVPATH_PROGRESS && window.DEVPATH_PROGRESS.isLessonCompleted(lessonId);
+        if (isDone) {
+          if (uncompletedView) uncompletedView.style.display = 'none';
+          if (completedView) completedView.style.display = 'block';
+        } else {
+          if (uncompletedView) uncompletedView.style.display = 'block';
+          if (completedView) completedView.style.display = 'none';
+        }
+      }
+
+      updateCompletionUI();
+
+      btnComplete?.addEventListener('click', () => {
+        if (window.DEVPATH_PROGRESS) {
+          window.DEVPATH_PROGRESS.markLessonCompleted(lessonId);
+          updateCompletionUI();
+        }
+      });
+    });
+  </script>
+  
 </body>
 </html>

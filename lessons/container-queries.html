@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2.5 Container Queries (`@container`) — DEVPATH</title>
-  <meta name="description" content="Pelajari masa depan desain responsif: Container Queries yang mengadaptasi tampilan berdasarkan lebar parent container, bukan viewport browser.">
+  <meta name="description" content="Paradigma baru responsive design: komponen yang mengubah tata letaknya sendiri berdasarkan ukuran wadah induknya, bukan layar browser.">
   <link rel="stylesheet" href="../assets/css/variables.css">
   <link rel="stylesheet" href="../assets/css/base.css">
   <link rel="stylesheet" href="../assets/css/layout.css">
   <link rel="stylesheet" href="../assets/css/components.css">
-  <style>
-    .cq-wrapper {
+  <style>.cq-wrapper {
       container-type: inline-size;
       width: 100%;
       border: 1px dashed var(--color-border);
@@ -36,10 +35,9 @@
         width: 64px;
         height: 64px;
       }
-    }
-  </style>
+    }</style>
 </head>
-<body>
+<body data-page-type="lesson-player" data-current-module-id="css3" data-current-lesson-id="css-container-queries">
   <div class="sidebar-overlay" aria-hidden="true"></div>
 
   <div class="lesson-layout">
@@ -48,42 +46,42 @@
       <div class="lesson-sidebar__header">
         <a href="../modules/css3.html" class="lesson-sidebar__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-          Kembali ke Modul 02
+          Kembali ke Modul
         </a>
         <div class="lesson-sidebar__module-title">CSS3 Modern Layout</div>
       </div>
       <nav class="lesson-sidebar__nav">
-        <a href="css-variables.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
-          <span class="lesson-sidebar__item-number">&#10003;</span>
-          <span class="lesson-sidebar__item-text">CSS Variables &amp; Dark Mode</span>
+        <a href="css-variables.html" class="lesson-sidebar__item" data-sidebar-lesson-id="css-variables">
+          <span class="lesson-sidebar__item-number">1</span>
+          <span class="lesson-sidebar__item-text">CSS Variables & Dark Mode</span>
         </a>
-        <a href="flexbox-grid.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
-          <span class="lesson-sidebar__item-number">&#10003;</span>
+        <a href="flexbox-grid.html" class="lesson-sidebar__item" data-sidebar-lesson-id="css-flexbox-grid">
+          <span class="lesson-sidebar__item-number">2</span>
           <span class="lesson-sidebar__item-text">Flexbox vs CSS Grid Mastery</span>
         </a>
-        <a href="fluid-typography.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
-          <span class="lesson-sidebar__item-number">&#10003;</span>
+        <a href="fluid-typography.html" class="lesson-sidebar__item" data-sidebar-lesson-id="css-fluid-typography">
+          <span class="lesson-sidebar__item-number">3</span>
           <span class="lesson-sidebar__item-text">Fluid Typography dengan clamp()</span>
         </a>
-        <a href="animations.html" class="lesson-sidebar__item lesson-sidebar__item--completed">
-          <span class="lesson-sidebar__item-number">&#10003;</span>
-          <span class="lesson-sidebar__item-text">CSS Animations &amp; Glassmorphism</span>
+        <a href="animations.html" class="lesson-sidebar__item" data-sidebar-lesson-id="css-animations">
+          <span class="lesson-sidebar__item-number">4</span>
+          <span class="lesson-sidebar__item-text">CSS Animations & Glassmorphism</span>
         </a>
-        <a href="container-queries.html" class="lesson-sidebar__item lesson-sidebar__item--active">
+        <a href="container-queries.html" class="lesson-sidebar__item lesson-sidebar__item--active" data-sidebar-lesson-id="css-container-queries">
           <span class="lesson-sidebar__item-number">5</span>
           <span class="lesson-sidebar__item-text">Container Queries (@container)</span>
         </a>
-        <a href="bem.html" class="lesson-sidebar__item">
+        <a href="bem.html" class="lesson-sidebar__item" data-sidebar-lesson-id="css-bem">
           <span class="lesson-sidebar__item-number">6</span>
-          <span class="lesson-sidebar__item-text">Metode BEM &amp; Clean Architecture</span>
+          <span class="lesson-sidebar__item-text">Metode BEM & Clean Architecture</span>
         </a>
       </nav>
       <div class="lesson-sidebar__progress">
         <div class="lesson-sidebar__progress-label">
           <span>Modul Progress</span>
-          <span>83%</span>
+          <span id="lesson-sidebar-progress-percent">0%</span>
         </div>
-        <div class="progress"><div class="progress__bar" style="width: 83%;"></div></div>
+        <div class="progress"><div class="progress__bar" id="lesson-sidebar-progress-bar" style="width: 0%;"></div></div>
       </div>
     </aside>
 
@@ -99,7 +97,7 @@
             <span class="lesson-header__breadcrumb-sep">/</span>
             <a href="../modules/css3.html">CSS3</a>
             <span class="lesson-header__breadcrumb-sep">/</span>
-            <span>2.5 Container Queries</span>
+            <span>Lesson 5</span>
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: var(--space-3);">
@@ -111,6 +109,7 @@
       </header>
 
       <main class="lesson-content">
+        <!-- LESSON HEADER -->
         <div class="lesson-header">
           <div class="lesson-header__meta">
             <span class="badge badge--accent">Pelajaran 5 dari 6</span>
@@ -124,6 +123,18 @@
           <p class="lesson-header__desc">Paradigma baru responsive design: komponen yang mengubah tata letaknya sendiri berdasarkan ukuran wadah induknya, bukan layar browser.</p>
         </div>
 
+        <!-- WHAT YOU'LL LEARN -->
+        <div class="card card--flat" style="margin-bottom: var(--space-6); background: var(--color-bg-secondary); border-left: 3px solid var(--color-accent); padding: var(--space-4) var(--space-5);">
+          <strong style="display: block; font-size: var(--text-sm); margin-bottom: var(--space-2); color: var(--color-text);">Yang Akan Anda Pelajari:</strong>
+          <ul style="margin: 0; padding-left: var(--space-4); font-size: var(--text-sm); color: var(--color-text-secondary); list-style: none;">
+            <li style='margin-bottom: 4px;'>✓ Deklarasi container-type: inline-size</li>
+            <li style='margin-bottom: 4px;'>✓ Aturan @container (min-width: ...)</li>
+            <li style='margin-bottom: 4px;'>✓ Modularitas independen komponen UI (sidebar vs main content)</li>
+            <li style='margin-bottom: 4px;'>✓ Masa depan arsitektur Micro-Frontend CSS</li>
+          </ul>
+        </div>
+
+        <!-- LESSON MAIN CONTENT -->
         <div class="lesson-body">
           <p>Teknik responsif masa depan telah tiba di browser modern: Jika Media Queries mengubah tampilan berdasarkan lebar <strong>viewport layar browser/HP</strong>, Container Queries mengubah tampilan berdasarkan lebar <strong>elemen pembungkusnya (Parent Container)</strong>.</p>
 
@@ -178,6 +189,48 @@
               <p>Komponen UI (seperti Product Card atau Comment Widget) kini dapat diletakkan di dalam Sidebar yang sempit (300px) maupun di area Konten Utama yang luas (800px), dan kartu tersebut akan beradaptasi secara cerdas tanpa perlu class modifier terpisah (seperti <code>.card--compact</code>).</p>
             </div>
           </div>
+
+          <!-- QUICK CHECK QUIZ -->
+          <div class="card quiz-question-card" data-quiz-id="quiz-css-cq" data-correct="0" style="margin-top: var(--space-8); border: 1px solid var(--color-border);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-2);">
+              <span class="badge badge--accent">Quick Check (+50 XP)</span>
+              <span style="font-size: var(--text-xs); color: var(--color-text-tertiary);">Uji Pemahaman</span>
+            </div>
+            <h3 style="font-size: var(--text-base); margin-bottom: var(--space-2);">Apa perbedaan utama Container Queries dibanding Media Queries?</h3>
+            <div class="quiz-options">
+            <button class="quiz-option" data-index="0">Container Queries mengecek lebar parent container, Media Queries mengecek lebar viewport browser</button>
+            <button class="quiz-option" data-index="1">Container Queries hanya bekerja pada tag &lt;div&gt;</button>
+            <button class="quiz-option" data-index="2">Container Queries membutuhkan JavaScript eksternal</button>
+            </div>
+            <div class="quiz-explanation callout callout--info">
+              <strong>Penjelasan:</strong> Container Queries memungkinkan komponen merespon ukuran wadah induknya secara mandiri di mana pun diletakkan.
+            </div>
+          </div>
+
+
+          <!-- MARK AS COMPLETE ACTION CARD -->
+          <div class="card" id="completion-action-card" style="margin-top: var(--space-8); border: 1px solid var(--color-border); background: linear-gradient(135deg, var(--color-surface), var(--color-bg-secondary)); text-align: center; padding: var(--space-6);">
+            <div id="completion-uncompleted-view">
+              <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Ready to move on?</h3>
+              <p style="color: var(--color-text-secondary); font-size: var(--text-sm); max-width: 500px; margin: 0 auto var(--space-4);">
+                Tandai materi ini selesai saat Anda sudah memahami konsepnya untuk menambah progress dan +100 XP.
+              </p>
+              <button type="button" class="btn btn--primary btn--md" id="btn-mark-complete">
+                ✓ Mark as complete (+100 XP)
+              </button>
+            </div>
+            <div id="completion-completed-view" style="display: none;">
+              <div style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--color-success-light); color: var(--color-success); margin-bottom: var(--space-2);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <h3 style="font-size: var(--text-lg); color: var(--color-success); margin-bottom: var(--space-1);">✓ Pelajaran Selesai!</h3>
+              <p style="color: var(--color-text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-4);">
+                Pencapaian tersimpan di progress Anda. Siap lanjut ke materi berikutnya?
+              </p>
+              <a href="bem.html" class="btn btn--primary btn--md">Lanjutkan ke Pelajaran Berikutnya &rarr;</a>
+            </div>
+          </div>
+
         </div>
 
         <!-- LESSON NAVIGATION -->
@@ -188,7 +241,7 @@
           </a>
           <a href="bem.html" class="lesson-nav__link lesson-nav__link--next">
             <span class="lesson-nav__label">Pelajaran Selanjutnya &rarr;</span>
-            <span class="lesson-nav__title">2.6 Metode BEM &amp; Clean Architecture</span>
+            <span class="lesson-nav__title">2.6 Metode BEM & Clean Architecture</span>
           </a>
         </nav>
 
@@ -199,6 +252,39 @@
     </div>
   </div>
 
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  <script src="../assets/js/quiz.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // Lesson Completion Controller
+    document.addEventListener('DOMContentLoaded', () => {
+      const lessonId = 'css-container-queries';
+      const btnComplete = document.getElementById('btn-mark-complete');
+      const uncompletedView = document.getElementById('completion-uncompleted-view');
+      const completedView = document.getElementById('completion-completed-view');
+
+      function updateCompletionUI() {
+        const isDone = window.DEVPATH_PROGRESS && window.DEVPATH_PROGRESS.isLessonCompleted(lessonId);
+        if (isDone) {
+          if (uncompletedView) uncompletedView.style.display = 'none';
+          if (completedView) completedView.style.display = 'block';
+        } else {
+          if (uncompletedView) uncompletedView.style.display = 'block';
+          if (completedView) completedView.style.display = 'none';
+        }
+      }
+
+      updateCompletionUI();
+
+      btnComplete?.addEventListener('click', () => {
+        if (window.DEVPATH_PROGRESS) {
+          window.DEVPATH_PROGRESS.markLessonCompleted(lessonId);
+          updateCompletionUI();
+        }
+      });
+    });
+  </script>
+  
 </body>
 </html>

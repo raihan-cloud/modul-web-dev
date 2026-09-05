@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../assets/css/layout.css">
   <link rel="stylesheet" href="../assets/css/components.css">
 </head>
-<body>
+<body data-page-type="module-detail" data-current-module-id="css3">
   <div class="page">
     <div class="sidebar-overlay" aria-hidden="true"></div>
 
@@ -69,7 +69,7 @@
               <h1 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">CSS3 Modern Layout</h1>
               <p style="color: var(--color-text-secondary); max-width: 680px; margin-bottom: 0;">Menguasai arsitektur CSS modern: Dark Mode sistem variabel, CSS Grid 2D, Fluid Typography, Glassmorphism, Container Queries, dan metode BEM.</p>
             </div>
-            <a href="../lessons/css-variables.html" class="btn btn--primary btn--md">Mulai Belajar &rarr;</a>
+            <a href="../lessons/css-variables.html" class="btn btn--primary btn--md">Mulai / Lanjutkan Belajar &rarr;</a>
           </div>
         </div>
 
@@ -90,94 +90,94 @@
             </div>
             <div>
               <div style="font-size: var(--text-xs); color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Status</div>
-              <div style="font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-accent);">35% Selesai</div>
+              <div style="font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-accent);" id="module-progress-badge">0% Selesai</div>
             </div>
           </div>
-          <div class="progress" style="margin-top: var(--space-4);"><div class="progress__bar" style="width: 35%;"></div></div>
+          <div class="progress" style="margin-top: var(--space-4);"><div class="progress__bar" id="module-progress-bar" style="width: 0%;"></div></div>
         </div>
 
-        <!-- Lessons List -->
+        <!-- Lessons List (Dynamic) -->
         <section class="section">
           <div class="section__header">
             <h2 class="section__title">Daftar Materi</h2>
-            <span style="font-size: var(--text-sm); color: var(--color-text-tertiary);">6 Pelajaran</span>
+            <span style="font-size: var(--text-sm); color: var(--color-text-tertiary);" id="module-completed-text">0 dari 6 Materi Selesai</span>
           </div>
 
           <div class="lesson-list">
             <!-- 2.1 -->
-            <a href="../lessons/css-variables.html" class="lesson-list__item lesson-list__item--completed">
-              <span class="lesson-list__number">&#10003;</span>
+            <a href="../lessons/css-variables.html" class="lesson-list__item" data-lesson-id="css-variables">
+              <span class="lesson-list__number">01</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">2.1 CSS Variables &amp; Dark Mode System</div>
                 <div class="lesson-list__desc">Pengelolaan Custom Properties di :root, @media (prefers-color-scheme), cascading tokens.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--success">Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 25 min</span>
               </div>
             </a>
 
             <!-- 2.2 -->
-            <a href="../lessons/flexbox-grid.html" class="lesson-list__item lesson-list__item--active">
+            <a href="../lessons/flexbox-grid.html" class="lesson-list__item" data-lesson-id="css-flexbox-grid">
               <span class="lesson-list__number">02</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">2.2 Flexbox vs CSS Grid Mastery</div>
                 <div class="lesson-list__desc">1D vs 2D layout, auto-fit repeat tanpa media queries, dan dynamic responsive cards.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--accent">Sedang Berjalan</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 30 min</span>
               </div>
             </a>
 
             <!-- 2.3 -->
-            <a href="../lessons/fluid-typography.html" class="lesson-list__item">
+            <a href="../lessons/fluid-typography.html" class="lesson-list__item" data-lesson-id="css-fluid-typography">
               <span class="lesson-list__number">03</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">2.3 Fluid Typography dengan `clamp()`</div>
                 <div class="lesson-list__desc">Kombinasi min, preferred vw, dan max nilai font responsif tanpa breakpoint manual.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 20 min</span>
               </div>
             </a>
 
             <!-- 2.4 -->
-            <a href="../lessons/animations.html" class="lesson-list__item">
+            <a href="../lessons/animations.html" class="lesson-list__item" data-lesson-id="css-animations">
               <span class="lesson-list__number">04</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">2.4 CSS Animations &amp; Glassmorphism UI</div>
                 <div class="lesson-list__desc">Backdrop-filter blur, border transparan, efek frosted glass, dan animasi performa tinggi via GPU.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 25 min</span>
               </div>
             </a>
 
             <!-- 2.5 -->
-            <a href="../lessons/container-queries.html" class="lesson-list__item">
+            <a href="../lessons/container-queries.html" class="lesson-list__item" data-lesson-id="css-container-queries">
               <span class="lesson-list__number">05</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">2.5 Container Queries (`@container`)</div>
                 <div class="lesson-list__desc">Responsif berbasis parent container bukan layar browser, modularitas komponen UI modern.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 25 min</span>
               </div>
             </a>
 
             <!-- 2.6 -->
-            <a href="../lessons/bem.html" class="lesson-list__item">
+            <a href="../lessons/bem.html" class="lesson-list__item" data-lesson-id="css-bem">
               <span class="lesson-list__number">06</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">2.6 Metode BEM &amp; Clean Architecture</div>
                 <div class="lesson-list__desc">Block Element Modifier konvensi, menghindari CSS collision pada enterprise scale, dan studi kasus.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 25 min</span>
               </div>
             </a>
@@ -190,6 +190,8 @@
       </main>
     </div>
   </div>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>

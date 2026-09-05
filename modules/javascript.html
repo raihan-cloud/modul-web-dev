@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../assets/css/layout.css">
   <link rel="stylesheet" href="../assets/css/components.css">
 </head>
-<body>
+<body data-page-type="module-detail" data-current-module-id="javascript">
   <div class="page">
     <div class="sidebar-overlay" aria-hidden="true"></div>
 
@@ -69,7 +69,7 @@
               <h1 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">JavaScript ES6+</h1>
               <p style="color: var(--color-text-secondary); max-width: 680px; margin-bottom: 0;">Jadikan JavaScript sebagai engine logika utama: arsitektur modular ES6, shorthand modern, manipulasi class DOM, event delegation, dan REST API async/await.</p>
             </div>
-            <a href="../lessons/es6-modules.html" class="btn btn--primary btn--md">Mulai Belajar &rarr;</a>
+            <a href="../lessons/es6-modules.html" class="btn btn--primary btn--md">Mulai / Lanjutkan Belajar &rarr;</a>
           </div>
         </div>
 
@@ -90,94 +90,94 @@
             </div>
             <div>
               <div style="font-size: var(--text-xs); color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Status</div>
-              <div style="font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-text);">15% Selesai</div>
+              <div style="font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-accent);" id="module-progress-badge">0% Selesai</div>
             </div>
           </div>
-          <div class="progress" style="margin-top: var(--space-4);"><div class="progress__bar" style="width: 15%;"></div></div>
+          <div class="progress" style="margin-top: var(--space-4);"><div class="progress__bar" id="module-progress-bar" style="width: 0%;"></div></div>
         </div>
 
-        <!-- Lessons List -->
+        <!-- Lessons List (Dynamic) -->
         <section class="section">
           <div class="section__header">
             <h2 class="section__title">Daftar Materi</h2>
-            <span style="font-size: var(--text-sm); color: var(--color-text-tertiary);">6 Pelajaran</span>
+            <span style="font-size: var(--text-sm); color: var(--color-text-tertiary);" id="module-completed-text">0 dari 6 Materi Selesai</span>
           </div>
 
           <div class="lesson-list">
             <!-- 3.1 -->
-            <a href="../lessons/es6-modules.html" class="lesson-list__item lesson-list__item--completed">
-              <span class="lesson-list__number">&#10003;</span>
+            <a href="../lessons/es6-modules.html" class="lesson-list__item" data-lesson-id="js-es6-modules">
+              <span class="lesson-list__number">01</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">3.1 Loading Strategy Modern &amp; ES6 Modules</div>
                 <div class="lesson-list__desc">Atribut defer vs async, type="module", import/export tanpa bundler, non-blocking rendering.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--success">Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 25 min</span>
               </div>
             </a>
 
             <!-- 3.2 -->
-            <a href="../lessons/es6-syntax.html" class="lesson-list__item lesson-list__item--active">
+            <a href="../lessons/es6-syntax.html" class="lesson-list__item" data-lesson-id="js-es6-syntax">
               <span class="lesson-list__number">02</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">3.2 Syntax Modern (Shorthand ES6+)</div>
                 <div class="lesson-list__desc">Arrow functions, template literals, destructuring assignment, default parameter, rest/spread.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--accent">Sedang Berjalan</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 30 min</span>
               </div>
             </a>
 
             <!-- 3.3 -->
-            <a href="../lessons/dom-manipulation.html" class="lesson-list__item">
+            <a href="../lessons/dom-manipulation.html" class="lesson-list__item" data-lesson-id="js-dom-manipulation">
               <span class="lesson-list__number">03</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">3.3 DOM Selection &amp; Class Manipulation</div>
                 <div class="lesson-list__desc">Modern workflow via classList.add/remove/toggle, dataset attributes, avoiding reflows.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 30 min</span>
               </div>
             </a>
 
             <!-- 3.4 -->
-            <a href="../lessons/event-delegation.html" class="lesson-list__item">
+            <a href="../lessons/event-delegation.html" class="lesson-list__item" data-lesson-id="js-event-delegation">
               <span class="lesson-list__number">04</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">3.4 Event Delegation (Arsitektur Event Efisien)</div>
                 <div class="lesson-list__desc">Single parent listener, event bubbling, e.target.closest(), penanganan dinamis elemen UI.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 30 min</span>
               </div>
             </a>
 
             <!-- 3.5 -->
-            <a href="../lessons/async-fetch.html" class="lesson-list__item">
+            <a href="../lessons/async-fetch.html" class="lesson-list__item" data-lesson-id="js-async-fetch">
               <span class="lesson-list__number">05</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">3.5 Asynchronous JS &amp; Fetch API (`async/await`)</div>
                 <div class="lesson-list__desc">Promises, async/await pattern, try/catch error handling, parsing JSON, dynamic API data.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 35 min</span>
               </div>
             </a>
 
             <!-- 3.6 -->
-            <a href="../lessons/local-storage.html" class="lesson-list__item">
+            <a href="../lessons/local-storage.html" class="lesson-list__item" data-lesson-id="js-local-storage">
               <span class="lesson-list__number">06</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">3.6 State Persistence via `localStorage`</div>
                 <div class="lesson-list__desc">Web Storage API: setItem, getItem, JSON serialization, persistent user states antar session.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 30 min</span>
               </div>
             </a>
@@ -190,6 +190,8 @@
       </main>
     </div>
   </div>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>

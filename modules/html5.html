@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../assets/css/layout.css">
   <link rel="stylesheet" href="../assets/css/components.css">
 </head>
-<body>
+<body data-page-type="module-detail" data-current-module-id="html5">
   <div class="page">
     <div class="sidebar-overlay" aria-hidden="true"></div>
 
@@ -69,11 +69,11 @@
               <h1 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">HTML5 Fundamentals</h1>
               <p style="color: var(--color-text-secondary); max-width: 680px; margin-bottom: 0;">Pelajari anatomi kode HTML yang ramah mesin pencari (Googlebot), dipahami oleh Screen Reader (a11y), dan berkinerja tinggi (Core Web Vitals).</p>
             </div>
-            <a href="../lessons/semantic-html.html" class="btn btn--primary btn--md">Mulai Belajar &rarr;</a>
+            <a href="../lessons/semantic-html.html" class="btn btn--primary btn--md">Mulai / Lanjutkan Belajar &rarr;</a>
           </div>
         </div>
 
-        <!-- Module Stats Card -->
+        <!-- Module Stats Card (Dynamic) -->
         <div class="card" style="margin-bottom: var(--space-8);">
           <div class="grid grid--4" style="text-align: center;">
             <div>
@@ -90,94 +90,94 @@
             </div>
             <div>
               <div style="font-size: var(--text-xs); color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Status</div>
-              <div style="font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-success);">72% Selesai</div>
+              <div style="font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-accent);" id="module-progress-badge">0% Selesai</div>
             </div>
           </div>
-          <div class="progress" style="margin-top: var(--space-4);"><div class="progress__bar progress__bar--success" style="width: 72%;"></div></div>
+          <div class="progress" style="margin-top: var(--space-4);"><div class="progress__bar progress__bar--success" id="module-progress-bar" style="width: 0%;"></div></div>
         </div>
 
-        <!-- Lessons List -->
+        <!-- Lessons List (Dynamic via data-lesson-id) -->
         <section class="section">
           <div class="section__header">
             <h2 class="section__title">Daftar Materi</h2>
-            <span style="font-size: var(--text-sm); color: var(--color-text-tertiary);">6 Pelajaran</span>
+            <span style="font-size: var(--text-sm); color: var(--color-text-tertiary);" id="module-completed-text">0 dari 6 Materi Selesai</span>
           </div>
 
           <div class="lesson-list">
             <!-- 1.1 -->
-            <a href="../lessons/semantic-html.html" class="lesson-list__item lesson-list__item--completed">
-              <span class="lesson-list__number">&#10003;</span>
+            <a href="../lessons/semantic-html.html" class="lesson-list__item" data-lesson-id="html-semantic">
+              <span class="lesson-list__number">01</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">1.1 Struktur Semantik &amp; Hierarki SEO</div>
                 <div class="lesson-list__desc">Menghindari Div Soup, aturan emas tag main, arsitektur header, article, aside, dan footer.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--success">Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 20 min</span>
               </div>
             </a>
 
             <!-- 1.2 -->
-            <a href="../lessons/accessibility.html" class="lesson-list__item lesson-list__item--active">
+            <a href="../lessons/accessibility.html" class="lesson-list__item" data-lesson-id="html-accessibility">
               <span class="lesson-list__number">02</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">1.2 Aksesibilitas (a11y) &amp; ARIA Attributes</div>
                 <div class="lesson-list__desc">Standar WCAG, screen readers, aria-label, aria-hidden, aria-expanded, dan alt text.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--accent">Sedang Berjalan</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 20 min</span>
               </div>
             </a>
 
             <!-- 1.3 -->
-            <a href="../lessons/forms.html" class="lesson-list__item">
+            <a href="../lessons/forms.html" class="lesson-list__item" data-lesson-id="html-forms">
               <span class="lesson-list__number">03</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">1.3 Form &amp; Validasi Bawaan Lanjutan</div>
                 <div class="lesson-list__desc">Validasi HTML5 native tanpa JS: required, regex pattern, min/maxlength, dan datalist.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 25 min</span>
               </div>
             </a>
 
             <!-- 1.4 -->
-            <a href="../lessons/media.html" class="lesson-list__item">
+            <a href="../lessons/media.html" class="lesson-list__item" data-lesson-id="html-media">
               <span class="lesson-list__number">04</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">1.4 Optimasi Media &amp; Mencegah CLS (Core Web Vitals)</div>
                 <div class="lesson-list__desc">Elemen picture, responsive source art direction, WebP/AVIF formats, dan lazy loading.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 20 min</span>
               </div>
             </a>
 
             <!-- 1.5 -->
-            <a href="../lessons/open-graph.html" class="lesson-list__item">
+            <a href="../lessons/open-graph.html" class="lesson-list__item" data-lesson-id="html-open-graph">
               <span class="lesson-list__number">05</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">1.5 Open Graph &amp; Social Meta Tags</div>
                 <div class="lesson-list__desc">Preview card di WhatsApp, Twitter, LinkedIn, theme-color, dan optimasi sharing media sosial.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 15 min</span>
               </div>
             </a>
 
             <!-- 1.6 -->
-            <a href="../lessons/data-attributes.html" class="lesson-list__item">
+            <a href="../lessons/data-attributes.html" class="lesson-list__item" data-lesson-id="html-data-attributes">
               <span class="lesson-list__number">06</span>
               <div class="lesson-list__info">
                 <div class="lesson-list__title">1.6 Data Attributes (`data-*`) &amp; Custom State</div>
                 <div class="lesson-list__desc">Menyimpan metadata di tag HTML, styling berdasarkan attribute selector, dan akses dataset JS.</div>
               </div>
               <div class="lesson-list__meta">
-                <span class="badge badge--default">Belum Selesai</span>
+                <span class="badge badge--default lesson-item-badge">Belum Dimulai</span>
                 <span class="lesson-list__duration"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 20 min</span>
               </div>
             </a>
@@ -190,6 +190,8 @@
       </main>
     </div>
   </div>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/progress.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>
