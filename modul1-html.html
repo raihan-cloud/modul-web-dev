@@ -3,588 +3,464 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modul 1: Semantik & Aksesibilitas HTML5</title>
+  <title>Modul 1: Semantik & Aksesibilitas HTML5 Lengkap</title>
   
   <style>
-    /* 1. Variabel CSS & Root */
+    /* Variabel CSS disamakan dengan index.html agar desain konsisten */
     :root {
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
       --primary-light: #eff6ff;
-      --secondary: #0284c7;
       --bg-body: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #0f172a;
       --text-muted: #475569;
       --border-color: #e2e8f0;
-      --code-bg: #0f172a;
+      --code-bg: #0f172a; /* Dark theme untuk kode */
       --code-text: #f8fafc;
-      --preview-bg: #ffffff;
-      --preview-border: #cbd5e1;
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
       --radius: 12px;
     }
 
-    /* 2. Reset Standard */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       background-color: var(--bg-body);
       color: var(--text-main);
       line-height: 1.7;
-      padding-bottom: 4rem;
-      -webkit-font-smoothing: antialiased;
+      padding-top: 80px;
     }
 
-    /* 3. Header & Navigasi Sticky */
+    /* Header & Navigasi */
     header {
-      background-color: var(--card-bg);
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border-color);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: var(--shadow-sm);
+      z-index: 1000;
     }
 
-    .nav-container {
-      max-width: 900px;
+    .navbar {
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 1rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 1rem 1.5rem;
     }
 
     .back-link {
       text-decoration: none;
       color: var(--primary);
       font-weight: 600;
-      font-size: 0.95rem;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      transition: color 0.2s ease;
+      gap: 0.5rem;
+      transition: color 0.2s;
     }
+    .back-link:hover { color: var(--primary-hover); text-decoration: underline; }
 
-    .back-link:hover {
-      color: var(--primary-hover);
-      text-decoration: underline;
-    }
-
-    /* 4. Layout Utama */
+    /* Layout Konten Modul */
     main {
       max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
     }
 
     .module-header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #ffffff;
-      padding: 2.5rem 2rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-md);
-      margin-bottom: 2rem;
       text-align: center;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, #1e40af, #2563eb);
+      color: white;
+      border-radius: var(--radius);
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow);
     }
+    .module-header h1 { font-size: 2.2rem; margin-bottom: 1rem; line-height: 1.3; }
+    .module-header p { font-size: 1.1rem; opacity: 0.95; max-width: 700px; margin: 0 auto;}
 
-    .module-header h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
-      line-height: 1.25;
-    }
-
-    .module-header p {
-      font-size: 1.1rem;
-      opacity: 0.95;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* 5. Card Materi */
     .topic-card {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: var(--radius);
       padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow-sm);
-      transition: box-shadow 0.2s ease;
-    }
-
-    .topic-card:hover {
-      box-shadow: var(--shadow-md);
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow);
     }
 
     .topic-card h2 {
-      font-size: 1.5rem;
       color: var(--primary);
-      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
       border-bottom: 2px solid var(--primary-light);
-      padding-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      padding-bottom: 0.8rem;
     }
 
     .topic-card h3 {
-      font-size: 1.15rem;
-      margin: 1.5rem 0 0.5rem 0;
+      font-size: 1.1rem;
       color: var(--text-main);
+      margin: 1.5rem 0 0.5rem 0;
     }
 
     .topic-card p {
       margin-bottom: 1rem;
-      color: #334155;
-    }
-
-    /* 6. Callout Box (Analogi & Catatan) */
-    .analogy {
-      background-color: #fffbeb;
-      border-left: 4px solid #f59e0b;
-      padding: 1.25rem 1.5rem;
-      border-radius: 0 var(--radius) var(--radius) 0;
-      margin-bottom: 2rem;
-      color: #92400e;
-    }
-
-    .note {
-      background-color: var(--primary-light);
-      border-left: 4px solid var(--primary);
-      padding: 1.25rem 1.5rem;
-      border-radius: 0 8px 8px 0;
-      margin: 1.5rem 0;
-      font-size: 0.95rem;
+      color: var(--text-muted);
     }
     
-    .note-title {
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.4rem;
-      display: block;
+    .topic-card ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-muted);
     }
+    .topic-card li { margin-bottom: 0.4rem; }
 
-    /* 7. Blok Kode & Live Preview */
+    /* Blok Kode & Penjelasan */
     .code-block {
       background-color: var(--code-bg);
       color: var(--code-text);
-      padding: 1.25rem 1.5rem;
+      padding: 1.5rem;
       border-radius: 8px;
-      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      font-family: Consolas, 'Courier New', monospace;
       font-size: 0.9rem;
       overflow-x: auto;
-      margin: 1.25rem 0;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+      margin: 1.5rem 0;
+      line-height: 1.5;
     }
-
-    .code-block pre {
-      margin: 0;
-      white-space: pre;
-    }
-
-    .preview-box {
-      background-color: var(--preview-bg);
-      border: 2px dashed var(--preview-border);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-top: 1rem;
+    .code-block pre { margin: 0; }
+    
+    .code-title {
+      background-color: #334155;
+      color: white;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      border-radius: 6px 6px 0 0;
+      margin-bottom: -1.5rem;
       position: relative;
+      z-index: 10;
     }
 
-    .preview-title {
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
+    .bad-practice { border-left: 4px solid #ef4444; }
+    .good-practice { border-left: 4px solid #10b981; }
 
-    /* 8. Badge & Elemen Tambahan */
     code.tag {
       background-color: #f1f5f9;
-      color: #0284c7;
+      color: #b45309;
       padding: 0.15rem 0.4rem;
       border-radius: 4px;
-      font-family: 'Consolas', monospace;
-      font-size: 0.88em;
+      font-family: Consolas, monospace;
+      font-size: 0.9em;
       border: 1px solid #e2e8f0;
-      font-weight: 600;
     }
 
-    ul, ol {
-      margin-left: 1.5rem;
-      margin-bottom: 1rem;
-      color: #334155;
-    }
-
-    li {
-      margin-bottom: 0.4rem;
-    }
-
-    /* 9. Form Preview Styling */
-    .demo-form label {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: #334155;
-      display: block;
-      margin-bottom: 0.25rem;
-    }
-
-    .demo-form input {
-      width: 100%;
-      max-width: 400px;
-      padding: 0.6rem 0.8rem;
-      margin-bottom: 1rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-family: inherit;
+    /* Info Box */
+    .info-box {
+      background-color: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 1rem 1.5rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
       font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      color: #166534;
     }
 
-    .demo-form input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    /* Live Preview Box */
+    .preview-box {
+      background-color: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .preview-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      letter-spacing: 0.5px;
     }
 
-    .demo-form input:invalid:not(:placeholder-shown) {
-      border-color: #ef4444;
+    /* Form Styling untuk Demo */
+    .demo-form label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-main); }
+    .demo-form input, .demo-form select {
+      width: 100%; max-width: 100%;
+      padding: 0.6rem 0.8rem; margin-bottom: 1.2rem;
+      border: 1px solid #cbd5e1; border-radius: 6px;
+      outline: none; transition: 0.2s; font-family: inherit;
     }
-
-    .demo-btn {
-      padding: 0.6rem 1.2rem;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
+    .demo-form input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+    
+    /* Visual Feedback Validasi HTML5 */
+    .demo-form input:valid:not(:placeholder-shown) { border-color: #10b981; background: #ecfdf5; }
+    .demo-form input:invalid:not(:placeholder-shown) { border-color: #ef4444; background: #fef2f2; }
+    
+    .btn-submit {
+      background: var(--primary); color: white; border: none;
+      padding: 0.7rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer;
       transition: background 0.2s;
     }
+    .btn-submit:hover { background: var(--primary-hover); }
 
-    .demo-btn:hover {
-      background: var(--primary-hover);
-    }
-
-    /* Preview Card Social Share */
-    .og-preview-card {
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      overflow: hidden;
-      max-width: 400px;
-      background: #ffffff;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .og-preview-img {
-      width: 100%;
-      height: 180px;
-      background: linear-gradient(135deg, #2563eb, #0284c7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-    }
-
-    .og-preview-body {
-      padding: 1rem;
-    }
-
-    .og-preview-domain {
-      font-size: 0.75rem;
-      color: #64748b;
-      text-transform: uppercase;
-      margin-bottom: 0.25rem;
-    }
-
-    .og-preview-title {
-      font-weight: 700;
-      font-size: 0.95rem;
-      margin-bottom: 0.25rem;
-      color: #0f172a;
-    }
-
-    .og-preview-desc {
-      font-size: 0.85rem;
-      color: #475569;
-    }
-
-    footer {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-color);
-    }
-
-    /* 10. Responsive Breakpoint */
-    @media (max-width: 640px) {
-      .module-header {
-        padding: 1.75rem 1.25rem;
-      }
-
-      .module-header h1 {
-        font-size: 1.6rem;
-      }
-
-      .topic-card {
-        padding: 1.5rem;
-      }
-
-      .demo-form input {
-        max-width: 100%;
-      }
+    @media (max-width: 600px) {
+      .module-header h1 { font-size: 1.8rem; }
+      .topic-card { padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigasi Atas -->
   <header>
-    <div class="nav-container">
+    <div class="navbar">
       <a href="index.html" class="back-link">&larr; Kembali ke Daftar Modul</a>
-      <span style="font-weight: 500; font-size: 0.9rem; color: var(--text-muted);">Modul 1 dari 3</span>
+      <span style="font-weight: 600; color: var(--text-muted); font-size: 0.9rem;">Materi 1 dari 3</span>
     </div>
   </header>
 
   <main>
-    <!-- Header Modul -->
     <section class="module-header">
-      <h1>🧱 Modul 1: Semantik & Aksesibilitas HTML5</h1>
-      <p>Penguasaan Standar HTML5 Industry-Ready: Struktur SEO, Aksesibilitas Web (a11y), Validasi Form Tanpa JS, dan Optimasi Media.</p>
+      <h1>🧱 Modul 1: Semantik & Aksesibilitas HTML5 (Edisi Lengkap)</h1>
+      <p>Pelajari anatomi kode HTML yang dicintai oleh Mesin Pencari (Google), dipahami oleh Screen Reader, dan berkinerja tinggi (Core Web Vitals).</p>
     </section>
-
-    <!-- KONSEP DASAR / ANALOGI -->
-    <div class="analogy">
-      <strong style="display: block; margin-bottom: 0.25rem;">💡 Filosofi HTML Modern: Lebih Dari Sekadar Tampilan</strong>
-      Di industri web profesional, HTML dibaca oleh tiga entitas: <strong>Pengguna</strong> (visual), <strong>Mesin Pencari / Google</strong> (SEO), dan <strong>Screen Reader</strong> (Aksesibilitas penyandang disabilitas). Penggunaan tag pembungkus biasa seperti <code>&lt;div&gt;</code> untuk segalanya (*Div Soup*) adalah praktik buruk yang harus dihindari.
-    </div>
 
     <!-- MATERI 1.1 -->
     <article class="topic-card" id="materi-1-1">
-      <h2>1.1 Struktur Semantik & SEO Optimization</h2>
-      <p>Elemen semantik memberikan arti jelas pada struktur web sehingga mesin pencari seperti Google dapat dengan mudah memahami tata letak dan hierarki konten utama Anda.</p>
+      <h2>1.1 Struktur Semantik & Hierarki SEO</h2>
+      <p>Membangun website dengan <code>&lt;div&gt;</code> untuk segala hal (*Div Soup*) adalah kesalahan pemula terbesar. Robot perayap mesin pencari (seperti Googlebot) tidak memiliki mata. Mereka membaca struktur kode untuk memahami mana yang merupakan judul utama, mana yang konten pendukung, dan mana yang sekadar menu navigasi.</p>
       
-      <div class="code-block">
+      <h3>Elemen Struktural Wajib HTML5:</h3>
+      <ul>
+        <li><code class="tag">&lt;header&gt;</code>: Kepala dokumen atau area navigasi atas (berisi logo & menu).</li>
+        <li><code class="tag">&lt;main&gt;</code>: <strong>Aturan emas:</strong> Hanya boleh ada SATU tag main dalam satu halaman. Ini adalah jantung konten web Anda.</li>
+        <li><code class="tag">&lt;article&gt;</code>: Konten independen yang masuk akal jika dibaca terpisah (misal: postingan blog, kartu produk).</li>
+        <li><code class="tag">&lt;aside&gt;</code>: Konten sekunder yang berada di luar topik utama (misal: sidebar, rekomendasi artikel, iklan).</li>
+        <li><code class="tag">&lt;figure&gt; & &lt;figcaption&gt;</code>: Pembungkus untuk media (gambar/grafik) yang memiliki teks keterangan.</li>
+      </ul>
+
+      <div class="code-title">❌ Bad Practice (Sulit dibaca Mesin Pencari)</div>
+      <div class="code-block bad-practice">
+<pre>&lt;div class="header-utama"&gt;...&lt;/div&gt;
+&lt;div class="konten-tengah"&gt;
+  &lt;div class="postingan"&gt;...&lt;/div&gt;
+  &lt;div class="sidebar-kanan"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="footer-bawah"&gt;...&lt;/div&gt;</pre>
+      </div>
+
+      <div class="code-title">✅ Good Practice (Industry Standard Semantic)</div>
+      <div class="code-block good-practice">
 <pre>&lt;header&gt;
   &lt;nav&gt;
-    &lt;a href="/"&gt;Beranda&lt;/a&gt;
+    &lt;!-- Menu Navigasi --&gt;
   &lt;/nav&gt;
 &lt;/header&gt;
 
 &lt;main&gt;
   &lt;article&gt;
-    &lt;h1&gt;Panduan HTML5 Modern&lt;/h1&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Judul Artikel Utama&lt;/h1&gt;
+      &lt;p&gt;Ditulis pada &lt;time datetime="2026-10-15"&gt;15 Oktober 2026&lt;/time&gt;&lt;/p&gt;
+    &lt;/header&gt;
+    
     &lt;section&gt;
-      &lt;h2&gt;Sub-materi 1&lt;/h2&gt;
-      &lt;p&gt;Konten artikel...&lt;/p&gt;
+      &lt;h2&gt;Bab Pendahuluan&lt;/h2&gt;
+      &lt;p&gt;Isi konten...&lt;/p&gt;
+      
+      &lt;figure&gt;
+        &lt;img src="grafik.jpg" alt="Grafik peningkatan pengguna"&gt;
+        &lt;figcaption&gt;Gambar 1.1: Lonjakan pengguna kuartal 3.&lt;/figcaption&gt;
+      &lt;/figure&gt;
     &lt;/section&gt;
   &lt;/article&gt;
 
   &lt;aside&gt;
-    &lt;p&gt;Widget/Rekomendasi Berita&lt;/p&gt;
+    &lt;h3&gt;Artikel Terkait&lt;/h3&gt;
+    &lt;!-- Link artikel lain --&gt;
   &lt;/aside&gt;
 &lt;/main&gt;
 
 &lt;footer&gt;
-  &lt;p&gt;&amp;copy; 2026 Hak Cipta Dilindungi.&lt;/p&gt;
+  &lt;p&gt;&copy; 2026 Hak Cipta Dilindungi.&lt;/p&gt;
 &lt;/footer&gt;</pre>
-      </div>
-
-      <div class="note">
-        <span class="note-title">Fungsi Tag Semantik Utama:</span>
-        <ul>
-          <li><code class="tag">&lt;header&gt;</code>: Mewakili area navigasi, logo, atau tajuk teratas.</li>
-          <li><code class="tag">&lt;main&gt;</code>: Tempat konten unik utama. <strong>Wajib hanya ada 1 per halaman</strong>.</li>
-          <li><code class="tag">&lt;article&gt;</code>: Konten mandiri yang bisa berdiri sendiri (misal: postingan blog, produk).</li>
-          <li><code class="tag">&lt;section&gt;</code>: Kelompok konten yang memiliki topik/heading khusus dalam artikel.</li>
-          <li><code class="tag">&lt;aside&gt;</code>: Konten pendamping seperti sidebar, iklan, atau rekomendasi.</li>
-        </ul>
       </div>
     </article>
 
     <!-- MATERI 1.2 -->
     <article class="topic-card" id="materi-1-2">
       <h2>1.2 Aksesibilitas (a11y) & ARIA Attributes</h2>
-      <p>Aksesibilitas memastikan website dapat digunakan oleh penyandang tunanetra atau pengguna yang bernavigasi tanpa mouse (menggunakan Keyboard Tab).</p>
+      <p>Website profesional harus mematuhi standar WCAG (Web Content Accessibility Guidelines). Ini memastikan website dapat digunakan oleh penyandang disabilitas penglihatan menggunakan <strong>Screen Reader</strong> (seperti NVDA atau VoiceOver) dan pengguna yang bernavigasi khusus menggunakan keyboard.</p>
+
+      <h3>Prinsip ARIA (Accessible Rich Internet Applications):</h3>
+      <ul>
+        <li><strong><code>aria-label</code>:</strong> Digunakan untuk memberi nama pada elemen yang tidak memiliki teks terlihat. (Contoh: Tombol 'X' untuk menutup modal).</li>
+        <li><strong><code>aria-hidden="true"</code>:</strong> Menyembunyikan elemen dekoratif murni dari Screen Reader agar tidak menimbulkan suara bising yang tidak perlu (misal: ikon hiasan).</li>
+        <li><strong><code>aria-expanded</code>:</strong> Memberitahu Screen Reader apakah sebuah menu dropdown sedang terbuka ("true") atau tertutup ("false").</li>
+      </ul>
 
       <div class="code-block">
-<pre>&lt;!-- Tombol dengan ikon tanpa teks wajib menggunakan aria-label --&gt;
-&lt;button aria-label="Tutup Mode Gelap" class="btn-icon"&gt;
-  &lt;span&gt;&amp;times;&lt;/span&gt;
+<pre>&lt;!-- 1. Tombol Ikon Tanpa Teks --&gt;
+&lt;!-- Jika tidak ada aria-label, pembaca layar hanya akan membacanya sebagai "Tombol" yang membingungkan. --&gt;
+&lt;button aria-label="Tutup Jendela Konfirmasi" class="btn-close"&gt;
+  &lt;svg aria-hidden="true"&gt;...ikon X...&lt;/svg&gt;
 &lt;/button&gt;
 
-&lt;!-- Memberikan penjelasan state pada menu dropdown/akordeon --&gt;
+&lt;!-- 2. Menu Dropdown Interaktif --&gt;
 &lt;button aria-expanded="false" aria-controls="menu-list"&gt;
-  Buka Menu
+  Pengaturan Profil
 &lt;/button&gt;
+&lt;ul id="menu-list" hidden&gt;
+  &lt;li&gt;&lt;a href="#"&gt;Ubah Password&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;!-- Gambar deklaratif wajib alt, gambar dekoratif diberi alt kosong --&gt;
-&lt;img src="user.jpg" alt="Foto profil Raihan Muzaffar"&gt;
-&lt;img src="divider.png" alt="" aria-hidden="true"&gt;</pre>
-      </div>
-
-      <div class="preview-box">
-        <div class="preview-title">👁️ Contoh Implementasi Aksesibilitas:</div>
-        <div style="display: flex; gap: 1rem; align-items: center;">
-          <button class="demo-btn" aria-label="Simpan Dokumen Ke Cloud">💾 Simpan (Hover/Focus Me)</button>
-          <span style="font-size: 0.88rem; color: #64748b;">Gunakan tombol <strong>Tab</strong> pada keyboard untuk menguji aksesibilitas navigasi.</span>
-        </div>
+&lt;!-- 3. Manajemen Gambar (Alt Text) --&gt;
+&lt;img src="data-penting.jpg" alt="Grafik batang menunjukkan kenaikan laba 20%"&gt;
+&lt;img src="garis-hiasan.png" alt="" aria-hidden="true"&gt; &lt;!-- Dekorasi murni --&gt;</pre>
       </div>
     </article>
 
     <!-- MATERI 1.3 -->
     <article class="topic-card" id="materi-1-3">
-      <h2>1.3 Form & Validasi Bawaan (Tanpa JavaScript)</h2>
-      <p>HTML5 menyediakan sistem validasi input canggih menggunakan atribut seperti <code>required</code>, <code>pattern</code> (Regex), dan penentuan tipe spesifik.</p>
+      <h2>1.3 Form & Validasi Bawaan Lanjutan</h2>
+      <p>HTML5 sangat kuat. Anda seringkali tidak membutuhkan JavaScript rumit hanya untuk memvalidasi formulir sederhana. Manfaatkan atribut validasi asli browser yang lebih ringan dan aman.</p>
 
-      <div class="code-block">
-<pre>&lt;form&gt;
-  &lt;!-- Validasi Format Email Asli --&gt;
-  &lt;label for="email"&gt;Email Kantor:&lt;/label&gt;
-  &lt;input type="email" id="email" required placeholder="nama@perusahaan.com"&gt;
-
-  &lt;!-- Validasi Regex: Minimal 8 Karakter (Ada Angka & Huruf Besar) --&gt;
-  &lt;label for="pass"&gt;Password:&lt;/label&gt;
-  &lt;input type="password" id="pass" required 
-         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-         title="Minimal 8 karakter, wajib memuat angka, huruf besar & kecil"&gt;
-
-  &lt;button type="submit"&gt;Daftar Akun&lt;/button&gt;
-&lt;/form&gt;</pre>
-      </div>
+      <h3>Atribut Validasi Penting:</h3>
+      <ul>
+        <li><code class="tag">required</code>: Input tidak boleh kosong.</li>
+        <li><code class="tag">pattern="[regex]"</code>: Mencocokkan teks dengan aturan Regular Expression (contoh: huruf besar saja, format plat nomor, dll).</li>
+        <li><code class="tag">minlength</code> & <code class="tag">maxlength</code>: Membatasi jumlah karakter.</li>
+        <li><code class="tag">&lt;datalist&gt;</code>: Membuat input teks yang memiliki opsi auto-complete/saran otomatis bawaan browser.</li>
+      </ul>
 
       <div class="preview-box">
-        <div class="preview-title">👁️ Uji Coba Live Form Validation:</div>
-        <form class="demo-form" onSubmit="alert('Form Valid! Siap dikirim.'); return false;">
-          <label for="preview-email">Email Kantor (Wajib Format Email):</label>
-          <input type="email" id="preview-email" required placeholder="nama@perusahaan.com">
+        <div class="preview-title">👁️ Live Demo: Uji Coba Form HTML5 Native</div>
+        <form class="demo-form" onsubmit="alert('Semua Validasi HTML5 Lolos! Form siap dikirim.'); return false;">
+          
+          <label for="demo-email">Email (Otomatis cek format @):</label>
+          <input type="email" id="demo-email" required placeholder="Ketik text tanpa @...">
+          
+          <label for="demo-pin">PIN Keamanan (Pattern Regex: Tepat 6 angka):</label>
+          <input type="password" id="demo-pin" pattern="\d{6}" required placeholder="Contoh: 123456" title="Harus berupa 6 digit angka tanpa spasi/huruf">
+          
+          <label for="demo-browser">Browser Favorit (Datalist Auto-complete):</label>
+          <input list="browsers" id="demo-browser" name="browser" placeholder="Ketik atau klik panah..." required>
+          <datalist id="browsers">
+            <option value="Chrome">
+            <option value="Firefox">
+            <option value="Safari">
+            <option value="Edge">
+          </datalist>
 
-          <label for="preview-pass">Password (Coba ketik 1 huruf dan klik submit):</label>
-          <input type="password" id="preview-pass" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Minimal 8 karakter (Angka & Huruf Besar)" title="Minimal 8 karakter, wajib memuat angka, huruf besar & kecil">
-
-          <div>
-            <button type="submit" class="demo-btn">Submit & Uji Validasi</button>
-          </div>
+          <button type="submit" class="btn-submit">Uji Coba Validasi</button>
         </form>
+      </div>
+
+      <div class="info-box">
+        <strong>💡 Tips UI/UX:</strong> Pada form di atas, saya menggunakan CSS pseudo-class <code>:valid</code> dan <code>:invalid</code>. Jika Anda mengetik email dengan benar, garis pinggir otomatis menjadi hijau, dan merah jika salah.
       </div>
     </article>
 
     <!-- MATERI 1.4 -->
     <article class="topic-card" id="materi-1-4">
-      <h2>1.4 Optimasi Media & Lazy Loading</h2>
-      <p>Mempercepat performa loading website (Core Web Vitals) dengan penyajian gambar responsif via elemen <code>&lt;picture&gt;</code> dan atribut <code>loading="lazy"</code>.</p>
+      <h2>1.4 Optimasi Media & Mencegah CLS (Core Web Vitals)</h2>
+      <p>Google memberi peringkat lebih tinggi pada website yang memuat dengan cepat. Gambar adalah penyumbang ukuran *bandwidth* terbesar. Standar industri modern menggunakan tag <code class="tag">&lt;picture&gt;</code> dan teknik <strong>Lazy Loading</strong>.</p>
+
+      <h3>Aturan Wajib Optimasi Gambar:</h3>
+      <ol>
+        <li><strong>Selalu definisikan <code>width</code> dan <code>height</code>:</strong> Ini mencegah masalah <em>Cumulative Layout Shift (CLS)</em>, di mana teks terdorong ke bawah secara tiba-tiba saat gambar selesai dimuat.</li>
+        <li><strong>Format Modern:</strong> Gunakan format <code>.webp</code> atau <code>.avif</code> yang ukurannya 50% lebih kecil dari JPG dengan kualitas yang sama.</li>
+        <li><strong>Lazy Loading:</strong> Tambahkan <code>loading="lazy"</code> agar gambar di bagian bawah halaman tidak didownload sebelum pengguna men-scroll ke sana.</li>
+      </ol>
 
       <div class="code-block">
-<pre>&lt;!-- 1. Lazy loading otomatis menunda download gambar sebelum di-scroll --&gt;
-&lt;img src="banner.webp" alt="Banner Modul" loading="lazy" width="800" height="400"&gt;
-
-&lt;!-- 2. Elemen Picture untuk menyajikan format ringan WebP/AVIF sesuai browser --&gt;
+<pre>&lt;!-- Tag Picture memungkinkan kita menyajikan format terbaik --&gt;
+&lt;!-- Browser akan membaca dari atas. Jika mendukung AVIF, ia pakai AVIF. 
+     Jika tidak, ia turun ke WebP. Jika tidak lagi, ia turun ke JPG asli. --&gt;
 &lt;picture&gt;
-  &lt;source srcset="hero.avif" type="image/avif"&gt;
-  &lt;source srcset="hero.webp" type="image/webp"&gt;
-  &lt;img src="hero.jpg" alt="Hero Banner" loading="eager"&gt;
+  &lt;source srcset="banner-promo.avif" type="image/avif"&gt;
+  &lt;source srcset="banner-promo.webp" type="image/webp"&gt;
+  &lt;img 
+    src="banner-promo.jpg" 
+    alt="Diskon akhir tahun 50%" 
+    width="1200" 
+    height="600" 
+    loading="lazy"
+    decoding="async"&gt;
 &lt;/picture&gt;</pre>
-      </div>
-
-      <div class="note">
-        <strong>Mengapa atribut width & height penting?</strong> Menentukan atribut `width` dan `height` pada tag gambar akan mencegah terjadinya loncatan tata letak (*Cumulative Layout Shift / CLS*) saat halaman sedang dimuat.
       </div>
     </article>
 
     <!-- MATERI 1.5 -->
     <article class="topic-card" id="materi-1-5">
-      <h2>1.5 Open Graph & Social Media Meta Tags</h2>
-      <p>Protokol Open Graph digunakan agar tautan website kamu menampilkan kartu pratinjau yang indah saat dibagikan ke WhatsApp, LinkedIn, X (Twitter), atau Facebook.</p>
+      <h2>1.5 Open Graph & Social Meta Tags</h2>
+      <p>Pernahkah Anda membagikan URL di WhatsApp, LinkedIn, atau Twitter, dan tiba-tiba muncul kartu pratinjau yang indah dengan gambar, judul, dan deskripsi? Itu bukanlah sihir, melainkan protokol <strong>Open Graph (OG)</strong> dan <strong>Twitter Cards</strong>.</p>
+
+      <p>Data ini diletakkan di dalam tag <code class="tag">&lt;head&gt;</code> dokumen Anda.</p>
 
       <div class="code-block">
 <pre>&lt;head&gt;
-  &lt;!-- Open Graph Basic --&gt;
-  &lt;meta property="og:title" content="Modul Belajar Web Development Modern"&gt;
-  &lt;meta property="og:description" content="Kuasai HTML5, CSS3, dan JS dari Nol Berdasarkan Standar Industri."&gt;
-  &lt;meta property="og:image" content="https://website.com/assets/og-preview.jpg"&gt;
-  &lt;meta property="og:url" content="https://website.com/modul"&gt;
-  &lt;meta property="og:type" content="website"&gt;
+  &lt;!-- Pengaturan Warna Tema Browser (Mobile) --&gt;
+  &lt;meta name="theme-color" content="#2563eb"&gt;
 
-  &lt;!-- Twitter Card --&gt;
+  &lt;!-- Open Graph Basic (Facebook, WA, LinkedIn) --&gt;
+  &lt;meta property="og:type" content="website"&gt;
+  &lt;meta property="og:url" content="https://portofoliokamu.com/"&gt;
+  &lt;meta property="og:title" content="Portofolio Web Developer | Raihan"&gt;
+  &lt;meta property="og:description" content="Kumpulan proyek web modern berbasis React dan Laravel."&gt;
+  &lt;!-- Gambar OG idealnya berukuran 1200 x 630 piksel --&gt;
+  &lt;meta property="og:image" content="https://portofoliokamu.com/assets/og-cover.jpg"&gt;
+
+  &lt;!-- Twitter Card Khusus --&gt;
   &lt;meta name="twitter:card" content="summary_large_image"&gt;
 &lt;/head&gt;</pre>
-      </div>
-
-      <div class="preview-box">
-        <div class="preview-title">👁️ Simulasi Tampilan Saat Link Dibagikan di WhatsApp/LinkedIn:</div>
-        <div class="og-preview-card">
-          <div class="og-preview-img">✨ BANNER PREVIEW (1200x630)</div>
-          <div class="og-preview-body">
-            <div class="og-preview-domain">websitekamu.com</div>
-            <div class="og-preview-title">Modul Belajar Web Development Modern</div>
-            <div class="og-preview-desc">Kuasai HTML5, CSS3, dan JS dari Nol Berdasarkan Standar Industri.</div>
-          </div>
-        </div>
       </div>
     </article>
 
     <!-- MATERI 1.6 -->
     <article class="topic-card" id="materi-1-6">
-      <h2>1.6 Data Attributes (`data-*`)</h2>
-      <p>Data Attributes memungkinkan kamu menyimpan data kustom pada elemen HTML secara valid tanpa mengganggu tampilan, yang kemudian dapat diproses oleh CSS atau JavaScript.</p>
+      <h2>1.6 Data Attributes (`data-*`) & Custom State</h2>
+      <p>HTML5 memperbolehkan kita membuat atribut kustom asalkan diawali dengan kata <code class="tag">data-</code>. Teknik ini sangat lazim di industri untuk menyimpan data "tersembunyi" di dalam tag HTML tanpa mengacaukan struktur atau tampilan, yang nantinya akan diproses oleh CSS atau JavaScript.</p>
 
       <div class="code-block">
-<pre>&lt;!-- Menyimpan metadata kustom pada elemen --&gt;
-&lt;div class="user-card" data-user-id="1082" data-role="admin" data-status="active"&gt;
-  &lt;h3&gt;Raihan Muzaffar&lt;/h3&gt;
-&lt;/div&gt;
-
-&lt;!-- CSS dapat mengambil nilai atribut ini --&gt;
-&lt;style&gt;
-  .user-card[data-status="active"]::after {
-    content: " • " attr(data-role);
-    color: #22c55e;
-    font-weight: bold;
-  }
-&lt;/style&gt;</pre>
+<pre>&lt;!-- HTML: Menyimpan status ketersediaan barang dan ID Database --&gt;
+&lt;div class="product-card" data-product-id="A883" data-stock="habis"&gt;
+  &lt;h3&gt;Sepatu Sneaker Pro&lt;/h3&gt;
+&lt;/div&gt;</pre>
       </div>
 
-      <div class="preview-box">
-        <div class="preview-title">👁️ Hasil Tampilan Browser (Via CSS Attribute Selector):</div>
-        <div style="padding: 0.8rem 1rem; background: #f1f5f9; border-radius: 6px; display: inline-block;">
-          <strong>Raihan Muzaffar</strong> 
-          <span style="color: #22c55e; font-weight: 600; font-size: 0.85rem;"> • ONLINE (data-status="active")</span>
-        </div>
+      <div class="code-block">
+<pre>/* CSS: Kita bisa mengubah gaya (styling) berdasarkan data attribute! */
+.product-card[data-stock="habis"] {
+  opacity: 0.5;
+  pointer-events: none; /* Menonaktifkan klik */
+}
+
+/* Menambahkan teks otomatis dari data attribute menggunakan pseudo-element */
+.product-card[data-stock="habis"]::after {
+  content: " STOK KOSONG";
+  color: red;
+  font-weight: bold;
+}</pre>
+      </div>
+
+      <div class="code-block">
+<pre>// Javascript: Mengambil nilai data attribute
+const card = document.querySelector('.product-card');
+
+// "data-product-id" otomatis dikonversi menjadi camelCase di JS
+console.log(card.dataset.productId); // Output: "A883"
+console.log(card.dataset.stock);     // Output: "habis"</pre>
       </div>
     </article>
 
-    <!-- LATIHAN MANDIRI -->
-    <article class="topic-card" style="border: 2px solid var(--primary); background-color: var(--primary-light);">
-      <h2 style="color: var(--primary); border-bottom: none; margin-bottom: 0.5rem;">🎯 Latihan Praktikum Industry-Grade</h2>
-      <p>Buatlah satu file HTML baru bernama <code>portofolio-aksesibel.html</code> dengan ketentuan standar berikut:</p>
-      
-      <ol style="color: var(--text-main); margin-bottom: 0;">
-        <li>Gunakan struktur semantik utuh (minimal memuat <code class="tag">&lt;header&gt;</code>, <code class="tag">&lt;nav&gt;</code>, <code class="tag">&lt;main&gt;</code>, <code class="tag">&lt;article&gt;</code>, dan <code class="tag">&lt;footer&gt;</code>).</li>
-        <li>Sematkan meta tag <strong>Open Graph</strong> lengkap pada bagian <code class="tag">&lt;head&gt;</code>.</li>
-        <li>Buat formulir kontak yang memiliki atribut validasi regex <code class="tag">pattern</code> dan <code class="tag">required</code> untuk nomor telepon/email.</li>
-        <li>Gunakan atribut <code class="tag">loading="lazy"</code> serta alternatif deskripsi <code class="tag">alt</code> yang aksesibel pada seluruh gambar.</li>
-        <li>Tambahkan atribut <code class="tag">data-category</code> pada kartu daftar proyek kamu.</li>
-      </ol>
-    </article>
   </main>
 
-  <footer>
-    <p>&copy; 2026 Belajar Web Development - Modul 1 HTML5 Semantik & Aksesibilitas</p>
+  <footer style="text-align: center; padding: 2.5rem; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: 2rem;">
+    <p>&copy; Modul Belajar Web Development Modern - Bagian HTML5</p>
+    <p style="font-size: 0.85rem; margin-top: 0.5rem;">Disusun untuk standar kurikulum praktik industri.</p>
   </footer>
 
 </body>
